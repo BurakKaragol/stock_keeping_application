@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace stock_keeping_application
 {
     public partial class MainForm : Form
     {
+        SQLConnectionHandler connection;
+
         public MainForm()
         {
             InitializeComponent();
@@ -19,7 +22,8 @@ namespace stock_keeping_application
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            connection = new SQLConnectionHandler("Data Source=BURAKASUSROG\\ZRV2014EXP;Initial Catalog=stock_application_db;Integrated Security=True;\r\n");
+            connection.FillDataTable("stock_table", StockDataGrid);
         }
 
         #region Buttons
@@ -70,5 +74,10 @@ namespace stock_keeping_application
 
         }
         #endregion
+
+        private void StockDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
