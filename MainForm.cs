@@ -13,6 +13,10 @@ namespace stock_keeping_application
 {
     public partial class MainForm : Form
     {
+        // merhabalar efendim öncelikle hoşgeldiniz
+        // bu uygulamanın geliştirme sürecinin ikimiz adına da keyifli bir deneyim olmasını temenni ediyorum.
+        // iyi çalışmalar (. ❛ ᴗ ❛.)
+
         SQLConnectionHandler connection;
         private readonly string _connectionString = "Data Source=BURAKASUSROG\\ZRV2014EXP;Initial Catalog=stock_application_db;Integrated Security=True;\r\n";
 
