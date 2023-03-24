@@ -19,7 +19,56 @@ namespace stock_keeping_application
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
+
+        #region Buttons
+        private void AddNewButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteSelectedButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateSelectedButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GetAmountDataButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditRecipeButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateTableButton_Click_1(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region TextBoxes
+        private void StockIdTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }
