@@ -115,9 +115,9 @@
             this.OptionsGroup.Controls.Add(this.DeleteSelectedButton);
             this.OptionsGroup.Controls.Add(this.AddNewButton);
             this.OptionsGroup.Dock = System.Windows.Forms.DockStyle.Right;
-            this.OptionsGroup.Location = new System.Drawing.Point(634, 0);
+            this.OptionsGroup.Location = new System.Drawing.Point(664, 0);
             this.OptionsGroup.Name = "OptionsGroup";
-            this.OptionsGroup.Size = new System.Drawing.Size(250, 200);
+            this.OptionsGroup.Size = new System.Drawing.Size(220, 200);
             this.OptionsGroup.TabIndex = 3;
             this.OptionsGroup.TabStop = false;
             this.OptionsGroup.Text = "Options";
@@ -127,7 +127,7 @@
             this.UpdateTableButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.UpdateTableButton.Location = new System.Drawing.Point(3, 166);
             this.UpdateTableButton.Name = "UpdateTableButton";
-            this.UpdateTableButton.Size = new System.Drawing.Size(244, 30);
+            this.UpdateTableButton.Size = new System.Drawing.Size(214, 30);
             this.UpdateTableButton.TabIndex = 7;
             this.UpdateTableButton.Text = "Update Table";
             this.UpdateTableButton.UseVisualStyleBackColor = true;
@@ -138,7 +138,7 @@
             this.EditRecipeButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.EditRecipeButton.Location = new System.Drawing.Point(3, 136);
             this.EditRecipeButton.Name = "EditRecipeButton";
-            this.EditRecipeButton.Size = new System.Drawing.Size(244, 30);
+            this.EditRecipeButton.Size = new System.Drawing.Size(214, 30);
             this.EditRecipeButton.TabIndex = 6;
             this.EditRecipeButton.Text = "Edit Recipe";
             this.EditRecipeButton.UseVisualStyleBackColor = true;
@@ -149,7 +149,7 @@
             this.GetAmountDataButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.GetAmountDataButton.Location = new System.Drawing.Point(3, 106);
             this.GetAmountDataButton.Name = "GetAmountDataButton";
-            this.GetAmountDataButton.Size = new System.Drawing.Size(244, 30);
+            this.GetAmountDataButton.Size = new System.Drawing.Size(214, 30);
             this.GetAmountDataButton.TabIndex = 5;
             this.GetAmountDataButton.Text = "Get Amount Data";
             this.GetAmountDataButton.UseVisualStyleBackColor = true;
@@ -160,7 +160,7 @@
             this.UpdateSelectedButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.UpdateSelectedButton.Location = new System.Drawing.Point(3, 76);
             this.UpdateSelectedButton.Name = "UpdateSelectedButton";
-            this.UpdateSelectedButton.Size = new System.Drawing.Size(244, 30);
+            this.UpdateSelectedButton.Size = new System.Drawing.Size(214, 30);
             this.UpdateSelectedButton.TabIndex = 4;
             this.UpdateSelectedButton.Text = "Update Selected";
             this.UpdateSelectedButton.UseVisualStyleBackColor = true;
@@ -171,7 +171,7 @@
             this.DeleteSelectedButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.DeleteSelectedButton.Location = new System.Drawing.Point(3, 46);
             this.DeleteSelectedButton.Name = "DeleteSelectedButton";
-            this.DeleteSelectedButton.Size = new System.Drawing.Size(244, 30);
+            this.DeleteSelectedButton.Size = new System.Drawing.Size(214, 30);
             this.DeleteSelectedButton.TabIndex = 3;
             this.DeleteSelectedButton.Text = "Delete Selected";
             this.DeleteSelectedButton.UseVisualStyleBackColor = true;
@@ -182,7 +182,7 @@
             this.AddNewButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.AddNewButton.Location = new System.Drawing.Point(3, 16);
             this.AddNewButton.Name = "AddNewButton";
-            this.AddNewButton.Size = new System.Drawing.Size(244, 30);
+            this.AddNewButton.Size = new System.Drawing.Size(214, 30);
             this.AddNewButton.TabIndex = 2;
             this.AddNewButton.Text = "Add New";
             this.AddNewButton.UseVisualStyleBackColor = true;
@@ -272,7 +272,7 @@
             this.WindowsGroup.Dock = System.Windows.Forms.DockStyle.Right;
             this.WindowsGroup.Location = new System.Drawing.Point(444, 0);
             this.WindowsGroup.Name = "WindowsGroup";
-            this.WindowsGroup.Size = new System.Drawing.Size(190, 200);
+            this.WindowsGroup.Size = new System.Drawing.Size(220, 200);
             this.WindowsGroup.TabIndex = 4;
             this.WindowsGroup.TabStop = false;
             this.WindowsGroup.Text = "Windows";
@@ -282,7 +282,7 @@
             this.button1.Dock = System.Windows.Forms.DockStyle.Top;
             this.button1.Location = new System.Drawing.Point(3, 166);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(184, 30);
+            this.button1.Size = new System.Drawing.Size(214, 30);
             this.button1.TabIndex = 7;
             this.button1.Text = "Update Table";
             this.button1.UseVisualStyleBackColor = true;
@@ -292,7 +292,7 @@
             this.button2.Dock = System.Windows.Forms.DockStyle.Top;
             this.button2.Location = new System.Drawing.Point(3, 136);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(184, 30);
+            this.button2.Size = new System.Drawing.Size(214, 30);
             this.button2.TabIndex = 6;
             this.button2.Text = "Edit Recipe";
             this.button2.UseVisualStyleBackColor = true;
@@ -302,7 +302,7 @@
             this.button3.Dock = System.Windows.Forms.DockStyle.Top;
             this.button3.Location = new System.Drawing.Point(3, 106);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(184, 30);
+            this.button3.Size = new System.Drawing.Size(214, 30);
             this.button3.TabIndex = 5;
             this.button3.Text = "Get Amount Data";
             this.button3.UseVisualStyleBackColor = true;
@@ -312,7 +312,7 @@
             this.ProducePartButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.ProducePartButton.Location = new System.Drawing.Point(3, 76);
             this.ProducePartButton.Name = "ProducePartButton";
-            this.ProducePartButton.Size = new System.Drawing.Size(184, 30);
+            this.ProducePartButton.Size = new System.Drawing.Size(214, 30);
             this.ProducePartButton.TabIndex = 4;
             this.ProducePartButton.Text = "ProducePart";
             this.ProducePartButton.UseVisualStyleBackColor = true;
@@ -322,7 +322,7 @@
             this.MoveStockButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.MoveStockButton.Location = new System.Drawing.Point(3, 46);
             this.MoveStockButton.Name = "MoveStockButton";
-            this.MoveStockButton.Size = new System.Drawing.Size(184, 30);
+            this.MoveStockButton.Size = new System.Drawing.Size(214, 30);
             this.MoveStockButton.TabIndex = 3;
             this.MoveStockButton.Text = "Move Stock";
             this.MoveStockButton.UseVisualStyleBackColor = true;
@@ -332,7 +332,7 @@
             this.PrepareProductListButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.PrepareProductListButton.Location = new System.Drawing.Point(3, 16);
             this.PrepareProductListButton.Name = "PrepareProductListButton";
-            this.PrepareProductListButton.Size = new System.Drawing.Size(184, 30);
+            this.PrepareProductListButton.Size = new System.Drawing.Size(214, 30);
             this.PrepareProductListButton.TabIndex = 2;
             this.PrepareProductListButton.Text = "Prepare Product List";
             this.PrepareProductListButton.UseVisualStyleBackColor = true;
