@@ -33,25 +33,69 @@ namespace stock_keeping_application
             }
         }
 
-        public void FillDataTable(string tableName, DataGridView grid)
+        public DataTable ExecuteQuery(string query)
         {
+            DataTable dataTable = new DataTable();
             try
             {
-                OpenConnection();
-                SqlCommand command = new SqlCommand("SELECT * FROM stock_table");
-                command.Connection = connection;
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                adapter.SelectCommand = command;
-                System.Data.DataTable dataTable = new System.Data.DataTable();
-                adapter.Fill(dataTable);
-                grid.DataSource = dataTable;
-                connection.Close();
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        adapter.Fill(dataTable);
+                    }
+                }
             }
             catch (SqlException ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                MessageBox.Show($"Error: {ex.Message}");
             }
+            return dataTable;
+        }
 
+        public int ExecuteNonQuery(string query)
+        {
+            int rowsAffected = 0;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+            return rowsAffected;
+        }
+
+        public void UpdateStock(string stockId, string newValue)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("UPDATE stock_table SET myColumn = @NewValue WHERE STOCK_ID = @StockId", connection))
+                    {
+                        command.Parameters.AddWithValue("@NewValue", newValue);
+                        command.Parameters.AddWithValue("@StockId", stockId);
+                        int rowsAffected = command.ExecuteNonQuery();
+                        MessageBox.Show($"Rows affected: {rowsAffected}");
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
         }
 
         public void CloseConnection()

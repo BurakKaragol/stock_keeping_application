@@ -120,7 +120,7 @@
             this.UpdateTableButton.Name = "UpdateTableButton";
             this.UpdateTableButton.Size = new System.Drawing.Size(244, 30);
             this.UpdateTableButton.TabIndex = 7;
-            this.UpdateTableButton.Text = "UpdateTableButton";
+            this.UpdateTableButton.Text = "Update Table";
             this.UpdateTableButton.UseVisualStyleBackColor = true;
             this.UpdateTableButton.Click += new System.EventHandler(this.UpdateTableButton_Click_1);
             // 

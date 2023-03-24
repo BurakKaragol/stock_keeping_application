@@ -14,6 +14,7 @@ namespace stock_keeping_application
     public partial class MainForm : Form
     {
         SQLConnectionHandler connection;
+        private readonly string _connectionString = "Data Source=BURAKASUSROG\\ZRV2014EXP;Initial Catalog=stock_application_db;Integrated Security=True;\r\n";
 
         public MainForm()
         {
@@ -22,8 +23,8 @@ namespace stock_keeping_application
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            connection = new SQLConnectionHandler("Data Source=BURAKASUSROG\\ZRV2014EXP;Initial Catalog=stock_application_db;Integrated Security=True;\r\n");
-            connection.FillDataTable("stock_table", StockDataGrid);
+            connection = new SQLConnectionHandler(_connectionString);
+            StockDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
         }
 
         #region Buttons
@@ -58,26 +59,41 @@ namespace stock_keeping_application
         }
         #endregion
 
+        private int selectedIndex = 0;
+        private string stockText;
+        private string nameText;
+        private string descriptionText;
+        private void StockDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            selectedIndex = e.RowIndex;
+            //get the specified values
+            //STOCK_ID 1
+            //NAME 3
+            //DESCRIPTION 8
+            stockText = StockDataGrid[1, selectedIndex].Value.ToString();
+            nameText = StockDataGrid[3, selectedIndex].Value.ToString();
+            descriptionText = StockDataGrid[8, selectedIndex].Value.ToString();
+
+            StockIdTextBox.Text = stockText;
+            NameTextBox.Text = nameText;
+            DescriptionTextBox.Text = descriptionText;
+        }
+
         #region TextBoxes
         private void StockIdTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            stockText = StockIdTextBox.Text;
         }
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            nameText = NameTextBox.Text;
         }
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            descriptionText = DescriptionTextBox.Text;
         }
         #endregion
-
-        private void StockDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }
