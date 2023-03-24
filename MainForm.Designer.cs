@@ -46,12 +46,20 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.StockIDLabel = new System.Windows.Forms.Label();
             this.StockIdTextBox = new System.Windows.Forms.TextBox();
+            this.WindowsGroup = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.ProducePartButton = new System.Windows.Forms.Button();
+            this.MoveStockButton = new System.Windows.Forms.Button();
+            this.PrepareProductListButton = new System.Windows.Forms.Button();
             this.MainPanel.SuspendLayout();
             this.LowerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StockDataGrid)).BeginInit();
             this.UpperPanel.SuspendLayout();
             this.OptionsGroup.SuspendLayout();
             this.SelectedMaterialProperitiesGroup.SuspendLayout();
+            this.WindowsGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainPanel
@@ -88,6 +96,7 @@
             // 
             // UpperPanel
             // 
+            this.UpperPanel.Controls.Add(this.WindowsGroup);
             this.UpperPanel.Controls.Add(this.OptionsGroup);
             this.UpperPanel.Controls.Add(this.SelectedMaterialProperitiesGroup);
             this.UpperPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -192,7 +201,7 @@
             this.SelectedMaterialProperitiesGroup.Controls.Add(this.StockIdTextBox);
             this.SelectedMaterialProperitiesGroup.Location = new System.Drawing.Point(3, 3);
             this.SelectedMaterialProperitiesGroup.Name = "SelectedMaterialProperitiesGroup";
-            this.SelectedMaterialProperitiesGroup.Size = new System.Drawing.Size(628, 197);
+            this.SelectedMaterialProperitiesGroup.Size = new System.Drawing.Size(440, 197);
             this.SelectedMaterialProperitiesGroup.TabIndex = 2;
             this.SelectedMaterialProperitiesGroup.TabStop = false;
             this.SelectedMaterialProperitiesGroup.Text = "Selected Material Properities";
@@ -204,7 +213,7 @@
             this.DescriptionTextBox.Location = new System.Drawing.Point(95, 71);
             this.DescriptionTextBox.Multiline = true;
             this.DescriptionTextBox.Name = "DescriptionTextBox";
-            this.DescriptionTextBox.Size = new System.Drawing.Size(527, 120);
+            this.DescriptionTextBox.Size = new System.Drawing.Size(339, 120);
             this.DescriptionTextBox.TabIndex = 5;
             this.DescriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
@@ -251,6 +260,83 @@
             this.StockIdTextBox.TabIndex = 0;
             this.StockIdTextBox.TextChanged += new System.EventHandler(this.StockIdTextBox_TextChanged);
             // 
+            // WindowsGroup
+            // 
+            this.WindowsGroup.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.WindowsGroup.Controls.Add(this.button1);
+            this.WindowsGroup.Controls.Add(this.button2);
+            this.WindowsGroup.Controls.Add(this.button3);
+            this.WindowsGroup.Controls.Add(this.ProducePartButton);
+            this.WindowsGroup.Controls.Add(this.MoveStockButton);
+            this.WindowsGroup.Controls.Add(this.PrepareProductListButton);
+            this.WindowsGroup.Dock = System.Windows.Forms.DockStyle.Right;
+            this.WindowsGroup.Location = new System.Drawing.Point(444, 0);
+            this.WindowsGroup.Name = "WindowsGroup";
+            this.WindowsGroup.Size = new System.Drawing.Size(190, 200);
+            this.WindowsGroup.TabIndex = 4;
+            this.WindowsGroup.TabStop = false;
+            this.WindowsGroup.Text = "Windows";
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.Location = new System.Drawing.Point(3, 166);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(184, 30);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Update Table";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button2.Location = new System.Drawing.Point(3, 136);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(184, 30);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Edit Recipe";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button3.Location = new System.Drawing.Point(3, 106);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(184, 30);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Get Amount Data";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // ProducePartButton
+            // 
+            this.ProducePartButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ProducePartButton.Location = new System.Drawing.Point(3, 76);
+            this.ProducePartButton.Name = "ProducePartButton";
+            this.ProducePartButton.Size = new System.Drawing.Size(184, 30);
+            this.ProducePartButton.TabIndex = 4;
+            this.ProducePartButton.Text = "ProducePart";
+            this.ProducePartButton.UseVisualStyleBackColor = true;
+            // 
+            // MoveStockButton
+            // 
+            this.MoveStockButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MoveStockButton.Location = new System.Drawing.Point(3, 46);
+            this.MoveStockButton.Name = "MoveStockButton";
+            this.MoveStockButton.Size = new System.Drawing.Size(184, 30);
+            this.MoveStockButton.TabIndex = 3;
+            this.MoveStockButton.Text = "Move Stock";
+            this.MoveStockButton.UseVisualStyleBackColor = true;
+            // 
+            // PrepareProductListButton
+            // 
+            this.PrepareProductListButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PrepareProductListButton.Location = new System.Drawing.Point(3, 16);
+            this.PrepareProductListButton.Name = "PrepareProductListButton";
+            this.PrepareProductListButton.Size = new System.Drawing.Size(184, 30);
+            this.PrepareProductListButton.TabIndex = 2;
+            this.PrepareProductListButton.Text = "Prepare Product List";
+            this.PrepareProductListButton.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -267,6 +353,7 @@
             this.OptionsGroup.ResumeLayout(false);
             this.SelectedMaterialProperitiesGroup.ResumeLayout(false);
             this.SelectedMaterialProperitiesGroup.PerformLayout();
+            this.WindowsGroup.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -291,6 +378,13 @@
         private System.Windows.Forms.Button GetAmountDataButton;
         private System.Windows.Forms.Button UpdateTableButton;
         private System.Windows.Forms.Button EditRecipeButton;
+        private System.Windows.Forms.GroupBox WindowsGroup;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button ProducePartButton;
+        private System.Windows.Forms.Button MoveStockButton;
+        private System.Windows.Forms.Button PrepareProductListButton;
     }
 }
 
