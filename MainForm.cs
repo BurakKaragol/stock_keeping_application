@@ -1,4 +1,5 @@
-﻿using System;
+﻿using stock_keeping_application.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,37 +33,91 @@ namespace stock_keeping_application
         }
 
         #region Buttons
+        // Add a new material to the list
         private void AddNewButton_Click(object sender, EventArgs e)
         {
 
         }
 
+        // Delete the selected material from the list
         private void DeleteSelectedButton_Click(object sender, EventArgs e)
         {
 
         }
 
+        // Update the selected material
         private void UpdateSelectedButton_Click(object sender, EventArgs e)
         {
 
         }
 
+        // Get Stock data of the selected material 
         private void GetAmountDataButton_Click(object sender, EventArgs e)
         {
 
         }
 
+        // Edit the recipe of the selected material
         private void EditRecipeButton_Click(object sender, EventArgs e)
         {
 
         }
 
+        // Update the table with the new data
         private void UpdateTableButton_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Open another window for selecting a material and making stock querries
+        /// Window Jobs:
+        ///     - Select a material and define a required value
+        ///     - Calculate the maksimum amount we can produce with current stock
+        ///     - Calculate the missing parts for producing the selected part
+        ///     - Price calculation for all of the jobs above
+        /// </summary>
+        private void PrepareProductListButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Open another window for moving the current stock from one store to another
+        /// Window Jobs:
+        ///     - Show the material's total stock
+        ///     - Show the material's stock positions
+        ///     - Select amount to move to another stock
+        /// </summary>
+        private void MoveStockButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Open another window for producing a part
+        /// Window Jobs:
+        ///     - Select a material and produce specified amount.
+        ///     - If the material has a recipe use the recipe for removing stock
+        /// </summary>
+        private void ProducePartButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Open another window for general settings
+        /// Window jobs:
+        ///     - Active crurency value
+        ///     - Sql connection string
+        /// </summary>
+        private void SettingsButton_Click(object sender, EventArgs e)
         {
 
         }
         #endregion
 
+        #region Data Grid Functions
         private int selectedIndex = 0;
         private string stockText;
         private string nameText;
@@ -82,6 +137,7 @@ namespace stock_keeping_application
             NameTextBox.Text = nameText;
             DescriptionTextBox.Text = descriptionText;
         }
+        #endregion
 
         #region TextBoxes
         private void StockIdTextBox_TextChanged(object sender, EventArgs e)
