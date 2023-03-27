@@ -54,7 +54,15 @@ namespace stock_keeping_application
         // Open AmountControlForm
         private void GetAmountDataButton_Click(object sender, EventArgs e)
         {
-            Form amountControlForm = new AmountControlForm(this, StockId);
+            Form amountControlForm;
+            if (selectedIndex != -1 && StockId != null)
+            {
+                amountControlForm = new AmountControlForm(this, StockId);
+            }
+            else
+            {
+                amountControlForm = new AmountControlForm(this);
+            }
             amountControlForm.ShowDialog();
         }
 
@@ -138,6 +146,8 @@ namespace stock_keeping_application
         private void StockIdTextBox_TextChanged(object sender, EventArgs e)
         {
             StockId = StockIdTextBox.Text;
+            Filter = StockId;
+            FilterData(StockId);
         }
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
@@ -148,6 +158,35 @@ namespace stock_keeping_application
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             Description = DescriptionTextBox.Text;
+        }
+        #endregion
+
+        #region Filtering
+        private string Filter;
+        /// <summary>
+        /// This function is used for generating a filtered data grid
+        /// We can both do this using sql querries or using datatables
+        /// </summary>
+        /// <param name="filter">seraching filter</param>
+        public void FilterData(string filter)
+        {
+            FilterData("STOCK_ID", filter);
+        }
+
+        /// <summary>
+        /// This function is used for generating a filtered data grid
+        /// We can both do this using sql querries or using datatables
+        /// </summary>
+        /// <param name="filter">seraching filter</param>
+        public void FilterData(string compareColumn, string filter)
+        {
+            Console.WriteLine("Trirggered");
+            if (filter == "" || filter == "*")
+            {
+                StockDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
+            }
+            StockDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM stock_table WHERE {compareColumn} LIKE '%{Filter}%';");
+            StockDataGrid.Update();
         }
         #endregion
     }

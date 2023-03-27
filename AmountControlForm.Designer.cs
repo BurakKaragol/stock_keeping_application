@@ -342,6 +342,7 @@
             this.FilterTextBox.Size = new System.Drawing.Size(175, 20);
             this.FilterTextBox.TabIndex = 12;
             this.FilterTextBox.TextChanged += new System.EventHandler(this.FilterTextBox_TextChanged);
+            this.FilterTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilterTextBox_KeyDown);
             // 
             // label1
             // 

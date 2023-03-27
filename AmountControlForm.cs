@@ -34,7 +34,6 @@ namespace stock_keeping_application
         {
             mainForm = callingFrom as MainForm;
             Filter = filter;
-            FilterTextBox.Text = filter;
             this.filter = true;
             InitializeComponent();
         }
@@ -44,7 +43,8 @@ namespace stock_keeping_application
             connection = new SQLConnectionHandler(_connectionString);
             if (filter)
             {
-                AmountDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID = '{Filter}';");
+                FilterTextBox.Text = Filter;
+                AmountDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{Filter}%';");
             }
             else
             {
@@ -61,6 +61,7 @@ namespace stock_keeping_application
 
         #region Data Grid Functions
         private int selectedIndex = 0;
+        private string uniqueId;
         private string StockId;
         private string Amount;
         private string CurrentStock;
@@ -79,6 +80,7 @@ namespace stock_keeping_application
             //UNIT_PRICE 3
             //TOTAL_PRICE 4
             //DESCRIPTION 8
+            uniqueId = AmountDataGrid[0, selectedIndex].Value.ToString();
             StockId = AmountDataGrid[1, selectedIndex].Value.ToString();
             Amount = AmountDataGrid[5, selectedIndex].Value.ToString();
             CurrentStock = AmountDataGrid[6, selectedIndex].Value.ToString();
@@ -139,6 +141,7 @@ namespace stock_keeping_application
         }
         #endregion
 
+        #region Filtering
         private string Filter;
         /// <summary>
         /// This function is used for generating a filtered data grid
@@ -147,11 +150,32 @@ namespace stock_keeping_application
         /// <param name="filter">seraching filter</param>
         public void FilterData(string filter)
         {
-            if (filter == "" || filter  == "*")
+            FilterData("STOCK_ID", filter);
+        }
+
+        /// <summary>
+        /// This function is used for generating a filtered data grid
+        /// We can both do this using sql querries or using datatables
+        /// </summary>
+        /// <param name="filter">seraching filter</param>
+        public void FilterData(string compareColumn, string filter)
+        {
+            Console.WriteLine("Trirggered");
+            if (filter == "" || filter == "*")
             {
                 AmountDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM amount_table");
             }
-            AmountDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID = '{filter}';");
+            AmountDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE {compareColumn} LIKE '%{Filter}%';");
+            AmountDataGrid.Update();
         }
+
+        private void FilterTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                FilterData(Filter);
+            }
+        }
+        #endregion
     }
 }
