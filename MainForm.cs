@@ -51,20 +51,15 @@ namespace stock_keeping_application
 
         }
 
-        // Get Stock data of the selected material 
+        // Open AmountControlForm
         private void GetAmountDataButton_Click(object sender, EventArgs e)
         {
-
+            Form amountControlForm = new AmountControlForm(this, StockId);
+            amountControlForm.ShowDialog();
         }
 
         // Edit the recipe of the selected material
         private void EditRecipeButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // Update the table with the new data
-        private void UpdateTableButton_Click_1(object sender, EventArgs e)
         {
 
         }
@@ -119,9 +114,9 @@ namespace stock_keeping_application
 
         #region Data Grid Functions
         private int selectedIndex = 0;
-        private string stockText;
-        private string nameText;
-        private string descriptionText;
+        private string StockId;
+        private string Name;
+        private string Description;
         private void StockDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             selectedIndex = e.RowIndex;
@@ -129,30 +124,30 @@ namespace stock_keeping_application
             //STOCK_ID 1
             //NAME 3
             //DESCRIPTION 8
-            stockText = StockDataGrid[1, selectedIndex].Value.ToString();
-            nameText = StockDataGrid[3, selectedIndex].Value.ToString();
-            descriptionText = StockDataGrid[8, selectedIndex].Value.ToString();
+            StockId = StockDataGrid[1, selectedIndex].Value.ToString();
+            Name = StockDataGrid[3, selectedIndex].Value.ToString();
+            Description = StockDataGrid[8, selectedIndex].Value.ToString();
 
-            StockIdTextBox.Text = stockText;
-            NameTextBox.Text = nameText;
-            DescriptionTextBox.Text = descriptionText;
+            StockIdTextBox.Text = StockId;
+            NameTextBox.Text = Name;
+            DescriptionTextBox.Text = Description;
         }
         #endregion
 
         #region TextBoxes
         private void StockIdTextBox_TextChanged(object sender, EventArgs e)
         {
-            stockText = StockIdTextBox.Text;
+            StockId = StockIdTextBox.Text;
         }
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
-            nameText = NameTextBox.Text;
+            Name = NameTextBox.Text;
         }
 
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            descriptionText = DescriptionTextBox.Text;
+            Description = DescriptionTextBox.Text;
         }
         #endregion
     }
