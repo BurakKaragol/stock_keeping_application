@@ -17,7 +17,6 @@ namespace stock_keeping_application
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
-            //merhabalar efenim bu proje için ve burakla beraber çalışacağımız için çok heyecanlıyım
         }
     }
 }
