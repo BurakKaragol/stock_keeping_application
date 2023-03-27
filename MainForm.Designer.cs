@@ -53,6 +53,7 @@
             this.ProducePartButton = new System.Windows.Forms.Button();
             this.MoveStockButton = new System.Windows.Forms.Button();
             this.PrepareProductListButton = new System.Windows.Forms.Button();
+            this.FilterButton = new System.Windows.Forms.Button();
             this.MainPanel.SuspendLayout();
             this.LowerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StockDataGrid)).BeginInit();
@@ -133,6 +134,7 @@
             this.UpdateTableButton.TabIndex = 26;
             this.UpdateTableButton.Text = "Update Table";
             this.UpdateTableButton.UseVisualStyleBackColor = true;
+            this.UpdateTableButton.Click += new System.EventHandler(this.UpdateTableButton_Click);
             // 
             // EditRecipeButton
             // 
@@ -194,6 +196,7 @@
             this.SelectedMaterialProperitiesGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SelectedMaterialProperitiesGroup.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.SelectedMaterialProperitiesGroup.Controls.Add(this.FilterButton);
             this.SelectedMaterialProperitiesGroup.Controls.Add(this.DescriptionTextBox);
             this.SelectedMaterialProperitiesGroup.Controls.Add(this.DescriptionLabel);
             this.SelectedMaterialProperitiesGroup.Controls.Add(this.NameTextBox);
@@ -344,6 +347,16 @@
             this.PrepareProductListButton.UseVisualStyleBackColor = true;
             this.PrepareProductListButton.Click += new System.EventHandler(this.PrepareProductListButton_Click);
             // 
+            // FilterButton
+            // 
+            this.FilterButton.Location = new System.Drawing.Point(321, 17);
+            this.FilterButton.Name = "FilterButton";
+            this.FilterButton.Size = new System.Drawing.Size(111, 23);
+            this.FilterButton.TabIndex = 14;
+            this.FilterButton.Text = "Filter";
+            this.FilterButton.UseVisualStyleBackColor = true;
+            this.FilterButton.Click += new System.EventHandler(this.FilterButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -392,6 +405,7 @@
         private System.Windows.Forms.Button ProducePartButton;
         private System.Windows.Forms.Button MoveStockButton;
         private System.Windows.Forms.Button PrepareProductListButton;
+        private System.Windows.Forms.Button FilterButton;
     }
 }
 

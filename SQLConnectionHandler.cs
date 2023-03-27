@@ -139,24 +139,8 @@ namespace stock_keeping_application
         /// <returns></returns>
         public int ExecuteNonQuery(string query)
         {
-            int rowsAffected = 0;
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(_connectionString))
-                {
-                    OpenConnection();
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        rowsAffected = command.ExecuteNonQuery();
-                    }
-                    CloseConnection();
-                }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
-            }
-            return rowsAffected;
+            DataTable datatTable = ExecuteQuery(query);
+            return datatTable.Rows.Count;
         }
 
         /// <summary>

@@ -36,13 +36,33 @@ namespace stock_keeping_application
         // Add a new material to the list
         private void AddNewButton_Click(object sender, EventArgs e)
         {
-
+            int found = connection.ExecuteNonQuery($"SELECT * FROM stock_table WHERE STOCK_ID = '{StockId}';");
+            if (found != 0)
+            {
+                MessageBox.Show($"STOCK_ID {StockId} Already exists!", "Already Exists", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                connection.ExecuteQuery($"INSERT INTO stock_table(STOCK_ID, COMPONENT_TYPE, NAME, DESCRIPTION)\r\nVALUES ('{StockId}', '0', '{Name}', '{Description}');");
+                StockDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
+                StockDataGrid.Update();
+            }
         }
 
         // Delete the selected material from the list
         private void DeleteSelectedButton_Click(object sender, EventArgs e)
         {
-
+            int found = connection.ExecuteNonQuery($"SELECT * FROM stock_table WHERE STOCK_ID = '{StockId}';");
+            if (found == 0)
+            {
+                MessageBox.Show($"STOCK_ID {StockId} cannot be found!", "Can't found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                connection.ExecuteQuery($"DELETE FROM stock_table WHERE STOCK_ID = '{StockId}';");
+                StockDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
+                StockDataGrid.Update();
+            }
         }
 
         // Update the selected material
@@ -69,7 +89,23 @@ namespace stock_keeping_application
         // Edit the recipe of the selected material
         private void EditRecipeButton_Click(object sender, EventArgs e)
         {
+            Form recipeControlForm;
+            if (selectedIndex != -1 && StockId != null)
+            {
+                recipeControlForm = new RecipeControlForm(this, StockId);
+                recipeControlForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show($"You need to select a material for editing the recipe", "No material selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
+        // Update the Table
+        private void UpdateTableButton_Click(object sender, EventArgs e)
+        {
+            StockDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
+            StockDataGrid.Update();
         }
 
         /// <summary>
@@ -147,7 +183,6 @@ namespace stock_keeping_application
         {
             StockId = StockIdTextBox.Text;
             Filter = StockId;
-            FilterData(StockId);
         }
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
@@ -189,5 +224,10 @@ namespace stock_keeping_application
             StockDataGrid.Update();
         }
         #endregion
+
+        private void FilterButton_Click(object sender, EventArgs e)
+        {
+            FilterData(Filter);
+        }
     }
 }

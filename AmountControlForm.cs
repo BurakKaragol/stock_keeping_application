@@ -50,14 +50,55 @@ namespace stock_keeping_application
             {
                 AmountDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM amount_table");
             }
+            StockPositionComboBox.DataSource = Enum.GetNames(typeof(StockPosition));
         }
 
         #region Buttons
+
+        private void AddNewButton_Click(object sender, EventArgs e)
+        {
+            connection.ExecuteQuery($"INSERT INTO amount_table(STOCK_ID, STOCK_POSITION, UNIT_PRICE, TOTAL_PRICE, STOCK_AMOUNT, CURRENT_AMOUNT, MAXIMUM_AMOUNT, DESCRIPTION)\r\nVALUES ('{StockId}', '{SelectedStock}', '{UnitPrice}', '{TotalPrice}', '{Amount}', '{CurrentStock}', '{MaximumSize}', '{Description}');");
+            AmountDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM amount_table");
+            AmountDataGrid.Update();
+        }
+
+        private void DeleteSelectedButton_Click(object sender, EventArgs e)
+        {
+            int found = connection.ExecuteNonQuery($"SELECT * FROM amount_table WHERE ID = '{uniqueId}';");
+            if (found == 0)
+            {
+                // SQL QUERRY IS WRONG RREDEFINE VARIABLES
+                MessageBox.Show($"STOCK_ID {StockId} cannot be found!", "Can't found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                connection.ExecuteQuery($"DELETE FROM amount_table WHERE ID = '{uniqueId}';");
+                AmountDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM amount_table");
+                AmountDataGrid.Update();
+            }
+        }
+
+        private void UpdateSelectedButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateTableButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void FilterButton_Click(object sender, EventArgs e)
         {
             FilterData(Filter);
         }
         #endregion
+
+        private int SelectedStock;
+        private void StockPositionComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedStock = StockPositionComboBox.SelectedIndex;
+        }
 
         #region Data Grid Functions
         private int selectedIndex = 0;
