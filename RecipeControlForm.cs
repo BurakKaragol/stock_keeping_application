@@ -188,7 +188,8 @@ namespace stock_keeping_application
             int found = connection.ExecuteNonQuery($"SELECT * FROM recipe_table WHERE STOCK_ID = '{SelectedStock}';");
             if (found != 0)
             {
-                connection.ExecuteQuery($"");
+                connection.ExecuteQuery($"UPDATE stock_table\r\nSET COMPONENT_TYPE = '1'\r\nWHERE STOCK_ID = '{SelectedStock}';");
+                mainForm.ReloadGrid();
             }
         }
     }

@@ -22,6 +22,12 @@ namespace stock_keeping_application
             InitializeComponent();
         }
 
+        public void ReloadGrid()
+        {
+            StockDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
+            StockDataGrid.Update();
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             connection = new SQLConnectionHandler(_connectionString);
@@ -124,7 +130,16 @@ namespace stock_keeping_application
         /// </summary>
         private void PrepareProductListButton_Click(object sender, EventArgs e)
         {
-
+            Form prepareProductForm;
+            if (selectedIndex != -1 && StockId != null)
+            {
+                prepareProductForm = new PrepareProductForm(this, StockId);
+            }
+            else
+            {
+                prepareProductForm = new PrepareProductForm(this);
+            }
+            prepareProductForm.ShowDialog();
         }
 
         /// <summary>
@@ -148,6 +163,11 @@ namespace stock_keeping_application
         private void ProducePartButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void CalculateStockButton_Click(object sender, EventArgs e)
+        {
+            
         }
 
         /// <summary>

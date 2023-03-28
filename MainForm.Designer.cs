@@ -40,6 +40,7 @@
             this.DeleteSelectedButton = new System.Windows.Forms.Button();
             this.AddNewButton = new System.Windows.Forms.Button();
             this.SelectedMaterialProperitiesGroup = new System.Windows.Forms.GroupBox();
+            this.FilterButton = new System.Windows.Forms.Button();
             this.DescriptionTextBox = new System.Windows.Forms.TextBox();
             this.DescriptionLabel = new System.Windows.Forms.Label();
             this.NameTextBox = new System.Windows.Forms.TextBox();
@@ -49,11 +50,10 @@
             this.WindowsGroup = new System.Windows.Forms.GroupBox();
             this.SettingsButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.CalculateStockButton = new System.Windows.Forms.Button();
             this.ProducePartButton = new System.Windows.Forms.Button();
             this.MoveStockButton = new System.Windows.Forms.Button();
             this.PrepareProductListButton = new System.Windows.Forms.Button();
-            this.FilterButton = new System.Windows.Forms.Button();
             this.MainPanel.SuspendLayout();
             this.LowerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StockDataGrid)).BeginInit();
@@ -210,6 +210,16 @@
             this.SelectedMaterialProperitiesGroup.TabStop = false;
             this.SelectedMaterialProperitiesGroup.Text = "Selected Material Properities";
             // 
+            // FilterButton
+            // 
+            this.FilterButton.Location = new System.Drawing.Point(321, 17);
+            this.FilterButton.Name = "FilterButton";
+            this.FilterButton.Size = new System.Drawing.Size(111, 23);
+            this.FilterButton.TabIndex = 14;
+            this.FilterButton.Text = "Filter";
+            this.FilterButton.UseVisualStyleBackColor = true;
+            this.FilterButton.Click += new System.EventHandler(this.FilterButton_Click);
+            // 
             // DescriptionTextBox
             // 
             this.DescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -271,7 +281,7 @@
             this.WindowsGroup.BackColor = System.Drawing.SystemColors.ControlLight;
             this.WindowsGroup.Controls.Add(this.SettingsButton);
             this.WindowsGroup.Controls.Add(this.button2);
-            this.WindowsGroup.Controls.Add(this.button3);
+            this.WindowsGroup.Controls.Add(this.CalculateStockButton);
             this.WindowsGroup.Controls.Add(this.ProducePartButton);
             this.WindowsGroup.Controls.Add(this.MoveStockButton);
             this.WindowsGroup.Controls.Add(this.PrepareProductListButton);
@@ -304,15 +314,16 @@
             this.button2.Text = "Edit Recipe";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // CalculateStockButton
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.Location = new System.Drawing.Point(3, 106);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(214, 30);
-            this.button3.TabIndex = 34;
-            this.button3.Text = "Get Amount Data";
-            this.button3.UseVisualStyleBackColor = true;
+            this.CalculateStockButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CalculateStockButton.Location = new System.Drawing.Point(3, 106);
+            this.CalculateStockButton.Name = "CalculateStockButton";
+            this.CalculateStockButton.Size = new System.Drawing.Size(214, 30);
+            this.CalculateStockButton.TabIndex = 34;
+            this.CalculateStockButton.Text = "Active Stock Status";
+            this.CalculateStockButton.UseVisualStyleBackColor = true;
+            this.CalculateStockButton.Click += new System.EventHandler(this.CalculateStockButton_Click);
             // 
             // ProducePartButton
             // 
@@ -346,16 +357,6 @@
             this.PrepareProductListButton.Text = "Prepare Product List";
             this.PrepareProductListButton.UseVisualStyleBackColor = true;
             this.PrepareProductListButton.Click += new System.EventHandler(this.PrepareProductListButton_Click);
-            // 
-            // FilterButton
-            // 
-            this.FilterButton.Location = new System.Drawing.Point(321, 17);
-            this.FilterButton.Name = "FilterButton";
-            this.FilterButton.Size = new System.Drawing.Size(111, 23);
-            this.FilterButton.TabIndex = 14;
-            this.FilterButton.Text = "Filter";
-            this.FilterButton.UseVisualStyleBackColor = true;
-            this.FilterButton.Click += new System.EventHandler(this.FilterButton_Click);
             // 
             // MainForm
             // 
@@ -401,7 +402,7 @@
         private System.Windows.Forms.GroupBox WindowsGroup;
         private System.Windows.Forms.Button SettingsButton;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button CalculateStockButton;
         private System.Windows.Forms.Button ProducePartButton;
         private System.Windows.Forms.Button MoveStockButton;
         private System.Windows.Forms.Button PrepareProductListButton;
