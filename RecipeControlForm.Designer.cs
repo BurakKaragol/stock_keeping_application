@@ -35,33 +35,31 @@
             this.FilterTextBox = new System.Windows.Forms.TextBox();
             this.OptionsGroup = new System.Windows.Forms.GroupBox();
             this.UpdateTableButton = new System.Windows.Forms.Button();
-            this.EditStockButton = new System.Windows.Forms.Button();
             this.UpdateSelectedButton = new System.Windows.Forms.Button();
-            this.DeleteSelectedButton = new System.Windows.Forms.Button();
-            this.AddNewButton = new System.Windows.Forms.Button();
+            this.DeleteFromRecipeButton = new System.Windows.Forms.Button();
+            this.AddAlternativeRecipeButton = new System.Windows.Forms.Button();
+            this.AddToRecipeButton = new System.Windows.Forms.Button();
             this.SelectedMaterialProperitiesGroup = new System.Windows.Forms.GroupBox();
-            this.TotalPriceTextBox = new System.Windows.Forms.TextBox();
-            this.TotalStockTextBox = new System.Windows.Forms.TextBox();
-            this.UnitPriceTextBox = new System.Windows.Forms.TextBox();
+            this.AlternativeRecipeIdTextBox = new System.Windows.Forms.TextBox();
             this.AmountTextBox = new System.Windows.Forms.TextBox();
             this.AmountLabel = new System.Windows.Forms.Label();
-            this.TotalPriceLabel = new System.Windows.Forms.Label();
-            this.TotalStockLabel = new System.Windows.Forms.Label();
             this.UnitPriceLabel = new System.Windows.Forms.Label();
-            this.DescriptionTextBox = new System.Windows.Forms.TextBox();
-            this.DescriptionLabel = new System.Windows.Forms.Label();
-            this.CurrentStockTextBox = new System.Windows.Forms.TextBox();
+            this.RecipeIdTextBox = new System.Windows.Forms.TextBox();
             this.CurrentStockLabel = new System.Windows.Forms.Label();
             this.StockIDLabel = new System.Windows.Forms.Label();
             this.StockIdTextBox = new System.Windows.Forms.TextBox();
             this.LowerPanel = new System.Windows.Forms.Panel();
-            this.AmountDataGrid = new System.Windows.Forms.DataGridView();
+            this.MaterialDataGrid = new System.Windows.Forms.DataGridView();
+            this.RecipePanel = new System.Windows.Forms.Panel();
+            this.RecipeDataGrid = new System.Windows.Forms.DataGridView();
             this.UpperPanel.SuspendLayout();
             this.ActionsGroup.SuspendLayout();
             this.OptionsGroup.SuspendLayout();
             this.SelectedMaterialProperitiesGroup.SuspendLayout();
             this.LowerPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AmountDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaterialDataGrid)).BeginInit();
+            this.RecipePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RecipeDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // UpperPanel
@@ -98,31 +96,33 @@
             this.FilterButton.TabIndex = 32;
             this.FilterButton.Text = "Filter List";
             this.FilterButton.UseVisualStyleBackColor = true;
+            this.FilterButton.Click += new System.EventHandler(this.FilterButton_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 23);
+            this.label1.Location = new System.Drawing.Point(6, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 22;
-            this.label1.Text = "STOCK_ID";
+            this.label1.Text = "RECIPE_ID";
             // 
             // FilterTextBox
             // 
-            this.FilterTextBox.Location = new System.Drawing.Point(72, 19);
+            this.FilterTextBox.Location = new System.Drawing.Point(75, 19);
             this.FilterTextBox.Name = "FilterTextBox";
-            this.FilterTextBox.Size = new System.Drawing.Size(175, 20);
+            this.FilterTextBox.Size = new System.Drawing.Size(172, 20);
             this.FilterTextBox.TabIndex = 12;
+            this.FilterTextBox.TextChanged += new System.EventHandler(this.FilterTextBox_TextChanged);
             // 
             // OptionsGroup
             // 
             this.OptionsGroup.BackColor = System.Drawing.SystemColors.ControlLight;
             this.OptionsGroup.Controls.Add(this.UpdateTableButton);
-            this.OptionsGroup.Controls.Add(this.EditStockButton);
             this.OptionsGroup.Controls.Add(this.UpdateSelectedButton);
-            this.OptionsGroup.Controls.Add(this.DeleteSelectedButton);
-            this.OptionsGroup.Controls.Add(this.AddNewButton);
+            this.OptionsGroup.Controls.Add(this.DeleteFromRecipeButton);
+            this.OptionsGroup.Controls.Add(this.AddAlternativeRecipeButton);
+            this.OptionsGroup.Controls.Add(this.AddToRecipeButton);
             this.OptionsGroup.Dock = System.Windows.Forms.DockStyle.Right;
             this.OptionsGroup.Location = new System.Drawing.Point(683, 0);
             this.OptionsGroup.Name = "OptionsGroup";
@@ -140,63 +140,62 @@
             this.UpdateTableButton.TabIndex = 35;
             this.UpdateTableButton.Text = "Update Table";
             this.UpdateTableButton.UseVisualStyleBackColor = true;
-            // 
-            // EditStockButton
-            // 
-            this.EditStockButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.EditStockButton.Location = new System.Drawing.Point(3, 94);
-            this.EditStockButton.Name = "EditStockButton";
-            this.EditStockButton.Size = new System.Drawing.Size(194, 26);
-            this.EditStockButton.TabIndex = 34;
-            this.EditStockButton.Text = "Edit Stock Position";
-            this.EditStockButton.UseVisualStyleBackColor = true;
+            this.UpdateTableButton.Click += new System.EventHandler(this.UpdateTableButton_Click);
             // 
             // UpdateSelectedButton
             // 
             this.UpdateSelectedButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.UpdateSelectedButton.Location = new System.Drawing.Point(3, 68);
+            this.UpdateSelectedButton.Location = new System.Drawing.Point(3, 94);
             this.UpdateSelectedButton.Name = "UpdateSelectedButton";
             this.UpdateSelectedButton.Size = new System.Drawing.Size(194, 26);
-            this.UpdateSelectedButton.TabIndex = 33;
+            this.UpdateSelectedButton.TabIndex = 34;
             this.UpdateSelectedButton.Text = "Update Selected";
             this.UpdateSelectedButton.UseVisualStyleBackColor = true;
+            this.UpdateSelectedButton.Click += new System.EventHandler(this.UpdateSelectedButton_Click);
             // 
-            // DeleteSelectedButton
+            // DeleteFromRecipeButton
             // 
-            this.DeleteSelectedButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DeleteSelectedButton.Location = new System.Drawing.Point(3, 42);
-            this.DeleteSelectedButton.Name = "DeleteSelectedButton";
-            this.DeleteSelectedButton.Size = new System.Drawing.Size(194, 26);
-            this.DeleteSelectedButton.TabIndex = 32;
-            this.DeleteSelectedButton.Text = "Delete Selected";
-            this.DeleteSelectedButton.UseVisualStyleBackColor = true;
+            this.DeleteFromRecipeButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DeleteFromRecipeButton.Location = new System.Drawing.Point(3, 68);
+            this.DeleteFromRecipeButton.Name = "DeleteFromRecipeButton";
+            this.DeleteFromRecipeButton.Size = new System.Drawing.Size(194, 26);
+            this.DeleteFromRecipeButton.TabIndex = 33;
+            this.DeleteFromRecipeButton.Text = "Delete From Recipe";
+            this.DeleteFromRecipeButton.UseVisualStyleBackColor = true;
+            this.DeleteFromRecipeButton.Click += new System.EventHandler(this.DeleteFromRecipeButton_Click);
             // 
-            // AddNewButton
+            // AddAlternativeRecipeButton
             // 
-            this.AddNewButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AddNewButton.Location = new System.Drawing.Point(3, 16);
-            this.AddNewButton.Name = "AddNewButton";
-            this.AddNewButton.Size = new System.Drawing.Size(194, 26);
-            this.AddNewButton.TabIndex = 31;
-            this.AddNewButton.Text = "Add New";
-            this.AddNewButton.UseVisualStyleBackColor = true;
+            this.AddAlternativeRecipeButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.AddAlternativeRecipeButton.Location = new System.Drawing.Point(3, 42);
+            this.AddAlternativeRecipeButton.Name = "AddAlternativeRecipeButton";
+            this.AddAlternativeRecipeButton.Size = new System.Drawing.Size(194, 26);
+            this.AddAlternativeRecipeButton.TabIndex = 32;
+            this.AddAlternativeRecipeButton.Text = "Add Alternative Recipe";
+            this.AddAlternativeRecipeButton.UseVisualStyleBackColor = true;
+            this.AddAlternativeRecipeButton.Click += new System.EventHandler(this.AddAlternativeRecipeButton_Click);
+            // 
+            // AddToRecipeButton
+            // 
+            this.AddToRecipeButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.AddToRecipeButton.Location = new System.Drawing.Point(3, 16);
+            this.AddToRecipeButton.Name = "AddToRecipeButton";
+            this.AddToRecipeButton.Size = new System.Drawing.Size(194, 26);
+            this.AddToRecipeButton.TabIndex = 31;
+            this.AddToRecipeButton.Text = "Add To Recipe";
+            this.AddToRecipeButton.UseVisualStyleBackColor = true;
+            this.AddToRecipeButton.Click += new System.EventHandler(this.AddToRecipeButton_Click);
             // 
             // SelectedMaterialProperitiesGroup
             // 
             this.SelectedMaterialProperitiesGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SelectedMaterialProperitiesGroup.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.SelectedMaterialProperitiesGroup.Controls.Add(this.TotalPriceTextBox);
-            this.SelectedMaterialProperitiesGroup.Controls.Add(this.TotalStockTextBox);
-            this.SelectedMaterialProperitiesGroup.Controls.Add(this.UnitPriceTextBox);
+            this.SelectedMaterialProperitiesGroup.Controls.Add(this.AlternativeRecipeIdTextBox);
             this.SelectedMaterialProperitiesGroup.Controls.Add(this.AmountTextBox);
             this.SelectedMaterialProperitiesGroup.Controls.Add(this.AmountLabel);
-            this.SelectedMaterialProperitiesGroup.Controls.Add(this.TotalPriceLabel);
-            this.SelectedMaterialProperitiesGroup.Controls.Add(this.TotalStockLabel);
             this.SelectedMaterialProperitiesGroup.Controls.Add(this.UnitPriceLabel);
-            this.SelectedMaterialProperitiesGroup.Controls.Add(this.DescriptionTextBox);
-            this.SelectedMaterialProperitiesGroup.Controls.Add(this.DescriptionLabel);
-            this.SelectedMaterialProperitiesGroup.Controls.Add(this.CurrentStockTextBox);
+            this.SelectedMaterialProperitiesGroup.Controls.Add(this.RecipeIdTextBox);
             this.SelectedMaterialProperitiesGroup.Controls.Add(this.CurrentStockLabel);
             this.SelectedMaterialProperitiesGroup.Controls.Add(this.StockIDLabel);
             this.SelectedMaterialProperitiesGroup.Controls.Add(this.StockIdTextBox);
@@ -207,110 +206,56 @@
             this.SelectedMaterialProperitiesGroup.TabStop = false;
             this.SelectedMaterialProperitiesGroup.Text = "Selected Material Properities";
             // 
-            // TotalPriceTextBox
+            // AlternativeRecipeIdTextBox
             // 
-            this.TotalPriceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TotalPriceTextBox.Location = new System.Drawing.Point(322, 71);
-            this.TotalPriceTextBox.Name = "TotalPriceTextBox";
-            this.TotalPriceTextBox.Size = new System.Drawing.Size(99, 20);
-            this.TotalPriceTextBox.TabIndex = 16;
-            // 
-            // TotalStockTextBox
-            // 
-            this.TotalStockTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TotalStockTextBox.Location = new System.Drawing.Point(322, 45);
-            this.TotalStockTextBox.Name = "TotalStockTextBox";
-            this.TotalStockTextBox.Size = new System.Drawing.Size(99, 20);
-            this.TotalStockTextBox.TabIndex = 14;
-            // 
-            // UnitPriceTextBox
-            // 
-            this.UnitPriceTextBox.Location = new System.Drawing.Point(117, 71);
-            this.UnitPriceTextBox.Name = "UnitPriceTextBox";
-            this.UnitPriceTextBox.Size = new System.Drawing.Size(100, 20);
-            this.UnitPriceTextBox.TabIndex = 15;
+            this.AlternativeRecipeIdTextBox.Enabled = false;
+            this.AlternativeRecipeIdTextBox.Location = new System.Drawing.Point(158, 71);
+            this.AlternativeRecipeIdTextBox.Name = "AlternativeRecipeIdTextBox";
+            this.AlternativeRecipeIdTextBox.Size = new System.Drawing.Size(263, 20);
+            this.AlternativeRecipeIdTextBox.TabIndex = 15;
             // 
             // AmountTextBox
             // 
-            this.AmountTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AmountTextBox.Location = new System.Drawing.Point(347, 19);
+            this.AmountTextBox.Location = new System.Drawing.Point(158, 97);
             this.AmountTextBox.Name = "AmountTextBox";
-            this.AmountTextBox.Size = new System.Drawing.Size(74, 20);
+            this.AmountTextBox.Size = new System.Drawing.Size(263, 20);
             this.AmountTextBox.TabIndex = 12;
+            this.AmountTextBox.TextChanged += new System.EventHandler(this.AmountTextBox_TextChanged);
             // 
             // AmountLabel
             // 
             this.AmountLabel.AutoSize = true;
-            this.AmountLabel.Location = new System.Drawing.Point(287, 22);
+            this.AmountLabel.Location = new System.Drawing.Point(9, 100);
             this.AmountLabel.Name = "AmountLabel";
             this.AmountLabel.Size = new System.Drawing.Size(54, 13);
             this.AmountLabel.TabIndex = 21;
             this.AmountLabel.Text = "AMOUNT";
             // 
-            // TotalPriceLabel
-            // 
-            this.TotalPriceLabel.AutoSize = true;
-            this.TotalPriceLabel.Location = new System.Drawing.Point(223, 74);
-            this.TotalPriceLabel.Name = "TotalPriceLabel";
-            this.TotalPriceLabel.Size = new System.Drawing.Size(80, 13);
-            this.TotalPriceLabel.TabIndex = 20;
-            this.TotalPriceLabel.Text = "TOTAL_PRICE";
-            // 
-            // TotalStockLabel
-            // 
-            this.TotalStockLabel.AutoSize = true;
-            this.TotalStockLabel.Location = new System.Drawing.Point(223, 48);
-            this.TotalStockLabel.Name = "TotalStockLabel";
-            this.TotalStockLabel.Size = new System.Drawing.Size(84, 13);
-            this.TotalStockLabel.TabIndex = 16;
-            this.TotalStockLabel.Text = "TOTAL_STOCK";
-            // 
             // UnitPriceLabel
             // 
             this.UnitPriceLabel.AutoSize = true;
-            this.UnitPriceLabel.Location = new System.Drawing.Point(9, 74);
+            this.UnitPriceLabel.Location = new System.Drawing.Point(9, 75);
             this.UnitPriceLabel.Name = "UnitPriceLabel";
-            this.UnitPriceLabel.Size = new System.Drawing.Size(71, 13);
+            this.UnitPriceLabel.Size = new System.Drawing.Size(143, 13);
             this.UnitPriceLabel.TabIndex = 14;
-            this.UnitPriceLabel.Text = "UNIT_PRICE";
+            this.UnitPriceLabel.Text = "ALTERNATIVE_RECIPE_ID";
             // 
-            // DescriptionTextBox
+            // RecipeIdTextBox
             // 
-            this.DescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DescriptionTextBox.Location = new System.Drawing.Point(95, 97);
-            this.DescriptionTextBox.Multiline = true;
-            this.DescriptionTextBox.Name = "DescriptionTextBox";
-            this.DescriptionTextBox.Size = new System.Drawing.Size(326, 47);
-            this.DescriptionTextBox.TabIndex = 17;
-            // 
-            // DescriptionLabel
-            // 
-            this.DescriptionLabel.AutoSize = true;
-            this.DescriptionLabel.Location = new System.Drawing.Point(9, 100);
-            this.DescriptionLabel.Name = "DescriptionLabel";
-            this.DescriptionLabel.Size = new System.Drawing.Size(80, 13);
-            this.DescriptionLabel.TabIndex = 4;
-            this.DescriptionLabel.Text = "DESCRIPTION";
-            // 
-            // CurrentStockTextBox
-            // 
-            this.CurrentStockTextBox.Location = new System.Drawing.Point(117, 45);
-            this.CurrentStockTextBox.Name = "CurrentStockTextBox";
-            this.CurrentStockTextBox.Size = new System.Drawing.Size(100, 20);
-            this.CurrentStockTextBox.TabIndex = 13;
+            this.RecipeIdTextBox.Enabled = false;
+            this.RecipeIdTextBox.Location = new System.Drawing.Point(158, 45);
+            this.RecipeIdTextBox.Name = "RecipeIdTextBox";
+            this.RecipeIdTextBox.Size = new System.Drawing.Size(263, 20);
+            this.RecipeIdTextBox.TabIndex = 13;
             // 
             // CurrentStockLabel
             // 
             this.CurrentStockLabel.AutoSize = true;
             this.CurrentStockLabel.Location = new System.Drawing.Point(9, 48);
             this.CurrentStockLabel.Name = "CurrentStockLabel";
-            this.CurrentStockLabel.Size = new System.Drawing.Size(102, 13);
+            this.CurrentStockLabel.Size = new System.Drawing.Size(63, 13);
             this.CurrentStockLabel.TabIndex = 2;
-            this.CurrentStockLabel.Text = "CURRENT_STOCK";
+            this.CurrentStockLabel.Text = "RECIPE_ID";
             // 
             // StockIDLabel
             // 
@@ -323,9 +268,10 @@
             // 
             // StockIdTextBox
             // 
+            this.StockIdTextBox.Enabled = false;
             this.StockIdTextBox.Location = new System.Drawing.Point(117, 19);
             this.StockIdTextBox.Name = "StockIdTextBox";
-            this.StockIdTextBox.Size = new System.Drawing.Size(164, 20);
+            this.StockIdTextBox.Size = new System.Drawing.Size(304, 20);
             this.StockIdTextBox.TabIndex = 11;
             // 
             // LowerPanel
@@ -334,23 +280,47 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LowerPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.LowerPanel.Controls.Add(this.AmountDataGrid);
+            this.LowerPanel.Controls.Add(this.MaterialDataGrid);
+            this.LowerPanel.Controls.Add(this.RecipePanel);
             this.LowerPanel.Location = new System.Drawing.Point(-1, 156);
             this.LowerPanel.Name = "LowerPanel";
             this.LowerPanel.Size = new System.Drawing.Size(883, 406);
             this.LowerPanel.TabIndex = 3;
             // 
-            // AmountDataGrid
+            // MaterialDataGrid
             // 
-            this.AmountDataGrid.AllowUserToAddRows = false;
-            this.AmountDataGrid.AllowUserToDeleteRows = false;
-            this.AmountDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AmountDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AmountDataGrid.Location = new System.Drawing.Point(0, 0);
-            this.AmountDataGrid.Name = "AmountDataGrid";
-            this.AmountDataGrid.ReadOnly = true;
-            this.AmountDataGrid.Size = new System.Drawing.Size(883, 406);
-            this.AmountDataGrid.TabIndex = 0;
+            this.MaterialDataGrid.AllowUserToAddRows = false;
+            this.MaterialDataGrid.AllowUserToDeleteRows = false;
+            this.MaterialDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MaterialDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MaterialDataGrid.Location = new System.Drawing.Point(0, 200);
+            this.MaterialDataGrid.Name = "MaterialDataGrid";
+            this.MaterialDataGrid.ReadOnly = true;
+            this.MaterialDataGrid.Size = new System.Drawing.Size(883, 206);
+            this.MaterialDataGrid.TabIndex = 1;
+            this.MaterialDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MaterialDataGrid_CellClick);
+            // 
+            // RecipePanel
+            // 
+            this.RecipePanel.Controls.Add(this.RecipeDataGrid);
+            this.RecipePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RecipePanel.Location = new System.Drawing.Point(0, 0);
+            this.RecipePanel.Name = "RecipePanel";
+            this.RecipePanel.Size = new System.Drawing.Size(883, 200);
+            this.RecipePanel.TabIndex = 1;
+            // 
+            // RecipeDataGrid
+            // 
+            this.RecipeDataGrid.AllowUserToAddRows = false;
+            this.RecipeDataGrid.AllowUserToDeleteRows = false;
+            this.RecipeDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RecipeDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RecipeDataGrid.Location = new System.Drawing.Point(0, 0);
+            this.RecipeDataGrid.Name = "RecipeDataGrid";
+            this.RecipeDataGrid.ReadOnly = true;
+            this.RecipeDataGrid.Size = new System.Drawing.Size(883, 200);
+            this.RecipeDataGrid.TabIndex = 0;
+            this.RecipeDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RecipeDataGrid_CellClick);
             // 
             // RecipeControlForm
             // 
@@ -361,6 +331,7 @@
             this.Controls.Add(this.UpperPanel);
             this.Name = "RecipeControlForm";
             this.Text = "RecipeControlForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RecipeControlForm_FormClosing);
             this.Load += new System.EventHandler(this.RecipeControlForm_Load);
             this.UpperPanel.ResumeLayout(false);
             this.ActionsGroup.ResumeLayout(false);
@@ -369,7 +340,9 @@
             this.SelectedMaterialProperitiesGroup.ResumeLayout(false);
             this.SelectedMaterialProperitiesGroup.PerformLayout();
             this.LowerPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.AmountDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaterialDataGrid)).EndInit();
+            this.RecipePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.RecipeDataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -383,26 +356,22 @@
         private System.Windows.Forms.TextBox FilterTextBox;
         private System.Windows.Forms.GroupBox OptionsGroup;
         private System.Windows.Forms.Button UpdateTableButton;
-        private System.Windows.Forms.Button EditStockButton;
         private System.Windows.Forms.Button UpdateSelectedButton;
-        private System.Windows.Forms.Button DeleteSelectedButton;
-        private System.Windows.Forms.Button AddNewButton;
+        private System.Windows.Forms.Button DeleteFromRecipeButton;
+        private System.Windows.Forms.Button AddAlternativeRecipeButton;
+        private System.Windows.Forms.Button AddToRecipeButton;
         private System.Windows.Forms.GroupBox SelectedMaterialProperitiesGroup;
-        private System.Windows.Forms.TextBox TotalPriceTextBox;
-        private System.Windows.Forms.TextBox TotalStockTextBox;
-        private System.Windows.Forms.TextBox UnitPriceTextBox;
+        private System.Windows.Forms.TextBox AlternativeRecipeIdTextBox;
         private System.Windows.Forms.TextBox AmountTextBox;
         private System.Windows.Forms.Label AmountLabel;
-        private System.Windows.Forms.Label TotalPriceLabel;
-        private System.Windows.Forms.Label TotalStockLabel;
         private System.Windows.Forms.Label UnitPriceLabel;
-        private System.Windows.Forms.TextBox DescriptionTextBox;
-        private System.Windows.Forms.Label DescriptionLabel;
-        private System.Windows.Forms.TextBox CurrentStockTextBox;
+        private System.Windows.Forms.TextBox RecipeIdTextBox;
         private System.Windows.Forms.Label CurrentStockLabel;
         private System.Windows.Forms.Label StockIDLabel;
         private System.Windows.Forms.TextBox StockIdTextBox;
         private System.Windows.Forms.Panel LowerPanel;
-        private System.Windows.Forms.DataGridView AmountDataGrid;
+        private System.Windows.Forms.DataGridView RecipeDataGrid;
+        private System.Windows.Forms.DataGridView MaterialDataGrid;
+        private System.Windows.Forms.Panel RecipePanel;
     }
 }

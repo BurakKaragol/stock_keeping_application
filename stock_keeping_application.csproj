@@ -68,6 +68,12 @@
     <Compile Include="RecipeControlForm.Designer.cs">
       <DependentUpon>RecipeControlForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SQLConnectionHandler.cs" />
     <EmbeddedResource Include="AmountControlForm.resx">
       <DependentUpon>AmountControlForm.cs</DependentUpon>
@@ -87,6 +93,9 @@
     </Compile>
     <EmbeddedResource Include="RecipeControlForm.resx">
       <DependentUpon>RecipeControlForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

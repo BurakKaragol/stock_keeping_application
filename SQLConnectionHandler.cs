@@ -45,9 +45,9 @@ namespace stock_keeping_application
             }
             else
             {
-                Console.WriteLine("Created recipe table");
                 OpenConnection();
                 ExecuteQuery("USE [stock_application_db]\r\nGO\r\n\r\n/****** Object:  Table [dbo].[recipe_table]    Script Date: 3/27/2023 10:48:10 AM ******/\r\nSET ANSI_NULLS ON\r\nGO\r\n\r\nSET QUOTED_IDENTIFIER ON\r\nGO\r\n\r\nCREATE TABLE [dbo].[recipe_table](\r\n\t[ID] [int] IDENTITY(1,1) NOT NULL,\r\n\t[STOCK_ID] [nvarchar](50) NOT NULL,\r\n\t[RECIPE_ID] [nvarchar](50) NOT NULL,\r\n\t[ALT_RECIPE_ID] [nvarchar](50) NOT NULL,\r\n\t[AMOUNT] [int] NOT NULL,\r\n CONSTRAINT [PK_recipe_table] PRIMARY KEY CLUSTERED \r\n(\r\n\t[ID] ASC\r\n)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]\r\n) ON [PRIMARY]\r\nGO\r\n\r\n");
+                Console.WriteLine("Created recipe table");
             }
 
             if (dataTable.Rows[1][0].ToString() == "stock_table")
@@ -57,9 +57,9 @@ namespace stock_keeping_application
             }
             else
             {
-                Console.WriteLine("Created stock table");
                 OpenConnection();
                 ExecuteQuery("USE [stock_application_db]\r\nGO\r\n\r\n/****** Object:  Table [dbo].[stock_table]    Script Date: 3/27/2023 10:48:53 AM ******/\r\nSET ANSI_NULLS ON\r\nGO\r\n\r\nSET QUOTED_IDENTIFIER ON\r\nGO\r\n\r\nCREATE TABLE [dbo].[stock_table](\r\n\t[ID] [int] IDENTITY(1,1) NOT NULL,\r\n\t[STOCK_ID] [nvarchar](50) NOT NULL,\r\n\t[COMPONENT_TYPE] [int] NULL,\r\n\t[NAME] [nvarchar](max) NOT NULL,\r\n\t[ACTIVE_COUNT] [int] NULL,\r\n\t[TOTAL_COUNT] [int] NULL,\r\n\t[AMOUNT] [int] NULL,\r\n\t[TOTAL_PRICE] [money] NULL,\r\n\t[DESCRIPTION] [nvarchar](max) NULL,\r\n CONSTRAINT [PK_stock_table] PRIMARY KEY CLUSTERED \r\n(\r\n\t[ID] ASC\r\n)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]\r\n) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]\r\nGO\r\n\r\nALTER TABLE [dbo].[stock_table] ADD  CONSTRAINT [DF_stock_table_COMPONENT_TYPE_1]  DEFAULT ((0)) FOR [COMPONENT_TYPE]\r\nGO\r\n\r\nALTER TABLE [dbo].[stock_table] ADD  CONSTRAINT [DF_stock_table_ACTIVE_COUNT]  DEFAULT ((0)) FOR [ACTIVE_COUNT]\r\nGO\r\n\r\nALTER TABLE [dbo].[stock_table] ADD  CONSTRAINT [DF_stock_table_TOTAL_COUNT]  DEFAULT ((0)) FOR [TOTAL_COUNT]\r\nGO\r\n\r\nALTER TABLE [dbo].[stock_table] ADD  CONSTRAINT [DF_stock_table_AMOUNT]  DEFAULT ((0)) FOR [AMOUNT]\r\nGO\r\n\r\n");
+                Console.WriteLine("Created stock table");
             }
 
             if (dataTable.Rows[2][0].ToString() == "amount_table")
@@ -69,9 +69,9 @@ namespace stock_keeping_application
             }
             else
             {
-                Console.WriteLine("Created amount table");
                 OpenConnection();
                 ExecuteQuery("USE [stock_application_db]\r\nGO\r\n\r\n/****** Object:  Table [dbo].[amount_table]    Script Date: 3/27/2023 10:49:10 AM ******/\r\nSET ANSI_NULLS ON\r\nGO\r\n\r\nSET QUOTED_IDENTIFIER ON\r\nGO\r\n\r\nCREATE TABLE [dbo].[amount_table](\r\n\t[ID] [int] IDENTITY(1,1) NOT NULL,\r\n\t[STOCK_ID] [nvarchar](50) NOT NULL,\r\n\t[STOCK_POSITION] [int] NOT NULL,\r\n\t[UNIT_PRICE] [money] NULL,\r\n\t[TOTAL_PRICE] [money] NULL,\r\n\t[STOCK_AMOUNT] [int] NULL,\r\n\t[CURRENT_AMOUNT] [int] NOT NULL,\r\n\t[MAXIMUM_COUNT] [int] NULL,\r\n\t[DESCRIPTION] [nvarchar](max) NULL,\r\n CONSTRAINT [PK_amount_table] PRIMARY KEY CLUSTERED \r\n(\r\n\t[ID] ASC\r\n)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]\r\n) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]\r\nGO\r\n\r\n");
+                Console.WriteLine("Created amount table");
             }
 
             if (dataTable.Rows[3][0].ToString() == "movement_table")
@@ -81,9 +81,9 @@ namespace stock_keeping_application
             }
             else
             {
-                Console.WriteLine("Created movement table");
                 OpenConnection();
                 ExecuteQuery("USE [stock_application_db]\r\nGO\r\n\r\n/****** Object:  Table [dbo].[movement_table]    Script Date: 3/27/2023 10:49:24 AM ******/\r\nSET ANSI_NULLS ON\r\nGO\r\n\r\nSET QUOTED_IDENTIFIER ON\r\nGO\r\n\r\nCREATE TABLE [dbo].[movement_table](\r\n\t[ID] [int] IDENTITY(1,1) NOT NULL,\r\n\t[STOCK_ID] [nvarchar](50) NOT NULL,\r\n\t[MOVE_FROM] [int] NOT NULL,\r\n\t[MOVE_TO] [int] NOT NULL,\r\n\t[AMOUNT] [int] NOT NULL,\r\n\t[DATE] [date] NULL,\r\n\t[DESCRIPTION] [nvarchar](max) NULL\r\n) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]\r\nGO\r\n\r\n");
+                Console.WriteLine("Created movement table");
             }
         }
 
@@ -160,7 +160,6 @@ namespace stock_keeping_application
                         command.Parameters.AddWithValue("@NewValue", newValue);
                         command.Parameters.AddWithValue("@StockId", stockId);
                         int rowsAffected = command.ExecuteNonQuery();
-                        MessageBox.Show($"Rows affected: {rowsAffected}");
                     }
                     CloseConnection();
                 }

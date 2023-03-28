@@ -15,7 +15,7 @@ namespace stock_keeping_application
     public partial class MainForm : Form
     {
         SQLConnectionHandler connection;
-        private readonly string _connectionString = "Data Source=BURAKASUSROG\\ZRV2014EXP;Initial Catalog=stock_application_db;Integrated Security=True;\r\n";
+        private readonly string _connectionString = $"Data Source={SettingsForm.DatabasePosition};Initial Catalog=stock_application_db;Integrated Security=True;\r\n";
 
         public MainForm()
         {
@@ -64,7 +64,17 @@ namespace stock_keeping_application
         // Update the selected material
         private void UpdateSelectedButton_Click(object sender, EventArgs e)
         {
-
+            int found = connection.ExecuteNonQuery($"SELECT * FROM stock_table WHERE STOCK_ID = '{StockId}';");
+            if (found == 0)
+            {
+                MessageBox.Show($"STOCK_ID {StockId} cannot be found!", "Can't found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                connection.ExecuteQuery($"UPDATE stock_table\r\nSET STOCK_ID = '{StockId}', NAME = '{Name}', DESCRIPTION = '{Description}'\r\nWHERE STOCK_ID = '{StockId}';");
+                StockDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
+                StockDataGrid.Update();
+            }
         }
 
         // Open AmountControlForm
@@ -148,7 +158,9 @@ namespace stock_keeping_application
         /// </summary>
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-
+            Form settingsForm;
+            settingsForm = new SettingsForm();
+            settingsForm.ShowDialog();
         }
         #endregion
 

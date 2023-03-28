@@ -11,11 +11,16 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace stock_keeping_application
 {
+    /// <summary>
+    /// TODO:
+    /// Add total stock display
+    /// Add option for selecting different stock positions
+    /// </summary>
+
     public partial class AmountControlForm : Form
     {
-
         SQLConnectionHandler connection;
-        private readonly string _connectionString = "Data Source=BURAKASUSROG\\ZRV2014EXP;Initial Catalog=stock_application_db;Integrated Security=True;\r\n";
+        private readonly string _connectionString = $"Data Source={SettingsForm.DatabasePosition};Initial Catalog=stock_application_db;Integrated Security=True;\r\n";
 
         public AmountControlForm()
         {
@@ -57,8 +62,8 @@ namespace stock_keeping_application
 
         private void AddNewButton_Click(object sender, EventArgs e)
         {
-            connection.ExecuteQuery($"INSERT INTO amount_table(STOCK_ID, STOCK_POSITION, UNIT_PRICE, TOTAL_PRICE, STOCK_AMOUNT, CURRENT_AMOUNT, MAXIMUM_AMOUNT, DESCRIPTION)\r\nVALUES ('{StockId}', '{SelectedStock}', '{UnitPrice}', '{TotalPrice}', '{Amount}', '{CurrentStock}', '{MaximumSize}', '{Description}');");
-            AmountDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM amount_table");
+            connection.ExecuteQuery($"INSERT INTO amount_table(STOCK_ID, STOCK_POSITION, UNIT_PRICE, TOTAL_PRICE, STOCK_AMOUNT, CURRENT_AMOUNT, MAXIMUM_COUNT, DESCRIPTION)\r\nVALUES ('{StockId}', '{SelectedStock}', '{UnitPrice}', '{TotalPrice}', '{Amount}', '{CurrentStock}', '{TotalStock}', '{Description}');");
+            AmountDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{Filter}%';");
             AmountDataGrid.Update();
         }
 
@@ -67,20 +72,29 @@ namespace stock_keeping_application
             int found = connection.ExecuteNonQuery($"SELECT * FROM amount_table WHERE ID = '{uniqueId}';");
             if (found == 0)
             {
-                // SQL QUERRY IS WRONG RREDEFINE VARIABLES
                 MessageBox.Show($"STOCK_ID {StockId} cannot be found!", "Can't found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
                 connection.ExecuteQuery($"DELETE FROM amount_table WHERE ID = '{uniqueId}';");
-                AmountDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM amount_table");
+                AmountDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{Filter}%';");
                 AmountDataGrid.Update();
             }
         }
 
         private void UpdateSelectedButton_Click(object sender, EventArgs e)
         {
-
+            int found = connection.ExecuteNonQuery($"SELECT * FROM amount_table WHERE ID = '{uniqueId}';");
+            if (found == 0)
+            {
+                MessageBox.Show($"STOCK_ID {StockId} cannot be found!", "Can't found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_ID = '{StockId}', STOCK_POSITION = '{SelectedStock}', UNIT_PRICE = '{UnitPrice}', TOTAL_PRICE = '{TotalPrice}', STOCK_AMOUNT = '{Amount}', CURRENT_AMOUNT = '{CurrentStock}', MAXIMUM_COUNT = '{TotalStock}', DESCRIPTION = '{Description}'\r\nWHERE ID = '{uniqueId}';");
+                AmountDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{Filter}%';");
+                AmountDataGrid.Update();
+            }
         }
 
         private void UpdateTableButton_Click(object sender, EventArgs e)
@@ -115,6 +129,7 @@ namespace stock_keeping_application
             selectedIndex = e.RowIndex;
             //get the specified values
             //STOCK_ID 1
+            //STOCK_POSITION 2
             //AMOUNT 5
             //CURRENT_STOCK 6
             //TOTAL_STOCK 7
@@ -123,6 +138,8 @@ namespace stock_keeping_application
             //DESCRIPTION 8
             uniqueId = AmountDataGrid[0, selectedIndex].Value.ToString();
             StockId = AmountDataGrid[1, selectedIndex].Value.ToString();
+            StockPositionComboBox.SelectedIndex = Convert.ToInt16(AmountDataGrid[2, selectedIndex].Value);
+            StockPositionComboBox.Update();
             Amount = AmountDataGrid[5, selectedIndex].Value.ToString();
             CurrentStock = AmountDataGrid[6, selectedIndex].Value.ToString();
             TotalStock = AmountDataGrid[7, selectedIndex].Value.ToString();
@@ -131,6 +148,8 @@ namespace stock_keeping_application
             Description = AmountDataGrid[8, selectedIndex].Value.ToString();
 
             StockIdTextBox.Text = StockId;
+            FilterTextBox.Text = StockId;
+            Filter = StockId;
             AmountTextBox.Text = Amount;
             CurrentStockTextBox.Text = CurrentStock;
             TotalStockTextBox.Text = TotalStock;
