@@ -32,11 +32,14 @@
             this.AmountDataGrid = new System.Windows.Forms.DataGridView();
             this.UpperPanel = new System.Windows.Forms.Panel();
             this.ActionsGroup = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.StockPositionComboBox = new System.Windows.Forms.ComboBox();
             this.FilterButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.FilterTextBox = new System.Windows.Forms.TextBox();
             this.OptionsGroup = new System.Windows.Forms.GroupBox();
             this.UpdateTableButton = new System.Windows.Forms.Button();
+            this.CalculateValueButton = new System.Windows.Forms.Button();
             this.UpdateSelectedButton = new System.Windows.Forms.Button();
             this.DeleteSelectedButton = new System.Windows.Forms.Button();
             this.AddNewButton = new System.Windows.Forms.Button();
@@ -55,8 +58,6 @@
             this.CurrentStockLabel = new System.Windows.Forms.Label();
             this.StockIDLabel = new System.Windows.Forms.Label();
             this.StockIdTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.StockPositionComboBox = new System.Windows.Forms.ComboBox();
             this.LowerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AmountDataGrid)).BeginInit();
             this.UpperPanel.SuspendLayout();
@@ -118,6 +119,24 @@
             this.ActionsGroup.TabStop = false;
             this.ActionsGroup.Text = "Actions";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 78);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(100, 13);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "STOCK_POSITION";
+            // 
+            // StockPositionComboBox
+            // 
+            this.StockPositionComboBox.FormattingEnabled = true;
+            this.StockPositionComboBox.Location = new System.Drawing.Point(112, 74);
+            this.StockPositionComboBox.Name = "StockPositionComboBox";
+            this.StockPositionComboBox.Size = new System.Drawing.Size(132, 21);
+            this.StockPositionComboBox.TabIndex = 26;
+            this.StockPositionComboBox.SelectedIndexChanged += new System.EventHandler(this.StockPositionComboBox_SelectedIndexChanged);
+            // 
             // FilterButton
             // 
             this.FilterButton.Location = new System.Drawing.Point(9, 46);
@@ -150,6 +169,7 @@
             // 
             this.OptionsGroup.BackColor = System.Drawing.SystemColors.ControlLight;
             this.OptionsGroup.Controls.Add(this.UpdateTableButton);
+            this.OptionsGroup.Controls.Add(this.CalculateValueButton);
             this.OptionsGroup.Controls.Add(this.UpdateSelectedButton);
             this.OptionsGroup.Controls.Add(this.DeleteSelectedButton);
             this.OptionsGroup.Controls.Add(this.AddNewButton);
@@ -164,13 +184,24 @@
             // UpdateTableButton
             // 
             this.UpdateTableButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.UpdateTableButton.Location = new System.Drawing.Point(3, 94);
+            this.UpdateTableButton.Location = new System.Drawing.Point(3, 120);
             this.UpdateTableButton.Name = "UpdateTableButton";
             this.UpdateTableButton.Size = new System.Drawing.Size(194, 26);
             this.UpdateTableButton.TabIndex = 35;
             this.UpdateTableButton.Text = "Update Table";
             this.UpdateTableButton.UseVisualStyleBackColor = true;
             this.UpdateTableButton.Click += new System.EventHandler(this.UpdateTableButton_Click);
+            // 
+            // CalculateValueButton
+            // 
+            this.CalculateValueButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CalculateValueButton.Location = new System.Drawing.Point(3, 94);
+            this.CalculateValueButton.Name = "CalculateValueButton";
+            this.CalculateValueButton.Size = new System.Drawing.Size(194, 26);
+            this.CalculateValueButton.TabIndex = 36;
+            this.CalculateValueButton.Text = "Calculate Values";
+            this.CalculateValueButton.UseVisualStyleBackColor = true;
+            this.CalculateValueButton.Click += new System.EventHandler(this.CalculateValueButton_Click);
             // 
             // UpdateSelectedButton
             // 
@@ -359,24 +390,6 @@
             this.StockIdTextBox.TabIndex = 11;
             this.StockIdTextBox.TextChanged += new System.EventHandler(this.StockIdTextBox_TextChanged);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 78);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 13);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "STOCK_POSITION";
-            // 
-            // StockPositionComboBox
-            // 
-            this.StockPositionComboBox.FormattingEnabled = true;
-            this.StockPositionComboBox.Location = new System.Drawing.Point(112, 74);
-            this.StockPositionComboBox.Name = "StockPositionComboBox";
-            this.StockPositionComboBox.Size = new System.Drawing.Size(132, 21);
-            this.StockPositionComboBox.TabIndex = 26;
-            this.StockPositionComboBox.SelectedIndexChanged += new System.EventHandler(this.StockPositionComboBox_SelectedIndexChanged);
-            // 
             // AmountControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -420,7 +433,7 @@
         private System.Windows.Forms.TextBox UnitPriceTextBox;
         private System.Windows.Forms.TextBox AmountTextBox;
         private System.Windows.Forms.GroupBox OptionsGroup;
-        private System.Windows.Forms.Button UpdateTableButton;
+        private System.Windows.Forms.Button CalculateValueButton;
         private System.Windows.Forms.Button UpdateSelectedButton;
         private System.Windows.Forms.Button DeleteSelectedButton;
         private System.Windows.Forms.Button AddNewButton;
@@ -430,5 +443,6 @@
         private System.Windows.Forms.TextBox FilterTextBox;
         private System.Windows.Forms.ComboBox StockPositionComboBox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button UpdateTableButton;
     }
 }

@@ -97,14 +97,115 @@ namespace stock_keeping_application
             }
         }
 
-        private void UpdateTableButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void FilterButton_Click(object sender, EventArgs e)
         {
             FilterData(Filter);
+        }
+
+        #region Price Calculation
+        private void CalculateValueButton_Click(object sender, EventArgs e)
+        {
+            bool UnitNull = UnitPriceTextBox.Text == "";
+            bool UnitZero = UnitPriceTextBox.Text == "0" || UnitPriceTextBox.Text == "0.0000";
+            bool TotalNull = TotalPriceTextBox.Text == "";
+            bool TotalZero = TotalPriceTextBox.Text == "0" || TotalPriceTextBox.Text == "0.0000";
+            bool CurrentStockNull = CurrentStockTextBox.Text == "";
+            bool CurrentStockZero = CurrentStockTextBox.Text == "0";
+            bool TotalStockNull = TotalStockTextBox.Text == "";
+            bool TotalStockZero = TotalStockTextBox.Text == "0";
+            bool AmountNull = AmountTextBox.Text == "";
+            bool AmountZero = AmountTextBox.Text == "0";
+
+            if (CurrentStockNull || CurrentStockZero)
+            {
+                MessageBox.Show($"Please define CURRENT_STOCK", "Value null or zero", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (TotalStockNull || TotalStockZero)
+            {
+                MessageBox.Show($"Please define TOTAL_STOCK", "Value null or zero", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (AmountNull || AmountZero)
+            {
+                MessageBox.Show($"Please define AMOUNT", "Value null or zero", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int CurrentStock = int.Parse(CurrentStockTextBox.Text);
+            int TotalStock = int.Parse(TotalStockTextBox.Text);
+            int Amount = int.Parse(AmountTextBox.Text);
+
+            if (UnitNull && TotalNull)
+            {
+                MessageBox.Show($"UNIT_PRICE or TOTAL_PRICE should not be empty", "Values null", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (UnitPriceTextBox.Text == "0" && TotalPriceTextBox.Text == "0")
+            {
+                MessageBox.Show($"Please define at least one UNIT_PRICE or TOTAL_PRICE", "Value zero", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (!(UnitNull || UnitZero) && (TotalNull || TotalZero))
+            {
+                float unitPrice = float.Parse(UnitPriceTextBox.Text);
+                CalculateUsingUnit(CurrentStock, TotalStock, Amount, unitPrice);
+            }
+            else if (!(TotalNull || TotalZero) && (UnitNull || UnitZero))
+            {
+                float totalPrice = float.Parse(TotalPriceTextBox.Text);
+                CalculateUsingTotal(CurrentStock, TotalStock, Amount, totalPrice);
+            }
+            else if (!(UnitNull || UnitZero) && !(TotalNull || TotalZero))
+            {
+                MessageBox.Show($"Please define only one UNIT_PRICE or TOTAL_PRICE", "Values collide", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+
+        public void CalculateUsingUnit(int current, int total, int amount, float price)
+        {
+            float unitPrice = current * price;
+            TotalPriceTextBox.Text = unitPrice.ToString();
+            float totalPrice = unitPrice * amount;
+            connection.ExecuteNonQuery($"UPDATE stock_table\r\nSET TOTAL_PRICE = '{totalPrice}'\r\nWHERE STOCK_ID = '{StockId}';");
+            CalculateTotalAmount();
+        }
+
+        public void CalculateUsingTotal(int current, int total, int amount, float totalP)
+        {
+            float price = totalP / total;
+            float unitPrice = current * price;
+            UnitPriceTextBox.Text = unitPrice.ToString();
+            float totalPrice = unitPrice * amount;
+            connection.ExecuteNonQuery($"UPDATE stock_table\r\nSET TOTAL_PRICE = '{totalPrice}'\r\nWHERE STOCK_ID = '{StockId}';");
+            CalculateTotalAmount();
+        }
+
+        public void CalculateTotalAmount()
+        {
+            int row = AmountDataGrid.RowCount;
+            int activeCount = 0;
+            int totalCount = 0;
+            DataTable table = AmountDataGrid.DataSource as DataTable;
+            for (int i = 0; i < row; i++)
+            {
+                int total = Convert.ToInt16(table.Rows[i][5]) * Convert.ToInt16(table.Rows[i][6]);
+                Console.WriteLine(table.Rows[i][2]);
+                if (table.Rows[i][2].ToString() == "0")
+                {
+                    activeCount += total;
+                }
+                totalCount += total;
+            }
+            connection.ExecuteNonQuery($"UPDATE stock_table\r\nSET ACTIVE_COUNT = '{activeCount}', TOTAL_COUNT = '{totalCount}'\r\nWHERE STOCK_ID = '{StockId}';");
+        }
+        #endregion
+
+        private void UpdateTableButton_Click(object sender, EventArgs e)
+        {
+            AmountDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM amount_table");
+            AmountDataGrid.Update();
         }
         #endregion
 

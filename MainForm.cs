@@ -192,6 +192,10 @@ namespace stock_keeping_application
         private void StockDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             selectedIndex = e.RowIndex;
+            if (selectedIndex == -1)
+            {
+                return;
+            }
             //get the specified values
             //STOCK_ID 1
             //NAME 3
@@ -251,11 +255,11 @@ namespace stock_keeping_application
             StockDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM stock_table WHERE {compareColumn} LIKE '%{Filter}%';");
             StockDataGrid.Update();
         }
-        #endregion
 
         private void FilterButton_Click(object sender, EventArgs e)
         {
             FilterData(Filter);
         }
+        #endregion
     }
 }

@@ -46,6 +46,10 @@ namespace stock_keeping_application
         private void StockGridData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             selectedIndex = e.RowIndex;
+            if (selectedIndex == -1)
+            {
+                return;
+            }
 
             Filter = StockGridData[1, selectedIndex].Value.ToString();
 
@@ -65,7 +69,7 @@ namespace stock_keeping_application
         private void AmountTextBox_TextChanged(object sender, EventArgs e)
         {
             Amount = AmountTextBox.Text;
-            DesiredAmount = Convert.ToInt16(Amount);
+            DesiredAmount = Convert.ToInt32(Amount);
         }
         #endregion
 
@@ -87,7 +91,7 @@ namespace stock_keeping_application
 
         private void ReportButton_Click(object sender, EventArgs e)
         {
-
+            MaximumProduction();
         }
         #endregion
 
@@ -112,10 +116,65 @@ namespace stock_keeping_application
         /// </summary>
         private void Calculate()
         {
-            DataTable dataTable;
-            dataTable = connection.ExecuteQuery($"SELECT * FROM recipe_table WHERE STOCK_ID = '{Filter}'");
-            RequiredGridData.DataSource = dataTable;
+            // required 
+
+            DataTable recipeTable;
+            recipeTable = connection.ExecuteQuery($"SELECT * FROM recipe_table WHERE STOCK_ID = '{Filter}'");
+            recipeTable.Columns.Add("Stock", typeof(int));
+            recipeTable.Columns.Add("Required", typeof(int));
+
+            // active stock
+            DataTable stockTableAmount;
+
+            for (int i = 0; i < recipeTable.Rows.Count; i++)
+            {
+                recipeTable.Rows[i][6] = (Convert.ToInt16(recipeTable.Rows[i][4]) * DesiredAmount).ToString();
+            }
+
+            for (int i = 0; i < recipeTable.Rows.Count; i++)
+            {
+                stockTableAmount = connection.ExecuteQuery($"SELECT ACTIVE_COUNT FROM stock_table WHERE STOCK_ID = '{recipeTable.Rows[i][2]}'");
+                recipeTable.Rows[i][5] = stockTableAmount.Rows[0][0];
+            }
+
+            // remaining stock
+            bool canProduceWithStock = true;
+            recipeTable.Columns.Add("Remaining", typeof(int));
+            for (int i = 0; i < recipeTable.Rows.Count; i++)
+            {
+                int remaining = Convert.ToInt32(recipeTable.Rows[i][5]) - Convert.ToInt32(recipeTable.Rows[i][6]);
+                recipeTable.Rows[i][7] = remaining.ToString();
+                if (remaining < 0)
+                {
+                    canProduceWithStock = false;
+                }
+            }
+
+            RequiredGridData.DataSource = recipeTable;
+
+            for (int i = 0; i < recipeTable.Rows.Count; i++)
+            {
+                RequiredGridData.Rows[i].Cells[7].Style.BackColor = Convert.ToInt32(recipeTable.Rows[i][7]) < 0 ? Color.Red : Color.Green;
+            }
+
             RequiredGridData.Update();
+        }
+
+        public void MaximumProduction()
+        {
+            int minimum = Convert.ToInt32(RequiredGridData.Rows[0].Cells[7].Value);
+            int index;
+            for (int i = 1; i < RequiredGridData.Rows.Count; i++)
+            {
+                int current = Convert.ToInt32(RequiredGridData.Rows[i].Cells[7].Value);
+                if (current < minimum)
+                {
+                    minimum = current;
+                    index = i;
+                }
+            }
+
+            int maximumProductionAmount = Convert.ToInt32(RequiredGridData.Rows[index].Cells[7].Value);
         }
         #endregion
     }
