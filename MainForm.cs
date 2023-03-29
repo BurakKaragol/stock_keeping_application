@@ -151,7 +151,9 @@ namespace stock_keeping_application
         /// </summary>
         private void MoveStockButton_Click(object sender, EventArgs e)
         {
-
+            Form moveStockForm;
+            moveStockForm = new MoveStockForm();
+            moveStockForm.ShowDialog();
         }
 
         /// <summary>
@@ -161,6 +163,16 @@ namespace stock_keeping_application
         ///     - If the material has a recipe use the recipe for removing stock
         /// </summary>
         private void ProducePartButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// All movement, oreders and production history are saved under here
+        /// Window Jobs:
+        ///     - The history is going to be stacked as a enum type
+        /// </summary>
+        private void MovementHistoryButton_Click(object sender, EventArgs e)
         {
 
         }

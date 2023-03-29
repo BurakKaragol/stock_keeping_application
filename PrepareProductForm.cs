@@ -91,6 +91,7 @@ namespace stock_keeping_application
 
         private void ReportButton_Click(object sender, EventArgs e)
         {
+            Calculate();
             MaximumProduction();
         }
         #endregion
@@ -162,11 +163,15 @@ namespace stock_keeping_application
 
         public void MaximumProduction()
         {
-            int minimum = Convert.ToInt32(RequiredGridData.Rows[0].Cells[7].Value);
-            int index;
+            int required = Convert.ToInt32(RequiredGridData.Rows[0].Cells[4].Value);
+            int stock = Convert.ToInt32(RequiredGridData.Rows[0].Cells[5].Value);
+            int minimum = stock / required;
+            int index = 0;
             for (int i = 1; i < RequiredGridData.Rows.Count; i++)
             {
-                int current = Convert.ToInt32(RequiredGridData.Rows[i].Cells[7].Value);
+                required = Convert.ToInt32(RequiredGridData.Rows[i].Cells[4].Value);
+                stock = Convert.ToInt32(RequiredGridData.Rows[i].Cells[5].Value);
+                int current = stock / required;
                 if (current < minimum)
                 {
                     minimum = current;
@@ -174,7 +179,10 @@ namespace stock_keeping_application
                 }
             }
 
-            int maximumProductionAmount = Convert.ToInt32(RequiredGridData.Rows[index].Cells[7].Value);
+            AmountTextBox.Text = minimum.ToString();
+            DesiredAmount = minimum;
+            MessageBox.Show($"Maximum amount you can produce with your stock is {minimum}.", "Calculated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Calculate();
         }
         #endregion
     }

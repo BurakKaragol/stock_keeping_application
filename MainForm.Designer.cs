@@ -49,7 +49,7 @@
             this.StockIdTextBox = new System.Windows.Forms.TextBox();
             this.WindowsGroup = new System.Windows.Forms.GroupBox();
             this.SettingsButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.MovementHistoryButton = new System.Windows.Forms.Button();
             this.CalculateStockButton = new System.Windows.Forms.Button();
             this.ProducePartButton = new System.Windows.Forms.Button();
             this.MoveStockButton = new System.Windows.Forms.Button();
@@ -71,17 +71,16 @@
             this.MainPanel.Location = new System.Drawing.Point(0, 0);
             this.MainPanel.Margin = new System.Windows.Forms.Padding(0);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(1179, 690);
+            this.MainPanel.Size = new System.Drawing.Size(884, 561);
             this.MainPanel.TabIndex = 0;
             // 
             // LowerPanel
             // 
             this.LowerPanel.Controls.Add(this.StockDataGrid);
             this.LowerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LowerPanel.Location = new System.Drawing.Point(0, 246);
-            this.LowerPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LowerPanel.Location = new System.Drawing.Point(0, 200);
             this.LowerPanel.Name = "LowerPanel";
-            this.LowerPanel.Size = new System.Drawing.Size(1179, 444);
+            this.LowerPanel.Size = new System.Drawing.Size(884, 361);
             this.LowerPanel.TabIndex = 4;
             // 
             // StockDataGrid
@@ -91,11 +90,10 @@
             this.StockDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.StockDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.StockDataGrid.Location = new System.Drawing.Point(0, 0);
-            this.StockDataGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.StockDataGrid.MultiSelect = false;
             this.StockDataGrid.Name = "StockDataGrid";
             this.StockDataGrid.ReadOnly = true;
-            this.StockDataGrid.Size = new System.Drawing.Size(1179, 444);
+            this.StockDataGrid.Size = new System.Drawing.Size(884, 361);
             this.StockDataGrid.TabIndex = 40;
             this.StockDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.StockDataGrid_CellClick);
             // 
@@ -106,9 +104,8 @@
             this.UpperPanel.Controls.Add(this.WindowsGroup);
             this.UpperPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.UpperPanel.Location = new System.Drawing.Point(0, 0);
-            this.UpperPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.UpperPanel.Name = "UpperPanel";
-            this.UpperPanel.Size = new System.Drawing.Size(1179, 246);
+            this.UpperPanel.Size = new System.Drawing.Size(884, 200);
             this.UpperPanel.TabIndex = 3;
             // 
             // OptionsGroup
@@ -121,11 +118,9 @@
             this.OptionsGroup.Controls.Add(this.DeleteSelectedButton);
             this.OptionsGroup.Controls.Add(this.AddNewButton);
             this.OptionsGroup.Dock = System.Windows.Forms.DockStyle.Right;
-            this.OptionsGroup.Location = new System.Drawing.Point(593, 0);
-            this.OptionsGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OptionsGroup.Location = new System.Drawing.Point(444, 0);
             this.OptionsGroup.Name = "OptionsGroup";
-            this.OptionsGroup.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.OptionsGroup.Size = new System.Drawing.Size(293, 246);
+            this.OptionsGroup.Size = new System.Drawing.Size(220, 200);
             this.OptionsGroup.TabIndex = 20;
             this.OptionsGroup.TabStop = false;
             this.OptionsGroup.Text = "Options";
@@ -133,10 +128,9 @@
             // UpdateTableButton
             // 
             this.UpdateTableButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.UpdateTableButton.Location = new System.Drawing.Point(4, 204);
-            this.UpdateTableButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UpdateTableButton.Location = new System.Drawing.Point(3, 166);
             this.UpdateTableButton.Name = "UpdateTableButton";
-            this.UpdateTableButton.Size = new System.Drawing.Size(285, 37);
+            this.UpdateTableButton.Size = new System.Drawing.Size(214, 30);
             this.UpdateTableButton.TabIndex = 26;
             this.UpdateTableButton.Text = "Update Table";
             this.UpdateTableButton.UseVisualStyleBackColor = true;
@@ -145,10 +139,9 @@
             // EditRecipeButton
             // 
             this.EditRecipeButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.EditRecipeButton.Location = new System.Drawing.Point(4, 167);
-            this.EditRecipeButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EditRecipeButton.Location = new System.Drawing.Point(3, 136);
             this.EditRecipeButton.Name = "EditRecipeButton";
-            this.EditRecipeButton.Size = new System.Drawing.Size(285, 37);
+            this.EditRecipeButton.Size = new System.Drawing.Size(214, 30);
             this.EditRecipeButton.TabIndex = 25;
             this.EditRecipeButton.Text = "Edit Recipe";
             this.EditRecipeButton.UseVisualStyleBackColor = true;
@@ -157,10 +150,9 @@
             // GetAmountDataButton
             // 
             this.GetAmountDataButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.GetAmountDataButton.Location = new System.Drawing.Point(4, 130);
-            this.GetAmountDataButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GetAmountDataButton.Location = new System.Drawing.Point(3, 106);
             this.GetAmountDataButton.Name = "GetAmountDataButton";
-            this.GetAmountDataButton.Size = new System.Drawing.Size(285, 37);
+            this.GetAmountDataButton.Size = new System.Drawing.Size(214, 30);
             this.GetAmountDataButton.TabIndex = 24;
             this.GetAmountDataButton.Text = "Get / Set Amount Data";
             this.GetAmountDataButton.UseVisualStyleBackColor = true;
@@ -169,10 +161,9 @@
             // UpdateSelectedButton
             // 
             this.UpdateSelectedButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.UpdateSelectedButton.Location = new System.Drawing.Point(4, 93);
-            this.UpdateSelectedButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UpdateSelectedButton.Location = new System.Drawing.Point(3, 76);
             this.UpdateSelectedButton.Name = "UpdateSelectedButton";
-            this.UpdateSelectedButton.Size = new System.Drawing.Size(285, 37);
+            this.UpdateSelectedButton.Size = new System.Drawing.Size(214, 30);
             this.UpdateSelectedButton.TabIndex = 23;
             this.UpdateSelectedButton.Text = "Update Selected";
             this.UpdateSelectedButton.UseVisualStyleBackColor = true;
@@ -181,10 +172,9 @@
             // DeleteSelectedButton
             // 
             this.DeleteSelectedButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DeleteSelectedButton.Location = new System.Drawing.Point(4, 56);
-            this.DeleteSelectedButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DeleteSelectedButton.Location = new System.Drawing.Point(3, 46);
             this.DeleteSelectedButton.Name = "DeleteSelectedButton";
-            this.DeleteSelectedButton.Size = new System.Drawing.Size(285, 37);
+            this.DeleteSelectedButton.Size = new System.Drawing.Size(214, 30);
             this.DeleteSelectedButton.TabIndex = 22;
             this.DeleteSelectedButton.Text = "Delete Selected";
             this.DeleteSelectedButton.UseVisualStyleBackColor = true;
@@ -193,10 +183,9 @@
             // AddNewButton
             // 
             this.AddNewButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AddNewButton.Location = new System.Drawing.Point(4, 19);
-            this.AddNewButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddNewButton.Location = new System.Drawing.Point(3, 16);
             this.AddNewButton.Name = "AddNewButton";
-            this.AddNewButton.Size = new System.Drawing.Size(285, 37);
+            this.AddNewButton.Size = new System.Drawing.Size(214, 30);
             this.AddNewButton.TabIndex = 21;
             this.AddNewButton.Text = "Add New";
             this.AddNewButton.UseVisualStyleBackColor = true;
@@ -214,21 +203,18 @@
             this.SelectedMaterialProperitiesGroup.Controls.Add(this.NameLabel);
             this.SelectedMaterialProperitiesGroup.Controls.Add(this.StockIDLabel);
             this.SelectedMaterialProperitiesGroup.Controls.Add(this.StockIdTextBox);
-            this.SelectedMaterialProperitiesGroup.Location = new System.Drawing.Point(4, 4);
-            this.SelectedMaterialProperitiesGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SelectedMaterialProperitiesGroup.Location = new System.Drawing.Point(3, 3);
             this.SelectedMaterialProperitiesGroup.Name = "SelectedMaterialProperitiesGroup";
-            this.SelectedMaterialProperitiesGroup.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.SelectedMaterialProperitiesGroup.Size = new System.Drawing.Size(584, 242);
+            this.SelectedMaterialProperitiesGroup.Size = new System.Drawing.Size(438, 197);
             this.SelectedMaterialProperitiesGroup.TabIndex = 10;
             this.SelectedMaterialProperitiesGroup.TabStop = false;
             this.SelectedMaterialProperitiesGroup.Text = "Selected Material Properities";
             // 
             // FilterButton
             // 
-            this.FilterButton.Location = new System.Drawing.Point(428, 21);
-            this.FilterButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FilterButton.Location = new System.Drawing.Point(321, 17);
             this.FilterButton.Name = "FilterButton";
-            this.FilterButton.Size = new System.Drawing.Size(148, 28);
+            this.FilterButton.Size = new System.Drawing.Size(111, 23);
             this.FilterButton.TabIndex = 14;
             this.FilterButton.Text = "Filter";
             this.FilterButton.UseVisualStyleBackColor = true;
@@ -238,21 +224,19 @@
             // 
             this.DescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DescriptionTextBox.Location = new System.Drawing.Point(127, 87);
-            this.DescriptionTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DescriptionTextBox.Location = new System.Drawing.Point(95, 71);
             this.DescriptionTextBox.Multiline = true;
             this.DescriptionTextBox.Name = "DescriptionTextBox";
-            this.DescriptionTextBox.Size = new System.Drawing.Size(448, 147);
+            this.DescriptionTextBox.Size = new System.Drawing.Size(337, 120);
             this.DescriptionTextBox.TabIndex = 13;
             this.DescriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // DescriptionLabel
             // 
             this.DescriptionLabel.AutoSize = true;
-            this.DescriptionLabel.Location = new System.Drawing.Point(12, 91);
-            this.DescriptionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DescriptionLabel.Location = new System.Drawing.Point(9, 74);
             this.DescriptionLabel.Name = "DescriptionLabel";
-            this.DescriptionLabel.Size = new System.Drawing.Size(98, 16);
+            this.DescriptionLabel.Size = new System.Drawing.Size(80, 13);
             this.DescriptionLabel.TabIndex = 4;
             this.DescriptionLabel.Text = "DESCRIPTION";
             // 
@@ -260,39 +244,35 @@
             // 
             this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NameTextBox.Location = new System.Drawing.Point(127, 55);
-            this.NameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NameTextBox.Location = new System.Drawing.Point(95, 45);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(448, 22);
+            this.NameTextBox.Size = new System.Drawing.Size(337, 20);
             this.NameTextBox.TabIndex = 12;
             this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(12, 59);
-            this.NameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.NameLabel.Location = new System.Drawing.Point(9, 48);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(46, 16);
+            this.NameLabel.Size = new System.Drawing.Size(38, 13);
             this.NameLabel.TabIndex = 2;
             this.NameLabel.Text = "NAME";
             // 
             // StockIDLabel
             // 
             this.StockIDLabel.AutoSize = true;
-            this.StockIDLabel.Location = new System.Drawing.Point(12, 27);
-            this.StockIDLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.StockIDLabel.Location = new System.Drawing.Point(9, 22);
             this.StockIDLabel.Name = "StockIDLabel";
-            this.StockIDLabel.Size = new System.Drawing.Size(72, 16);
+            this.StockIDLabel.Size = new System.Drawing.Size(60, 13);
             this.StockIDLabel.TabIndex = 1;
             this.StockIDLabel.Text = "STOCK_ID";
             // 
             // StockIdTextBox
             // 
-            this.StockIdTextBox.Location = new System.Drawing.Point(127, 23);
-            this.StockIdTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.StockIdTextBox.Location = new System.Drawing.Point(95, 19);
             this.StockIdTextBox.Name = "StockIdTextBox";
-            this.StockIdTextBox.Size = new System.Drawing.Size(292, 22);
+            this.StockIdTextBox.Size = new System.Drawing.Size(220, 20);
             this.StockIdTextBox.TabIndex = 11;
             this.StockIdTextBox.TextChanged += new System.EventHandler(this.StockIdTextBox_TextChanged);
             // 
@@ -300,17 +280,15 @@
             // 
             this.WindowsGroup.BackColor = System.Drawing.SystemColors.ControlLight;
             this.WindowsGroup.Controls.Add(this.SettingsButton);
-            this.WindowsGroup.Controls.Add(this.button2);
+            this.WindowsGroup.Controls.Add(this.MovementHistoryButton);
             this.WindowsGroup.Controls.Add(this.CalculateStockButton);
             this.WindowsGroup.Controls.Add(this.ProducePartButton);
             this.WindowsGroup.Controls.Add(this.MoveStockButton);
             this.WindowsGroup.Controls.Add(this.PrepareProductListButton);
             this.WindowsGroup.Dock = System.Windows.Forms.DockStyle.Right;
-            this.WindowsGroup.Location = new System.Drawing.Point(886, 0);
-            this.WindowsGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.WindowsGroup.Location = new System.Drawing.Point(664, 0);
             this.WindowsGroup.Name = "WindowsGroup";
-            this.WindowsGroup.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.WindowsGroup.Size = new System.Drawing.Size(293, 246);
+            this.WindowsGroup.Size = new System.Drawing.Size(220, 200);
             this.WindowsGroup.TabIndex = 30;
             this.WindowsGroup.TabStop = false;
             this.WindowsGroup.Text = "Windows";
@@ -318,33 +296,31 @@
             // SettingsButton
             // 
             this.SettingsButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SettingsButton.Location = new System.Drawing.Point(4, 204);
-            this.SettingsButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SettingsButton.Location = new System.Drawing.Point(3, 166);
             this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(285, 37);
+            this.SettingsButton.Size = new System.Drawing.Size(214, 30);
             this.SettingsButton.TabIndex = 36;
             this.SettingsButton.Text = "Settings";
             this.SettingsButton.UseVisualStyleBackColor = true;
             this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
-            // button2
+            // MovementHistoryButton
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.Location = new System.Drawing.Point(4, 167);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(285, 37);
-            this.button2.TabIndex = 35;
-            this.button2.Text = "Edit Recipe";
-            this.button2.UseVisualStyleBackColor = true;
+            this.MovementHistoryButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MovementHistoryButton.Location = new System.Drawing.Point(3, 136);
+            this.MovementHistoryButton.Name = "MovementHistoryButton";
+            this.MovementHistoryButton.Size = new System.Drawing.Size(214, 30);
+            this.MovementHistoryButton.TabIndex = 35;
+            this.MovementHistoryButton.Text = "Movement History";
+            this.MovementHistoryButton.UseVisualStyleBackColor = true;
+            this.MovementHistoryButton.Click += new System.EventHandler(this.MovementHistoryButton_Click);
             // 
             // CalculateStockButton
             // 
             this.CalculateStockButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.CalculateStockButton.Location = new System.Drawing.Point(4, 130);
-            this.CalculateStockButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CalculateStockButton.Location = new System.Drawing.Point(3, 106);
             this.CalculateStockButton.Name = "CalculateStockButton";
-            this.CalculateStockButton.Size = new System.Drawing.Size(285, 37);
+            this.CalculateStockButton.Size = new System.Drawing.Size(214, 30);
             this.CalculateStockButton.TabIndex = 34;
             this.CalculateStockButton.Text = "Active Stock Status";
             this.CalculateStockButton.UseVisualStyleBackColor = true;
@@ -353,10 +329,9 @@
             // ProducePartButton
             // 
             this.ProducePartButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ProducePartButton.Location = new System.Drawing.Point(4, 93);
-            this.ProducePartButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ProducePartButton.Location = new System.Drawing.Point(3, 76);
             this.ProducePartButton.Name = "ProducePartButton";
-            this.ProducePartButton.Size = new System.Drawing.Size(285, 37);
+            this.ProducePartButton.Size = new System.Drawing.Size(214, 30);
             this.ProducePartButton.TabIndex = 33;
             this.ProducePartButton.Text = "ProducePart";
             this.ProducePartButton.UseVisualStyleBackColor = true;
@@ -365,10 +340,9 @@
             // MoveStockButton
             // 
             this.MoveStockButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.MoveStockButton.Location = new System.Drawing.Point(4, 56);
-            this.MoveStockButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MoveStockButton.Location = new System.Drawing.Point(3, 46);
             this.MoveStockButton.Name = "MoveStockButton";
-            this.MoveStockButton.Size = new System.Drawing.Size(285, 37);
+            this.MoveStockButton.Size = new System.Drawing.Size(214, 30);
             this.MoveStockButton.TabIndex = 32;
             this.MoveStockButton.Text = "Move Stock";
             this.MoveStockButton.UseVisualStyleBackColor = true;
@@ -377,10 +351,9 @@
             // PrepareProductListButton
             // 
             this.PrepareProductListButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PrepareProductListButton.Location = new System.Drawing.Point(4, 19);
-            this.PrepareProductListButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PrepareProductListButton.Location = new System.Drawing.Point(3, 16);
             this.PrepareProductListButton.Name = "PrepareProductListButton";
-            this.PrepareProductListButton.Size = new System.Drawing.Size(285, 37);
+            this.PrepareProductListButton.Size = new System.Drawing.Size(214, 30);
             this.PrepareProductListButton.TabIndex = 31;
             this.PrepareProductListButton.Text = "Prepare Product List";
             this.PrepareProductListButton.UseVisualStyleBackColor = true;
@@ -388,11 +361,10 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1179, 690);
+            this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.MainPanel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.Text = "Stock Application";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -430,7 +402,7 @@
         private System.Windows.Forms.Button EditRecipeButton;
         private System.Windows.Forms.GroupBox WindowsGroup;
         private System.Windows.Forms.Button SettingsButton;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button MovementHistoryButton;
         private System.Windows.Forms.Button CalculateStockButton;
         private System.Windows.Forms.Button ProducePartButton;
         private System.Windows.Forms.Button MoveStockButton;

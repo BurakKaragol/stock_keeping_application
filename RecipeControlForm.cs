@@ -191,6 +191,11 @@ namespace stock_keeping_application
                 connection.ExecuteQuery($"UPDATE stock_table\r\nSET COMPONENT_TYPE = '1'\r\nWHERE STOCK_ID = '{SelectedStock}';");
                 mainForm.ReloadGrid();
             }
+            else
+            {
+                connection.ExecuteQuery($"UPDATE stock_table\r\nSET COMPONENT_TYPE = '0'\r\nWHERE STOCK_ID = '{SelectedStock}';");
+                mainForm.ReloadGrid();
+            }
         }
     }
 }

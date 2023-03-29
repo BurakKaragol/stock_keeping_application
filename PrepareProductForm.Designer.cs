@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.UpperPanel = new System.Windows.Forms.Panel();
-            this.ProduceButton = new System.Windows.Forms.Button();
             this.ReportButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.AmountTextBox = new System.Windows.Forms.TextBox();
@@ -53,7 +52,6 @@
             this.UpperPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UpperPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.UpperPanel.Controls.Add(this.ProduceButton);
             this.UpperPanel.Controls.Add(this.ReportButton);
             this.UpperPanel.Controls.Add(this.label2);
             this.UpperPanel.Controls.Add(this.AmountTextBox);
@@ -66,21 +64,11 @@
             this.UpperPanel.Size = new System.Drawing.Size(882, 40);
             this.UpperPanel.TabIndex = 0;
             // 
-            // ProduceButton
-            // 
-            this.ProduceButton.Location = new System.Drawing.Point(583, 7);
-            this.ProduceButton.Name = "ProduceButton";
-            this.ProduceButton.Size = new System.Drawing.Size(79, 23);
-            this.ProduceButton.TabIndex = 5;
-            this.ProduceButton.Text = "Produce";
-            this.ProduceButton.UseVisualStyleBackColor = true;
-            this.ProduceButton.Click += new System.EventHandler(this.ProduceButton_Click);
-            // 
             // ReportButton
             // 
-            this.ReportButton.Location = new System.Drawing.Point(668, 7);
+            this.ReportButton.Location = new System.Drawing.Point(628, 8);
             this.ReportButton.Name = "ReportButton";
-            this.ReportButton.Size = new System.Drawing.Size(211, 23);
+            this.ReportButton.Size = new System.Drawing.Size(251, 23);
             this.ReportButton.TabIndex = 6;
             this.ReportButton.Text = "How Much Can I Produce With My Stock";
             this.ReportButton.UseVisualStyleBackColor = true;
@@ -107,7 +95,7 @@
             // 
             this.CalculateButton.Location = new System.Drawing.Point(502, 8);
             this.CalculateButton.Name = "CalculateButton";
-            this.CalculateButton.Size = new System.Drawing.Size(75, 23);
+            this.CalculateButton.Size = new System.Drawing.Size(120, 23);
             this.CalculateButton.TabIndex = 4;
             this.CalculateButton.Text = "Calculate";
             this.CalculateButton.UseVisualStyleBackColor = true;
@@ -220,6 +208,5 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox AmountTextBox;
         private System.Windows.Forms.Button CalculateButton;
-        private System.Windows.Forms.Button ProduceButton;
     }
 }
