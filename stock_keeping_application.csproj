@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActiveStockStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActiveStockStatus.Designer.cs">
+      <DependentUpon>ActiveStockStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="AmountControlForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MovementHistoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MovementHistoryForm.Designer.cs">
+      <DependentUpon>MovementHistoryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MoveStockForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +83,12 @@
     </Compile>
     <Compile Include="PrepareProductForm.Designer.cs">
       <DependentUpon>PrepareProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProducePartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProducePartForm.Designer.cs">
+      <DependentUpon>ProducePartForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

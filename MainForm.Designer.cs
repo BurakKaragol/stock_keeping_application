@@ -324,7 +324,6 @@
             this.CalculateStockButton.TabIndex = 34;
             this.CalculateStockButton.Text = "Active Stock Status";
             this.CalculateStockButton.UseVisualStyleBackColor = true;
-            this.CalculateStockButton.Click += new System.EventHandler(this.CalculateStockButton_Click);
             // 
             // ProducePartButton
             // 

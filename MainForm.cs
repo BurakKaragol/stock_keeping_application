@@ -164,7 +164,9 @@ namespace stock_keeping_application
         /// </summary>
         private void ProducePartButton_Click(object sender, EventArgs e)
         {
-
+            Form producePartForm;
+            producePartForm = new ProducePartForm();
+            producePartForm.ShowDialog();
         }
 
         /// <summary>
@@ -174,12 +176,9 @@ namespace stock_keeping_application
         /// </summary>
         private void MovementHistoryButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void CalculateStockButton_Click(object sender, EventArgs e)
-        {
-            
+            Form movementHistoryForm;
+            movementHistoryForm = new MovementHistoryForm();
+            movementHistoryForm.ShowDialog();
         }
 
         /// <summary>
