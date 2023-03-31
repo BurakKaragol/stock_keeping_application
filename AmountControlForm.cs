@@ -163,6 +163,7 @@ namespace stock_keeping_application
             }
         }
 
+        // Calculate by using unit value
         public void CalculateUsingUnit(int current, int total, int amount, float price)
         {
             float unitPrice = current * price;
@@ -172,6 +173,7 @@ namespace stock_keeping_application
             CalculateTotalAmount();
         }
 
+        // Calculate by using total value
         public void CalculateUsingTotal(int current, int total, int amount, float totalP)
         {
             float price = totalP / total;
@@ -182,6 +184,7 @@ namespace stock_keeping_application
             CalculateTotalAmount();
         }
 
+        // Calculate the total amount and set the stock values accordingly
         public void CalculateTotalAmount()
         {
             int row = AmountDataGrid.RowCount;
