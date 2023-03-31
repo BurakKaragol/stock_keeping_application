@@ -228,6 +228,10 @@ namespace stock_keeping_application
         private void AmountDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             selectedIndex = e.RowIndex;
+            if (selectedIndex == -1)
+            {
+                return;
+            }
             //get the specified values
             //STOCK_ID 1
             //STOCK_POSITION 2

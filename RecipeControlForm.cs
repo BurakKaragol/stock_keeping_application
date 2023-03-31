@@ -178,6 +178,10 @@ namespace stock_keeping_application
         private void MaterialDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             SelectedMaterialIndex = e.RowIndex;
+            if (SelectedMaterialIndex == -1)
+            {
+                return;
+            }
 
             StockId = MaterialDataGrid[1, SelectedMaterialIndex].Value.ToString();
         }

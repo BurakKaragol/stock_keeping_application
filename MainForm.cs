@@ -24,14 +24,15 @@ namespace stock_keeping_application
 
         public void ReloadGrid()
         {
-            StockDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
+            DataTable dataTable = connection.ExecuteQuery("SELECT * FROM stock_table");
+            StockDataGrid.DataSource = dataTable;
             StockDataGrid.Update();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             connection = new SQLConnectionHandler(_connectionString);
-            StockDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
+            ReloadGrid();
         }
 
         #region Buttons
@@ -46,8 +47,7 @@ namespace stock_keeping_application
             else
             {
                 connection.ExecuteQuery($"INSERT INTO stock_table(STOCK_ID, COMPONENT_TYPE, NAME, DESCRIPTION)\r\nVALUES ('{StockId}', '0', '{Name}', '{Description}');");
-                StockDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
-                StockDataGrid.Update();
+                ReloadGrid();
             }
         }
 
@@ -62,8 +62,7 @@ namespace stock_keeping_application
             else
             {
                 connection.ExecuteQuery($"DELETE FROM stock_table WHERE STOCK_ID = '{StockId}';");
-                StockDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
-                StockDataGrid.Update();
+                ReloadGrid();
             }
         }
 
@@ -78,8 +77,7 @@ namespace stock_keeping_application
             else
             {
                 connection.ExecuteQuery($"UPDATE stock_table\r\nSET STOCK_ID = '{StockId}', NAME = '{Name}', DESCRIPTION = '{Description}'\r\nWHERE STOCK_ID = '{StockId}';");
-                StockDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
-                StockDataGrid.Update();
+                ReloadGrid();
             }
         }
 
@@ -116,8 +114,7 @@ namespace stock_keeping_application
         // Update the Table
         private void UpdateTableButton_Click(object sender, EventArgs e)
         {
-            StockDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
-            StockDataGrid.Update();
+            ReloadGrid();
         }
 
         /// <summary>
@@ -152,7 +149,14 @@ namespace stock_keeping_application
         private void MoveStockButton_Click(object sender, EventArgs e)
         {
             Form moveStockForm;
-            moveStockForm = new MoveStockForm();
+            if (selectedIndex != -1 && StockId != null)
+            {
+                moveStockForm = new MoveStockForm(this, StockId);
+            }
+            else
+            {
+                moveStockForm = new MoveStockForm(this);
+            }
             moveStockForm.ShowDialog();
         }
 
@@ -263,8 +267,7 @@ namespace stock_keeping_application
             {
                 StockDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
             }
-            StockDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM stock_table WHERE {compareColumn} LIKE '%{Filter}%';");
-            StockDataGrid.Update();
+            ReloadGrid();
         }
 
         private void FilterButton_Click(object sender, EventArgs e)
