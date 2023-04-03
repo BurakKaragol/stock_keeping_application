@@ -44,6 +44,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.MoveAmountTextBox = new System.Windows.Forms.TextBox();
             this.MoveSelectedButton = new System.Windows.Forms.Button();
+            this.MoveSelectedBackButton = new System.Windows.Forms.Button();
+            this.MoveAmountBack = new System.Windows.Forms.Button();
             this.UpperPanel.SuspendLayout();
             this.LowerPanel.SuspendLayout();
             this.MiddlePanel.SuspendLayout();
@@ -115,6 +117,8 @@
             // 
             this.MiddlePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.MiddlePanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.MiddlePanel.Controls.Add(this.MoveAmountBack);
+            this.MiddlePanel.Controls.Add(this.MoveSelectedBackButton);
             this.MiddlePanel.Controls.Add(this.MoveSelectedButton);
             this.MiddlePanel.Controls.Add(this.label3);
             this.MiddlePanel.Controls.Add(this.MoveAmountTextBox);
@@ -207,12 +211,30 @@
             // 
             // MoveSelectedButton
             // 
-            this.MoveSelectedButton.Location = new System.Drawing.Point(3, 145);
+            this.MoveSelectedButton.Location = new System.Drawing.Point(3, 174);
             this.MoveSelectedButton.Name = "MoveSelectedButton";
             this.MoveSelectedButton.Size = new System.Drawing.Size(114, 23);
             this.MoveSelectedButton.TabIndex = 10;
-            this.MoveSelectedButton.Text = "Move Selected";
+            this.MoveSelectedButton.Text = "--->";
             this.MoveSelectedButton.UseVisualStyleBackColor = true;
+            // 
+            // MoveSelectedBackButton
+            // 
+            this.MoveSelectedBackButton.Location = new System.Drawing.Point(3, 203);
+            this.MoveSelectedBackButton.Name = "MoveSelectedBackButton";
+            this.MoveSelectedBackButton.Size = new System.Drawing.Size(114, 23);
+            this.MoveSelectedBackButton.TabIndex = 11;
+            this.MoveSelectedBackButton.Text = "<---";
+            this.MoveSelectedBackButton.UseVisualStyleBackColor = true;
+            // 
+            // MoveAmountBack
+            // 
+            this.MoveAmountBack.Location = new System.Drawing.Point(3, 145);
+            this.MoveAmountBack.Name = "MoveAmountBack";
+            this.MoveAmountBack.Size = new System.Drawing.Size(114, 23);
+            this.MoveAmountBack.TabIndex = 12;
+            this.MoveAmountBack.Text = "Move Amount Back";
+            this.MoveAmountBack.UseVisualStyleBackColor = true;
             // 
             // MoveStockForm
             // 
@@ -254,5 +276,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox MoveAmountTextBox;
         private System.Windows.Forms.Button MoveAmountButton;
+        private System.Windows.Forms.Button MoveSelectedBackButton;
+        private System.Windows.Forms.Button MoveAmountBack;
     }
 }
