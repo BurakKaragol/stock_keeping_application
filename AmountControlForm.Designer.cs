@@ -58,6 +58,8 @@
             this.CurrentStockLabel = new System.Windows.Forms.Label();
             this.StockIDLabel = new System.Windows.Forms.Label();
             this.StockIdTextBox = new System.Windows.Forms.TextBox();
+            this.FilterStockButton = new System.Windows.Forms.Button();
+            this.FilterBothButton = new System.Windows.Forms.Button();
             this.LowerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AmountDataGrid)).BeginInit();
             this.UpperPanel.SuspendLayout();
@@ -106,6 +108,8 @@
             // ActionsGroup
             // 
             this.ActionsGroup.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ActionsGroup.Controls.Add(this.FilterBothButton);
+            this.ActionsGroup.Controls.Add(this.FilterStockButton);
             this.ActionsGroup.Controls.Add(this.label5);
             this.ActionsGroup.Controls.Add(this.StockPositionComboBox);
             this.ActionsGroup.Controls.Add(this.FilterButton);
@@ -122,7 +126,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 78);
+            this.label5.Location = new System.Drawing.Point(6, 71);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(100, 13);
             this.label5.TabIndex = 24;
@@ -131,7 +135,7 @@
             // StockPositionComboBox
             // 
             this.StockPositionComboBox.FormattingEnabled = true;
-            this.StockPositionComboBox.Location = new System.Drawing.Point(112, 74);
+            this.StockPositionComboBox.Location = new System.Drawing.Point(112, 68);
             this.StockPositionComboBox.Name = "StockPositionComboBox";
             this.StockPositionComboBox.Size = new System.Drawing.Size(132, 21);
             this.StockPositionComboBox.TabIndex = 26;
@@ -139,11 +143,11 @@
             // 
             // FilterButton
             // 
-            this.FilterButton.Location = new System.Drawing.Point(9, 46);
+            this.FilterButton.Location = new System.Drawing.Point(9, 42);
             this.FilterButton.Name = "FilterButton";
             this.FilterButton.Size = new System.Drawing.Size(238, 22);
             this.FilterButton.TabIndex = 32;
-            this.FilterButton.Text = "Filter List";
+            this.FilterButton.Text = "Filter List Using STOCK_ID";
             this.FilterButton.UseVisualStyleBackColor = true;
             this.FilterButton.Click += new System.EventHandler(this.FilterButton_Click);
             // 
@@ -390,6 +394,26 @@
             this.StockIdTextBox.TabIndex = 11;
             this.StockIdTextBox.TextChanged += new System.EventHandler(this.StockIdTextBox_TextChanged);
             // 
+            // FilterStockButton
+            // 
+            this.FilterStockButton.Location = new System.Drawing.Point(6, 94);
+            this.FilterStockButton.Name = "FilterStockButton";
+            this.FilterStockButton.Size = new System.Drawing.Size(238, 22);
+            this.FilterStockButton.TabIndex = 33;
+            this.FilterStockButton.Text = "Filter List Using STOCK_POSITION";
+            this.FilterStockButton.UseVisualStyleBackColor = true;
+            this.FilterStockButton.Click += new System.EventHandler(this.FilterStockButton_Click);
+            // 
+            // FilterBothButton
+            // 
+            this.FilterBothButton.Location = new System.Drawing.Point(6, 122);
+            this.FilterBothButton.Name = "FilterBothButton";
+            this.FilterBothButton.Size = new System.Drawing.Size(238, 22);
+            this.FilterBothButton.TabIndex = 34;
+            this.FilterBothButton.Text = "Filter List Using Both";
+            this.FilterBothButton.UseVisualStyleBackColor = true;
+            this.FilterBothButton.Click += new System.EventHandler(this.FilterBothButton_Click);
+            // 
             // AmountControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -444,5 +468,7 @@
         private System.Windows.Forms.ComboBox StockPositionComboBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button UpdateTableButton;
+        private System.Windows.Forms.Button FilterStockButton;
+        private System.Windows.Forms.Button FilterBothButton;
     }
 }

@@ -11,12 +11,6 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace stock_keeping_application
 {
-    /// <summary>
-    /// TODO:
-    /// Add total stock display
-    /// Add option for selecting different stock positions
-    /// </summary>
-
     public partial class AmountControlForm : Form
     {
         SQLConnectionHandler connection;
@@ -100,6 +94,16 @@ namespace stock_keeping_application
         private void FilterButton_Click(object sender, EventArgs e)
         {
             FilterData(Filter);
+        }
+
+        private void FilterStockButton_Click(object sender, EventArgs e)
+        {
+            FilterData("STOCK_POSITION", SelectedStock.ToString());
+        }
+
+        private void FilterBothButton_Click(object sender, EventArgs e)
+        {
+            FilterDataBoth(Filter, SelectedStock.ToString());
         }
 
         #region Price Calculation
@@ -328,12 +332,21 @@ namespace stock_keeping_application
         /// <param name="filter">seraching filter</param>
         public void FilterData(string compareColumn, string filter)
         {
-            Console.WriteLine("Trirggered");
             if (filter == "" || filter == "*")
             {
                 AmountDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM amount_table");
             }
-            AmountDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE {compareColumn} LIKE '%{Filter}%';");
+            AmountDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE {compareColumn} LIKE '%{filter}%';");
+            AmountDataGrid.Update();
+        }
+
+        public void FilterDataBoth(string idFilter, string stockFilter)
+        {
+            if ((idFilter == "" || stockFilter == "*") || (stockFilter == "" || stockFilter == "*"))
+            {
+                AmountDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM amount_table");
+            }
+            AmountDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{idFilter}%' AND STOCK_POSITION = '{stockFilter}';");
             AmountDataGrid.Update();
         }
 
