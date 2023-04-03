@@ -16,5 +16,10 @@ namespace stock_keeping_application
         {
             InitializeComponent();
         }
+
+        private void ActiveStockStatus_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

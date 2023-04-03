@@ -192,6 +192,7 @@
             this.MoveAmountButton.TabIndex = 7;
             this.MoveAmountButton.Text = "Move Amount";
             this.MoveAmountButton.UseVisualStyleBackColor = true;
+            this.MoveAmountButton.Click += new System.EventHandler(this.MoveAmountButton_Click);
             // 
             // label3
             // 
@@ -208,6 +209,7 @@
             this.MoveAmountTextBox.Name = "MoveAmountTextBox";
             this.MoveAmountTextBox.Size = new System.Drawing.Size(114, 20);
             this.MoveAmountTextBox.TabIndex = 9;
+            this.MoveAmountTextBox.TextChanged += new System.EventHandler(this.MoveAmountTextBox_TextChanged);
             // 
             // MoveSelectedButton
             // 
@@ -217,6 +219,7 @@
             this.MoveSelectedButton.TabIndex = 10;
             this.MoveSelectedButton.Text = "--->";
             this.MoveSelectedButton.UseVisualStyleBackColor = true;
+            this.MoveSelectedButton.Click += new System.EventHandler(this.MoveSelectedButton_Click);
             // 
             // MoveSelectedBackButton
             // 
@@ -226,6 +229,7 @@
             this.MoveSelectedBackButton.TabIndex = 11;
             this.MoveSelectedBackButton.Text = "<---";
             this.MoveSelectedBackButton.UseVisualStyleBackColor = true;
+            this.MoveSelectedBackButton.Click += new System.EventHandler(this.MoveSelectedBackButton_Click);
             // 
             // MoveAmountBack
             // 
@@ -235,6 +239,7 @@
             this.MoveAmountBack.TabIndex = 12;
             this.MoveAmountBack.Text = "Move Amount Back";
             this.MoveAmountBack.UseVisualStyleBackColor = true;
+            this.MoveAmountBack.Click += new System.EventHandler(this.MoveAmountBack_Click);
             // 
             // MoveStockForm
             // 

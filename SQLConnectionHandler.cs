@@ -96,7 +96,7 @@ namespace stock_keeping_application
             {
                 connection = new SqlConnection(_connectionString);
                 connection.Open();
-                Console.WriteLine("Connection opened successfully!");
+                Console.Write("Connection opened ");
             }
             catch (SqlException ex)
             {
@@ -178,7 +178,7 @@ namespace stock_keeping_application
             try
             {
                 connection.Close();
-                Console.WriteLine("Connection cloased successfully!");
+                Console.WriteLine("and closed successfully!");
             }
             catch(SqlException ex)
             {

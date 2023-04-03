@@ -13,7 +13,6 @@ namespace stock_keeping_application
     public partial class PrepareProductForm : Form
     {
         SQLConnectionHandler connection;
-        private readonly string _connectionString = $"Data Source={SettingsForm.DatabasePosition};Initial Catalog=stock_application_db;Integrated Security=True;\r\n";
 
         public PrepareProductForm()
         {
@@ -36,7 +35,7 @@ namespace stock_keeping_application
 
         private void PrepareProductForm_Load(object sender, EventArgs e)
         {
-            connection = new SQLConnectionHandler(_connectionString);
+            connection = new SQLConnectionHandler(SettingsForm.DatabaseConnectionString);
             StockGridData.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
             StockIdTextBox.Text = Filter == null ? "" : Filter;
         }

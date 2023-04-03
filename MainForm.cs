@@ -15,7 +15,6 @@ namespace stock_keeping_application
     public partial class MainForm : Form
     {
         SQLConnectionHandler connection;
-        private readonly string _connectionString = $"Data Source={SettingsForm.DatabasePosition};Initial Catalog=stock_application_db;Integrated Security=True;\r\n";
 
         public MainForm()
         {
@@ -31,7 +30,7 @@ namespace stock_keeping_application
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            connection = new SQLConnectionHandler(_connectionString);
+            connection = new SQLConnectionHandler(SettingsForm.DatabaseConnectionString);
             ReloadGrid();
         }
 
@@ -114,7 +113,51 @@ namespace stock_keeping_application
         // Update the Table
         private void UpdateTableButton_Click(object sender, EventArgs e)
         {
+            UpdateAllTableValues();
             ReloadGrid();
+        }
+
+        public void UpdateAllTableValues()
+        {
+            DataTable stockDataTable = connection.ExecuteQuery("SELECT * FROM stock_table");
+
+            for (int i = 0; i < stockDataTable.Rows.Count; i++)
+            {
+                string StockId = stockDataTable.Rows[i][1].ToString();
+                DataTable amountDataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID = '{StockId}';");
+                if (amountDataTable.Rows.Count == 0)
+                {
+                    connection.ExecuteNonQuery($"UPDATE stock_table\r\nSET ACTIVE_COUNT = '0', TOTAL_COUNT = '0'\r\nWHERE STOCK_ID = '{StockId}';");
+                }
+                else
+                {
+                    int active = 0;
+                    int total = 0;
+                    float price = 0f;
+                    for (int j = 0; j < amountDataTable.Rows.Count; j++)
+                    {
+                        string stockPos = amountDataTable.Rows[j][2].ToString();
+                        Console.WriteLine("--------------------------");
+                        int stockCount = Convert.ToInt32(amountDataTable.Rows[j][5]);
+                        Console.WriteLine($"Stock count: {stockCount}");
+                        int stockAmount = Convert.ToInt32(amountDataTable.Rows[j][6]);
+                        Console.WriteLine($"Stock amount: {stockAmount}");
+                        if (stockPos == "0")
+                        {
+                            active += stockCount * stockAmount;
+                            Console.WriteLine($"Active stock added: {active}");
+                        }
+                        else
+                        {
+                            total += stockCount * stockAmount;
+                            Console.WriteLine($"Total stock added: {total}");
+                        }
+                    }
+                    Console.WriteLine($"Active stock calculated: {active}");
+                    Console.WriteLine($"Total stock calculated: {total}");
+                    connection.ExecuteNonQuery($"UPDATE stock_table\r\nSET ACTIVE_COUNT = '{active}', TOTAL_COUNT = '{total}'\r\nWHERE STOCK_ID = '{StockId}';");
+                }
+            }
         }
 
         /// <summary>

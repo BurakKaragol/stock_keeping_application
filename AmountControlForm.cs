@@ -14,7 +14,6 @@ namespace stock_keeping_application
     public partial class AmountControlForm : Form
     {
         SQLConnectionHandler connection;
-        private readonly string _connectionString = $"Data Source={SettingsForm.DatabasePosition};Initial Catalog=stock_application_db;Integrated Security=True;\r\n";
 
         public AmountControlForm()
         {
@@ -39,7 +38,7 @@ namespace stock_keeping_application
 
         private void AmountControlForm_Load(object sender, EventArgs e)
         {
-            connection = new SQLConnectionHandler(_connectionString);
+            connection = new SQLConnectionHandler(SettingsForm.DatabaseConnectionString);
             if (filter)
             {
                 FilterTextBox.Text = Filter;
@@ -205,7 +204,8 @@ namespace stock_keeping_application
                 }
                 totalCount += total;
             }
-            connection.ExecuteNonQuery($"UPDATE stock_table\r\nSET ACTIVE_COUNT = '{activeCount}', TOTAL_COUNT = '{totalCount}'\r\nWHERE STOCK_ID = '{StockId}';");
+            //connection.ExecuteNonQuery($"UPDATE stock_table\r\nSET ACTIVE_COUNT = '{activeCount}', TOTAL_COUNT = '{totalCount}'\r\nWHERE STOCK_ID = '{StockId}';");
+            mainForm.UpdateAllTableValues();
         }
         #endregion
 

@@ -13,7 +13,6 @@ namespace stock_keeping_application
     public partial class MoveStockForm : Form
     {
         SQLConnectionHandler connection;
-        private readonly string _connectionString = $"Data Source={SettingsForm.DatabasePosition};Initial Catalog=stock_application_db;Integrated Security=True;\r\n";
 
         public MoveStockForm()
         {
@@ -27,7 +26,7 @@ namespace stock_keeping_application
             InitializeComponent();
         }
 
-        string Filter;
+        string Filter = "";
         public MoveStockForm(Form calledFrom, string StockId)
         {
             mainForm = calledFrom as MainForm;
@@ -37,16 +36,24 @@ namespace stock_keeping_application
 
         private void MoveStockForm_Load(object sender, EventArgs e)
         {
-            connection = new SQLConnectionHandler(_connectionString);
+            connection = new SQLConnectionHandler(SettingsForm.DatabaseConnectionString);
             LeftComboBox.DataSource = Enum.GetNames(typeof(StockPosition));
             RightComboBox.DataSource = Enum.GetNames(typeof(StockPosition));
-            FilterDataLeft(LeftSelectedStock.ToString());
-            FilterDataRight(RightSelectedStock.ToString());
+            if (Filter == "" || Filter == "*")
+            {
+                FilterDataLeft(LeftSelectedStock.ToString());
+                FilterDataRight(RightSelectedStock.ToString());
+            }
+            else
+            {
+                FilterDatas(Filter);
+            }
         }
 
         #region Grid Selection
         private int leftSelectedIndex = 0;
         private string leftStockId;
+        private string leftId;
         private void LeftStockDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             leftSelectedIndex = e.RowIndex;
@@ -56,12 +63,14 @@ namespace stock_keeping_application
             }
 
             leftStockId = LeftStockDataGrid[1, leftSelectedIndex].Value.ToString();
+            leftId = LeftStockDataGrid[0, leftSelectedIndex].Value.ToString();
             StockIdTextBox.Text = leftStockId;
             FilterStockId = leftStockId;
         }
 
         private int rightSelectedIndex = 0;
         private string rightStockId;
+        private string rightId;
         private void RightStockDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             rightSelectedIndex = e.RowIndex;
@@ -71,6 +80,7 @@ namespace stock_keeping_application
             }
 
             rightStockId = RightStockDataGrid[1, rightSelectedIndex].Value.ToString();
+            rightId = LeftStockDataGrid[0, rightSelectedIndex].Value.ToString();
             StockIdTextBox.Text = rightStockId;
             FilterStockId = rightStockId;
         }
@@ -81,14 +91,14 @@ namespace stock_keeping_application
         private void LeftComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             LeftSelectedStock = LeftComboBox.SelectedIndex;
-            FilterDataLeft(LeftSelectedStock.ToString());
+            FilterDatas(FilterStockId);
         }
 
         private int RightSelectedStock = 0;
         private void RightComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             RightSelectedStock = RightComboBox.SelectedIndex;
-            FilterDataRight(RightSelectedStock.ToString());
+            FilterDatas(FilterStockId);
         }
         #endregion
 
@@ -134,7 +144,31 @@ namespace stock_keeping_application
         }
 
         #region Move Logic Algorithm
-        
+        private int MoveAmount;
+        private void MoveAmountTextBox_TextChanged(object sender, EventArgs e)
+        {
+            MoveAmount = Convert.ToInt32(MoveAmountTextBox.Text);
+        }
+
+        private void MoveAmountButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MoveAmountBack_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MoveSelectedButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MoveSelectedBackButton_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
     }
 }

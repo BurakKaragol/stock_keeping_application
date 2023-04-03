@@ -13,7 +13,6 @@ namespace stock_keeping_application
     public partial class RecipeControlForm : Form
     {
         SQLConnectionHandler connection;
-        private readonly string _connectionString = $"Data Source={SettingsForm.DatabasePosition};Initial Catalog=stock_application_db;Integrated Security=True;\r\n";
 
         public RecipeControlForm()
         {
@@ -38,7 +37,7 @@ namespace stock_keeping_application
         private void RecipeControlForm_Load(object sender, EventArgs e)
         {
             StockIdTextBox.Text = SelectedStock;
-            connection = new SQLConnectionHandler(_connectionString);
+            connection = new SQLConnectionHandler(SettingsForm.DatabaseConnectionString);
             MaterialDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
             RecipeDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM recipe_table WHERE STOCK_ID = '{SelectedStock}'");
         }
