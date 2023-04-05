@@ -117,6 +117,7 @@ namespace stock_keeping_application
             ReloadGrid();
         }
 
+        // Recalculate the amount value based on the stock data
         public void UpdateAllTableValues()
         {
             DataTable stockDataTable = connection.ExecuteQuery("SELECT * FROM stock_table");
