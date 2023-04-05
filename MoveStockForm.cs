@@ -120,6 +120,7 @@ namespace stock_keeping_application
         }
         #endregion
 
+        // For resızıng the form and keepıng the wındow form
         private void MoveStockForm_Resize(object sender, EventArgs e)
         {
             MiddlePanel.Width = 120;
@@ -150,21 +151,53 @@ namespace stock_keeping_application
             MoveAmount = Convert.ToInt32(MoveAmountTextBox.Text);
         }
 
+        /// <summary>
+        /// Move The selected amount of stock from the left to the right
+        /// Before moving should check if the value already exist on the other position
+        /// if so should add to it
+        /// and if not create a new one
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MoveAmountButton_Click(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Move The selected amount of stock from the right to the left
+        /// Before moving should check if the value already exist on the other position
+        /// if so should add to it
+        /// and if not create a new one
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MoveAmountBack_Click(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Move all the selected stock from the left to the right
+        /// Before moving should check if the value already exist on the other position
+        /// if so should add to it
+        /// and if not create a new one
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MoveSelectedButton_Click(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Move all the selected stock from the right to the left
+        /// Before moving should check if the value already exist on the other position
+        /// if so should add to it
+        /// and if not create a new one
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MoveSelectedBackButton_Click(object sender, EventArgs e)
         {
 
