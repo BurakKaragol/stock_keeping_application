@@ -206,13 +206,16 @@ namespace stock_keeping_application
             if (found.Rows.Count > 0)
             {
                 string foundId = found.Rows[0][0].ToString();
-                Console.WriteLine(foundId);
+                int newAmount = Convert.ToInt32(found.Rows[0][5]);
+                newAmount += leftAmount;
+                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{newAmount}'\r\nWHERE ID = '{foundId}';");
+                connection.ExecuteQuery($"DELETE FROM amount_table WHERE ID = '{leftId}';");
             }
             else // else change the stock position of the selected
             {
-
+                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_POSITION = '{rightSelectedStock}'\r\nWHERE ID = '{leftId}';");
             }
-            // reload both tables
+            FilterDatas(FilterStockId);
         }
 
         /// <summary>
@@ -225,7 +228,21 @@ namespace stock_keeping_application
         /// <param name="e"></param>
         private void MoveSelectedBackButton_Click(object sender, EventArgs e)
         {
-
+            DataTable found = connection.ExecuteQuery($"SELECT * FROM amount_table\r\nWHERE STOCK_ID = '{rightStockId}'\r\nAND STOCK_POSITION = '{leftSelectedStock}'\r\nAND CURRENT_AMOUNT = '{rightCurrent}'\r\nAND MAXIMUM_COUNT = '{rightTotal}';");
+            // if found add to the amount
+            if (found.Rows.Count > 0)
+            {
+                string foundId = found.Rows[0][0].ToString();
+                int newAmount = Convert.ToInt32(found.Rows[0][5]);
+                newAmount += rightAmount;
+                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{newAmount}'\r\nWHERE ID = '{foundId}';");
+                connection.ExecuteQuery($"DELETE FROM amount_table WHERE ID = '{rightId}';");
+            }
+            else // else change the stock position of the selected
+            {
+                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_POSITION = '{leftSelectedStock}'\r\nWHERE ID = '{rightId}';");
+            }
+            FilterDatas(FilterStockId);
         }
         #endregion
     }
