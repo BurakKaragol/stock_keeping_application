@@ -143,6 +143,12 @@ namespace stock_keeping_application
             return datatTable.Rows.Count;
         }
 
+        public string ExecuteSingleQuery(string query)
+        {
+            DataTable dataTable = ExecuteQuery(query);
+            return dataTable.Rows[0][0].ToString();
+        }
+
         /// <summary>
         /// Updates the stock of the specified stockId with the specified value
         /// </summary>

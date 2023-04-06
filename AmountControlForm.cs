@@ -211,7 +211,14 @@ namespace stock_keeping_application
 
         private void UpdateTableButton_Click(object sender, EventArgs e)
         {
-            AmountDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM amount_table");
+            if (StockId == "" || StockId == null)
+            {
+                AmountDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM amount_table");
+            }
+            else
+            {
+                AmountDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID = '{StockId}'");
+            }
             AmountDataGrid.Update();
         }
         #endregion

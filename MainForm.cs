@@ -38,6 +38,10 @@ namespace stock_keeping_application
         // Add a new material to the list
         private void AddNewButton_Click(object sender, EventArgs e)
         {
+            if (StockId.NullOrEmpty())
+            {
+                MessageBox.Show($"STOCK_ID cannot be null!", "STOCKID Null or Empty", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             int found = connection.ExecuteNonQuery($"SELECT * FROM stock_table WHERE STOCK_ID = '{StockId}';");
             if (found != 0)
             {
@@ -307,7 +311,7 @@ namespace stock_keeping_application
         public void FilterData(string compareColumn, string filter)
         {
             Console.WriteLine("Trirggered");
-            if (filter == "" || filter == "*")
+            if (filter.NullOrEmpty())
             {
                 StockDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM stock_table");
             }

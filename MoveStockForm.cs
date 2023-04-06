@@ -39,10 +39,10 @@ namespace stock_keeping_application
             connection = new SQLConnectionHandler(SettingsForm.DatabaseConnectionString);
             LeftComboBox.DataSource = Enum.GetNames(typeof(StockPosition));
             RightComboBox.DataSource = Enum.GetNames(typeof(StockPosition));
-            if (Filter == "" || Filter == "*")
+            if (Filter.NullOrEmpty())
             {
-                FilterDataLeft(LeftSelectedStock.ToString());
-                FilterDataRight(RightSelectedStock.ToString());
+                FilterDataLeft(leftSelectedStock.ToString());
+                FilterDataRight(rightSelectedStock.ToString());
             }
             else
             {
@@ -54,6 +54,9 @@ namespace stock_keeping_application
         private int leftSelectedIndex = 0;
         private string leftStockId;
         private string leftId;
+        private int leftAmount;
+        private int leftCurrent;
+        private int leftTotal;
         private void LeftStockDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             leftSelectedIndex = e.RowIndex;
@@ -64,6 +67,10 @@ namespace stock_keeping_application
 
             leftStockId = LeftStockDataGrid[1, leftSelectedIndex].Value.ToString();
             leftId = LeftStockDataGrid[0, leftSelectedIndex].Value.ToString();
+            leftAmount = Convert.ToInt32(LeftStockDataGrid[5, leftSelectedIndex].Value);
+            leftCurrent = Convert.ToInt32(LeftStockDataGrid[6, leftSelectedIndex].Value);
+            leftTotal = Convert.ToInt32(LeftStockDataGrid[7, leftSelectedIndex].Value);
+            Console.WriteLine($"\nLeft Selected\n----\namount: {leftAmount}\ncurrent: {leftCurrent}\ntotasl: {leftTotal}");
             StockIdTextBox.Text = leftStockId;
             FilterStockId = leftStockId;
         }
@@ -71,6 +78,9 @@ namespace stock_keeping_application
         private int rightSelectedIndex = 0;
         private string rightStockId;
         private string rightId;
+        private int rightAmount;
+        private int rightCurrent;
+        private int rightTotal;
         private void RightStockDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             rightSelectedIndex = e.RowIndex;
@@ -81,23 +91,27 @@ namespace stock_keeping_application
 
             rightStockId = RightStockDataGrid[1, rightSelectedIndex].Value.ToString();
             rightId = LeftStockDataGrid[0, rightSelectedIndex].Value.ToString();
+            rightAmount = Convert.ToInt32(RightStockDataGrid[5, rightSelectedIndex].Value);
+            rightCurrent = Convert.ToInt32(RightStockDataGrid[6, rightSelectedIndex].Value);
+            rightTotal = Convert.ToInt32(RightStockDataGrid[7, rightSelectedIndex].Value);
+            Console.WriteLine($"\nRight Selected\n----\namount: {rightAmount}\ncurrent: {rightCurrent}\ntotasl: {rightTotal}");
             StockIdTextBox.Text = rightStockId;
             FilterStockId = rightStockId;
         }
         #endregion
 
         #region ComboBox
-        private int LeftSelectedStock = 0;
+        private int leftSelectedStock = 0;
         private void LeftComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LeftSelectedStock = LeftComboBox.SelectedIndex;
+            leftSelectedStock = LeftComboBox.SelectedIndex;
             FilterDatas(FilterStockId);
         }
 
-        private int RightSelectedStock = 0;
+        private int rightSelectedStock = 0;
         private void RightComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RightSelectedStock = RightComboBox.SelectedIndex;
+            rightSelectedStock = RightComboBox.SelectedIndex;
             FilterDatas(FilterStockId);
         }
         #endregion
@@ -115,8 +129,8 @@ namespace stock_keeping_application
 
         private void FilterDatas(string filter)
         {
-            LeftStockDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{filter}%' AND STOCK_POSITION = '{LeftSelectedStock}';");
-            RightStockDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{filter}%' AND STOCK_POSITION = '{RightSelectedStock}';");
+            LeftStockDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{filter}%' AND STOCK_POSITION = '{leftSelectedStock}';");
+            RightStockDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{filter}%' AND STOCK_POSITION = '{rightSelectedStock}';");
         }
         #endregion
 
@@ -187,7 +201,18 @@ namespace stock_keeping_application
         /// <param name="e"></param>
         private void MoveSelectedButton_Click(object sender, EventArgs e)
         {
+            DataTable found = connection.ExecuteQuery($"SELECT * FROM amount_table\r\nWHERE STOCK_ID = '{leftStockId}'\r\nAND STOCK_POSITION = '{rightSelectedStock}'\r\nAND CURRENT_AMOUNT = '{leftCurrent}'\r\nAND MAXIMUM_COUNT = '{leftTotal}';");
+            // if found add to the amount
+            if (found.Rows.Count > 0)
+            {
+                string foundId = found.Rows[0][0].ToString();
+                Console.WriteLine(foundId);
+            }
+            else // else change the stock position of the selected
+            {
 
+            }
+            // reload both tables
         }
 
         /// <summary>
