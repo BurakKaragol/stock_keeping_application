@@ -195,15 +195,15 @@ namespace stock_keeping_application
                 if (moveAmount <= leftAmount)
                 {
                     newAmount += moveAmount;
+                    connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{newAmount}'\r\nWHERE ID = '{foundId}';");
+                    connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{leftAmount - moveAmount}'\r\nWHERE ID = '{leftId}';");
+                    leftAmount -= moveAmount;
                 }
                 else
                 {
                     MessageBox.Show("Amount you want to move is bigger than the stock amount", "Amount bigger than stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{newAmount}'\r\nWHERE ID = '{foundId}';");
-                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{leftAmount - moveAmount}'\r\nWHERE ID = '{leftId}';");
-                leftAmount -= moveAmount;
             }
             else // else change the stock position of the selected
             {
@@ -240,15 +240,15 @@ namespace stock_keeping_application
                 if (moveAmount <= rightAmount)
                 {
                     newAmount += moveAmount;
+                    connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{newAmount}'\r\nWHERE ID = '{foundId}';");
+                    connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{rightAmount - moveAmount}'\r\nWHERE ID = '{rightId}';");
+                    rightAmount -= moveAmount;
                 }
                 else
                 {
                     MessageBox.Show("Amount you want to move is bigger than the stock amount", "Amount bigger than stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{newAmount}'\r\nWHERE ID = '{foundId}';");
-                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{rightAmount - moveAmount}'\r\nWHERE ID = '{rightId}';");
-                rightAmount -= moveAmount;
             }
             else // else change the stock position of the selected
             {
