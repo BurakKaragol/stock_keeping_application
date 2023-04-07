@@ -64,7 +64,6 @@ namespace stock_keeping_application
             {
                 return;
             }
-
             leftStockId = LeftStockDataGrid[1, leftSelectedIndex].Value.ToString();
             leftId = LeftStockDataGrid[0, leftSelectedIndex].Value.ToString();
             leftAmount = Convert.ToInt32(LeftStockDataGrid[5, leftSelectedIndex].Value);
@@ -159,10 +158,10 @@ namespace stock_keeping_application
         }
 
         #region Move Logic Algorithm
-        private int MoveAmount;
+        private int moveAmount;
         private void MoveAmountTextBox_TextChanged(object sender, EventArgs e)
         {
-            MoveAmount = Convert.ToInt32(MoveAmountTextBox.Text);
+            moveAmount = Convert.ToInt32(MoveAmountTextBox.Text);
         }
 
         /// <summary>
@@ -175,7 +174,30 @@ namespace stock_keeping_application
         /// <param name="e"></param>
         private void MoveAmountButton_Click(object sender, EventArgs e)
         {
-
+            DataTable found = connection.ExecuteQuery($"SELECT * FROM amount_table\r\nWHERE STOCK_ID = '{leftStockId}'\r\nAND STOCK_POSITION = '{rightSelectedStock}'\r\nAND CURRENT_AMOUNT = '{leftCurrent}'\r\nAND MAXIMUM_COUNT = '{leftTotal}';");
+            // if found add to the amount
+            if (found.Rows.Count > 0)
+            {
+                string foundId = found.Rows[0][0].ToString();
+                int newAmount = Convert.ToInt32(found.Rows[0][5]);
+                if (moveAmount <= leftAmount)
+                {
+                    newAmount += moveAmount;
+                }
+                else
+                {
+                    MessageBox.Show("Amount you want to move is bigger than the stock amount", "Amount bigger than stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{newAmount}'\r\nWHERE ID = '{foundId}';");
+                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{leftAmount - moveAmount}'\r\nWHERE ID = '{leftId}';");
+                leftAmount -= moveAmount;
+            }
+            else // else change the stock position of the selected
+            {
+                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_POSITION = '{rightSelectedStock}'\r\nWHERE ID = '{leftId}';");
+            }
+            FilterDatas(FilterStockId);
         }
 
         /// <summary>
@@ -188,7 +210,30 @@ namespace stock_keeping_application
         /// <param name="e"></param>
         private void MoveAmountBack_Click(object sender, EventArgs e)
         {
-
+            DataTable found = connection.ExecuteQuery($"SELECT * FROM amount_table\r\nWHERE STOCK_ID = '{rightStockId}'\r\nAND STOCK_POSITION = '{leftSelectedStock}'\r\nAND CURRENT_AMOUNT = '{rightCurrent}'\r\nAND MAXIMUM_COUNT = '{rightTotal}';");
+            // if found add to the amount
+            if (found.Rows.Count > 0)
+            {
+                string foundId = found.Rows[0][0].ToString();
+                int newAmount = Convert.ToInt32(found.Rows[0][5]);
+                if (moveAmount <= rightAmount)
+                {
+                    newAmount += moveAmount;
+                }
+                else
+                {
+                    MessageBox.Show("Amount you want to move is bigger than the stock amount", "Amount bigger than stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{newAmount}'\r\nWHERE ID = '{foundId}';");
+                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{rightAmount - moveAmount}'\r\nWHERE ID = '{rightId}';");
+                rightAmount -= moveAmount;
+            }
+            else // else change the stock position of the selected
+            {
+                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_POSITION = '{leftSelectedStock}'\r\nWHERE ID = '{rightId}';");
+            }
+            FilterDatas(FilterStockId);
         }
 
         /// <summary>
