@@ -54,6 +54,8 @@ namespace stock_keeping_application
         private int leftSelectedIndex = 0;
         private string leftStockId;
         private string leftId;
+        private string leftUnitPrice;
+        private string leftTotalPrice;
         private int leftAmount;
         private int leftCurrent;
         private int leftTotal;
@@ -66,6 +68,8 @@ namespace stock_keeping_application
             }
             leftStockId = LeftStockDataGrid[1, leftSelectedIndex].Value.ToString();
             leftId = LeftStockDataGrid[0, leftSelectedIndex].Value.ToString();
+            leftUnitPrice = LeftStockDataGrid[3, leftSelectedIndex].Value.ToString();
+            leftTotalPrice = LeftStockDataGrid[4, leftSelectedIndex].Value.ToString();
             leftAmount = Convert.ToInt32(LeftStockDataGrid[5, leftSelectedIndex].Value);
             leftCurrent = Convert.ToInt32(LeftStockDataGrid[6, leftSelectedIndex].Value);
             leftTotal = Convert.ToInt32(LeftStockDataGrid[7, leftSelectedIndex].Value);
@@ -77,6 +81,8 @@ namespace stock_keeping_application
         private int rightSelectedIndex = 0;
         private string rightStockId;
         private string rightId;
+        private string rightUnitPrice;
+        private string rightTotalPrice;
         private int rightAmount;
         private int rightCurrent;
         private int rightTotal;
@@ -89,7 +95,9 @@ namespace stock_keeping_application
             }
 
             rightStockId = RightStockDataGrid[1, rightSelectedIndex].Value.ToString();
-            rightId = LeftStockDataGrid[0, rightSelectedIndex].Value.ToString();
+            rightId = RightStockDataGrid[0, rightSelectedIndex].Value.ToString();
+            rightUnitPrice = RightStockDataGrid[3, rightSelectedIndex].Value.ToString();
+            rightTotalPrice = RightStockDataGrid[4, rightSelectedIndex].Value.ToString();
             rightAmount = Convert.ToInt32(RightStockDataGrid[5, rightSelectedIndex].Value);
             rightCurrent = Convert.ToInt32(RightStockDataGrid[6, rightSelectedIndex].Value);
             rightTotal = Convert.ToInt32(RightStockDataGrid[7, rightSelectedIndex].Value);
@@ -118,18 +126,22 @@ namespace stock_keeping_application
         #region Filtering
         private void FilterDataLeft(string leftStock)
         {
-            LeftStockDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_POSITION = '{leftStock}';");
+            DataTable dataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_POSITION = '{leftStock}';");
+            LeftStockDataGrid.DataSource = dataTable;
         }
 
         private void FilterDataRight(string rightStock)
         {
-            RightStockDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_POSITION = '{rightStock}';");
+            DataTable dataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_POSITION = '{rightStock}';");
+            RightStockDataGrid.DataSource = dataTable;
         }
 
         private void FilterDatas(string filter)
         {
-            LeftStockDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{filter}%' AND STOCK_POSITION = '{leftSelectedStock}';");
-            RightStockDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{filter}%' AND STOCK_POSITION = '{rightSelectedStock}';");
+            DataTable leftDataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{filter}%' AND STOCK_POSITION = '{leftSelectedStock}';");
+            LeftStockDataGrid.DataSource = leftDataTable;
+            DataTable rightDataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{filter}%' AND STOCK_POSITION = '{rightSelectedStock}';");
+            RightStockDataGrid.DataSource = rightDataTable;
         }
         #endregion
 
@@ -195,7 +207,16 @@ namespace stock_keeping_application
             }
             else // else change the stock position of the selected
             {
-                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_POSITION = '{rightSelectedStock}'\r\nWHERE ID = '{leftId}';");
+                if (moveAmount <= leftAmount)
+                {
+                    connection.ExecuteQuery($"INSERT INTO amount_table (STOCK_ID, STOCK_POSITION, UNIT_PRICE, TOTAL_PRICE, STOCK_AMOUNT, CURRENT_AMOUNT, MAXIMUM_COUNT)\r\nVALUES ('{leftStockId}', '{rightSelectedStock}', '{leftUnitPrice}', '{leftTotalPrice}', '{moveAmount}', '{leftCurrent}', '{leftTotal}');");
+                    connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{leftAmount - moveAmount}'\r\nWHERE ID = '{leftId}';");
+                }
+                else
+                {
+                    MessageBox.Show("Amount you want to move is bigger than the stock amount", "Amount bigger than stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
             FilterDatas(FilterStockId);
         }
@@ -231,7 +252,16 @@ namespace stock_keeping_application
             }
             else // else change the stock position of the selected
             {
-                connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_POSITION = '{leftSelectedStock}'\r\nWHERE ID = '{rightId}';");
+                if (moveAmount <= leftAmount)
+                {
+                    connection.ExecuteQuery($"INSERT INTO amount_table (STOCK_ID, STOCK_POSITION, UNIT_PRICE, TOTAL_PRICE, STOCK_AMOUNT, CURRENT_AMOUNT, MAXIMUM_COUNT)\r\nVALUES ('{rightStockId}', '{leftSelectedStock}', '{rightUnitPrice}', '{rightTotalPrice}', '{moveAmount}', '{rightCurrent}', '{rightTotal}');");
+                    connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{rightAmount - moveAmount}'\r\nWHERE ID = '{rightId}';");
+                }
+                else
+                {
+                    MessageBox.Show("Amount you want to move is bigger than the stock amount", "Amount bigger than stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
             FilterDatas(FilterStockId);
         }
