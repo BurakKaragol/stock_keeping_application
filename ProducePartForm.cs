@@ -16,5 +16,10 @@ namespace stock_keeping_application
         {
             InitializeComponent();
         }
+
+        private void ProducePartForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
