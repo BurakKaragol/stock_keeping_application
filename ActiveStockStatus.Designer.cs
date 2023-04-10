@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "ActiveStockStatus";
-            this.Text = "ActiveStockStatus";
+            this.Text = "Active Stock";
             this.Load += new System.EventHandler(this.ActiveStockStatus_Load);
             this.ResumeLayout(false);
 

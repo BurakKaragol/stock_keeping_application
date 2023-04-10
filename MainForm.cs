@@ -40,7 +40,7 @@ namespace stock_keeping_application
         {
             if (StockId.NullOrEmpty())
             {
-                MessageBox.Show($"STOCK_ID cannot be null!", "STOCKID Null or Empty", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"STOCK_ID cannot be null!", "STOCK_ID Null or Empty", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             int found = connection.ExecuteNonQuery($"SELECT * FROM stock_table WHERE STOCK_ID = '{StockId}';");
             if (found != 0)
