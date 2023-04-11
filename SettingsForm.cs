@@ -14,6 +14,7 @@ namespace stock_keeping_application
     {
         public static string DatabasePosition = "BURAKASUSROG\\ZRV2014EXP";
         public static string DatabaseConnectionString = $"Data Source={SettingsForm.DatabasePosition};Initial Catalog=stock_application_db;Integrated Security=True;\r\n";
+        public static string[] stockPositions = { "Merkez", "Uretim1", "Uretim2", "Uretim3", "Uretim4" };
 
         public SettingsForm()
         {

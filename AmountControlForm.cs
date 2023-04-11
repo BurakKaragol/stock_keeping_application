@@ -48,7 +48,7 @@ namespace stock_keeping_application
             {
                 AmountDataGrid.DataSource = connection.ExecuteQuery("SELECT * FROM amount_table");
             }
-            StockPositionComboBox.DataSource = Enum.GetNames(typeof(StockPosition));
+            StockPositionComboBox.DataSource = SettingsForm.stockPositions;
         }
 
         #region Buttons

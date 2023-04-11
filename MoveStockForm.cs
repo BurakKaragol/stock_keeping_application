@@ -37,8 +37,8 @@ namespace stock_keeping_application
         private void MoveStockForm_Load(object sender, EventArgs e)
         {
             connection = new SQLConnectionHandler(SettingsForm.DatabaseConnectionString);
-            LeftComboBox.DataSource = Enum.GetNames(typeof(StockPosition));
-            RightComboBox.DataSource = Enum.GetNames(typeof(StockPosition));
+            LeftComboBox.DataSource = SettingsForm.stockPositions;
+            RightComboBox.DataSource = SettingsForm.stockPositions;
             if (Filter.NullOrEmpty())
             {
                 FilterDataLeft(leftSelectedStock.ToString());
@@ -112,28 +112,44 @@ namespace stock_keeping_application
         private void LeftComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             leftSelectedStock = LeftComboBox.SelectedIndex;
-            FilterDatas(FilterStockId);
+            FilterDatas(Filter);
         }
 
         private int rightSelectedStock = 0;
         private void RightComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             rightSelectedStock = RightComboBox.SelectedIndex;
-            FilterDatas(FilterStockId);
+            FilterDatas(Filter);
         }
         #endregion
 
         #region Filtering
         private void FilterDataLeft(string leftStock)
         {
-            DataTable dataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_POSITION = '{leftStock}';");
-            LeftStockDataGrid.DataSource = dataTable;
+            if (!Filter.NullOrEmpty())
+            {
+                DataTable dataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{Filter}%' AND STOCK_POSITION = '{leftSelectedStock}';");
+                LeftStockDataGrid.DataSource = dataTable;
+            }
+            else
+            {
+                DataTable dataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_POSITION = '{leftSelectedStock}';");
+                LeftStockDataGrid.DataSource = dataTable;
+            }
         }
 
         private void FilterDataRight(string rightStock)
         {
-            DataTable dataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_POSITION = '{rightStock}';");
-            RightStockDataGrid.DataSource = dataTable;
+            if (!Filter.NullOrEmpty())
+            {
+                DataTable dataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{Filter}%' AND STOCK_POSITION = '{leftSelectedStock}';");
+                RightStockDataGrid.DataSource = dataTable;
+            }
+            else
+            {
+                DataTable dataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_POSITION = '{leftSelectedStock}';");
+                RightStockDataGrid.DataSource = dataTable;
+            }
         }
 
         private void FilterDatas(string filter)

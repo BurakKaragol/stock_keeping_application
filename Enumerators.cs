@@ -61,15 +61,6 @@ namespace stock_keeping_application
         Product
     }
 
-    public enum StockPosition
-    {
-        Merkez,
-        Uretim1,
-        Uretim2,
-        Uretim3,
-        Uretim4
-    }
-
     internal class Enumerators
     {
     }
