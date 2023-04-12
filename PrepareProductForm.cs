@@ -83,15 +83,50 @@ namespace stock_keeping_application
             Calculate();
         }
 
-        private void ProduceButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ReportButton_Click(object sender, EventArgs e)
         {
             Calculate();
-            MaximumProduction();
+            int max = MaximumProduction();
+            MessageBox.Show($"Maximum amount you can produce with your stock is {max}.", "Calculated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        /// <summary>
+        /// The algorithm needs to select from stocked materials the required amount and delete thos ones
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ProduceButton_Click(object sender, EventArgs e)
+        {
+            Calculate();
+            int max = MaximumProduction(false);
+            if (DesiredAmount <= max)
+            {
+                Calculate();
+                Produce();
+            }
+            else
+            {
+                MessageBox.Show($"You are missing materials. Cannot Produce this much.", "Material is not enogh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region Producing
+        private void Produce()
+        {
+            for (int i = 0; i < RequiredGridData.Rows.Count; i++)
+            {
+                string stockId = RequiredGridData.Rows[i].Cells[2].Value.ToString();
+                int required = Convert.ToInt32(RequiredGridData.Rows[i].Cells[6].Value);
+                int stock = Convert.ToInt32(RequiredGridData.Rows[i].Cells[5].Value);
+                UseStock(stockId, required);
+            }
+        }
+
+        private void UseStock(string stockId, int amount)
+        {
+            DataTable stockData = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID = '{stockId}';");
+            
         }
         #endregion
 
@@ -116,8 +151,7 @@ namespace stock_keeping_application
         /// </summary>
         private void Calculate()
         {
-            // required 
-
+            // required
             DataTable recipeTable;
             recipeTable = connection.ExecuteQuery($"SELECT * FROM recipe_table WHERE STOCK_ID = '{Filter}'");
             recipeTable.Columns.Add("Stock", typeof(int));
@@ -160,7 +194,7 @@ namespace stock_keeping_application
             RequiredGridData.Update();
         }
 
-        public void MaximumProduction()
+        public int MaximumProduction(bool setValue = true)
         {
             int required = Convert.ToInt32(RequiredGridData.Rows[0].Cells[4].Value);
             int stock = Convert.ToInt32(RequiredGridData.Rows[0].Cells[5].Value);
@@ -177,11 +211,13 @@ namespace stock_keeping_application
                     index = i;
                 }
             }
-
-            AmountTextBox.Text = minimum.ToString();
-            DesiredAmount = minimum;
-            MessageBox.Show($"Maximum amount you can produce with your stock is {minimum}.", "Calculated", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Calculate();
+            if (setValue)
+            {
+                AmountTextBox.Text = minimum.ToString();
+                DesiredAmount = minimum;
+                Calculate();
+            }
+            return minimum;
         }
         #endregion
     }
