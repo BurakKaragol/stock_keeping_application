@@ -34,11 +34,22 @@ namespace stock_keeping_application
             InitializeComponent();
         }
 
+        // Created for fixing the bug where when we select one combobox the other one selects it too
+        private string[] Copy(string[] arr)
+        {
+            string[] copy = new string[arr.Length];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                copy[i] = arr[i];
+            }
+            return copy;
+        }
+
         private void MoveStockForm_Load(object sender, EventArgs e)
         {
             connection = new SQLConnectionHandler(SettingsForm.DatabaseConnectionString);
-            LeftComboBox.DataSource = SettingsForm.stockPositions;
-            RightComboBox.DataSource = SettingsForm.stockPositions;
+            LeftComboBox.DataSource = Copy(SettingsForm.stockPositions);
+            RightComboBox.DataSource = Copy(SettingsForm.stockPositions);
             if (Filter.NullOrEmpty())
             {
                 FilterDataLeft(leftSelectedStock.ToString());
@@ -112,6 +123,7 @@ namespace stock_keeping_application
         private void LeftComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             leftSelectedStock = LeftComboBox.SelectedIndex;
+            Console.WriteLine($"left selected: {leftSelectedStock}");
             FilterDatas(Filter);
         }
 
@@ -119,6 +131,7 @@ namespace stock_keeping_application
         private void RightComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             rightSelectedStock = RightComboBox.SelectedIndex;
+            Console.WriteLine($"right selected: {rightSelectedStock}");
             FilterDatas(Filter);
         }
         #endregion

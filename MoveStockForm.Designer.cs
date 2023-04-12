@@ -35,17 +35,17 @@
             this.LeftComboBox = new System.Windows.Forms.ComboBox();
             this.LowerPanel = new System.Windows.Forms.Panel();
             this.MiddlePanel = new System.Windows.Forms.Panel();
+            this.MoveAmountBack = new System.Windows.Forms.Button();
+            this.MoveSelectedBackButton = new System.Windows.Forms.Button();
+            this.MoveSelectedButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.MoveAmountTextBox = new System.Windows.Forms.TextBox();
+            this.MoveAmountButton = new System.Windows.Forms.Button();
             this.FilterButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.StockIdTextBox = new System.Windows.Forms.TextBox();
             this.RightStockDataGrid = new System.Windows.Forms.DataGridView();
             this.LeftStockDataGrid = new System.Windows.Forms.DataGridView();
-            this.MoveAmountButton = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.MoveAmountTextBox = new System.Windows.Forms.TextBox();
-            this.MoveSelectedButton = new System.Windows.Forms.Button();
-            this.MoveSelectedBackButton = new System.Windows.Forms.Button();
-            this.MoveAmountBack = new System.Windows.Forms.Button();
             this.UpperPanel.SuspendLayout();
             this.LowerPanel.SuspendLayout();
             this.MiddlePanel.SuspendLayout();
@@ -131,6 +131,63 @@
             this.MiddlePanel.Size = new System.Drawing.Size(120, 528);
             this.MiddlePanel.TabIndex = 5;
             // 
+            // MoveAmountBack
+            // 
+            this.MoveAmountBack.Location = new System.Drawing.Point(3, 145);
+            this.MoveAmountBack.Name = "MoveAmountBack";
+            this.MoveAmountBack.Size = new System.Drawing.Size(114, 23);
+            this.MoveAmountBack.TabIndex = 12;
+            this.MoveAmountBack.Text = "Move Amount Back";
+            this.MoveAmountBack.UseVisualStyleBackColor = true;
+            this.MoveAmountBack.Click += new System.EventHandler(this.MoveAmountBack_Click);
+            // 
+            // MoveSelectedBackButton
+            // 
+            this.MoveSelectedBackButton.Location = new System.Drawing.Point(3, 203);
+            this.MoveSelectedBackButton.Name = "MoveSelectedBackButton";
+            this.MoveSelectedBackButton.Size = new System.Drawing.Size(114, 23);
+            this.MoveSelectedBackButton.TabIndex = 11;
+            this.MoveSelectedBackButton.Text = "<---";
+            this.MoveSelectedBackButton.UseVisualStyleBackColor = true;
+            this.MoveSelectedBackButton.Click += new System.EventHandler(this.MoveSelectedBackButton_Click);
+            // 
+            // MoveSelectedButton
+            // 
+            this.MoveSelectedButton.Location = new System.Drawing.Point(3, 174);
+            this.MoveSelectedButton.Name = "MoveSelectedButton";
+            this.MoveSelectedButton.Size = new System.Drawing.Size(114, 23);
+            this.MoveSelectedButton.TabIndex = 10;
+            this.MoveSelectedButton.Text = "--->";
+            this.MoveSelectedButton.UseVisualStyleBackColor = true;
+            this.MoveSelectedButton.Click += new System.EventHandler(this.MoveSelectedButton_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Move Amount";
+            // 
+            // MoveAmountTextBox
+            // 
+            this.MoveAmountTextBox.Location = new System.Drawing.Point(3, 90);
+            this.MoveAmountTextBox.Name = "MoveAmountTextBox";
+            this.MoveAmountTextBox.Size = new System.Drawing.Size(114, 20);
+            this.MoveAmountTextBox.TabIndex = 9;
+            this.MoveAmountTextBox.TextChanged += new System.EventHandler(this.MoveAmountTextBox_TextChanged);
+            // 
+            // MoveAmountButton
+            // 
+            this.MoveAmountButton.Location = new System.Drawing.Point(3, 116);
+            this.MoveAmountButton.Name = "MoveAmountButton";
+            this.MoveAmountButton.Size = new System.Drawing.Size(114, 23);
+            this.MoveAmountButton.TabIndex = 7;
+            this.MoveAmountButton.Text = "Move Amount";
+            this.MoveAmountButton.UseVisualStyleBackColor = true;
+            this.MoveAmountButton.Click += new System.EventHandler(this.MoveAmountButton_Click);
+            // 
             // FilterButton
             // 
             this.FilterButton.Location = new System.Drawing.Point(3, 45);
@@ -183,63 +240,6 @@
             this.LeftStockDataGrid.Size = new System.Drawing.Size(374, 528);
             this.LeftStockDataGrid.TabIndex = 2;
             this.LeftStockDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LeftStockDataGrid_CellClick);
-            // 
-            // MoveAmountButton
-            // 
-            this.MoveAmountButton.Location = new System.Drawing.Point(3, 116);
-            this.MoveAmountButton.Name = "MoveAmountButton";
-            this.MoveAmountButton.Size = new System.Drawing.Size(114, 23);
-            this.MoveAmountButton.TabIndex = 7;
-            this.MoveAmountButton.Text = "Move Amount";
-            this.MoveAmountButton.UseVisualStyleBackColor = true;
-            this.MoveAmountButton.Click += new System.EventHandler(this.MoveAmountButton_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 74);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Move Amount";
-            // 
-            // MoveAmountTextBox
-            // 
-            this.MoveAmountTextBox.Location = new System.Drawing.Point(3, 90);
-            this.MoveAmountTextBox.Name = "MoveAmountTextBox";
-            this.MoveAmountTextBox.Size = new System.Drawing.Size(114, 20);
-            this.MoveAmountTextBox.TabIndex = 9;
-            this.MoveAmountTextBox.TextChanged += new System.EventHandler(this.MoveAmountTextBox_TextChanged);
-            // 
-            // MoveSelectedButton
-            // 
-            this.MoveSelectedButton.Location = new System.Drawing.Point(3, 174);
-            this.MoveSelectedButton.Name = "MoveSelectedButton";
-            this.MoveSelectedButton.Size = new System.Drawing.Size(114, 23);
-            this.MoveSelectedButton.TabIndex = 10;
-            this.MoveSelectedButton.Text = "--->";
-            this.MoveSelectedButton.UseVisualStyleBackColor = true;
-            this.MoveSelectedButton.Click += new System.EventHandler(this.MoveSelectedButton_Click);
-            // 
-            // MoveSelectedBackButton
-            // 
-            this.MoveSelectedBackButton.Location = new System.Drawing.Point(3, 203);
-            this.MoveSelectedBackButton.Name = "MoveSelectedBackButton";
-            this.MoveSelectedBackButton.Size = new System.Drawing.Size(114, 23);
-            this.MoveSelectedBackButton.TabIndex = 11;
-            this.MoveSelectedBackButton.Text = "<---";
-            this.MoveSelectedBackButton.UseVisualStyleBackColor = true;
-            this.MoveSelectedBackButton.Click += new System.EventHandler(this.MoveSelectedBackButton_Click);
-            // 
-            // MoveAmountBack
-            // 
-            this.MoveAmountBack.Location = new System.Drawing.Point(3, 145);
-            this.MoveAmountBack.Name = "MoveAmountBack";
-            this.MoveAmountBack.Size = new System.Drawing.Size(114, 23);
-            this.MoveAmountBack.TabIndex = 12;
-            this.MoveAmountBack.Text = "Move Amount Back";
-            this.MoveAmountBack.UseVisualStyleBackColor = true;
-            this.MoveAmountBack.Click += new System.EventHandler(this.MoveAmountBack_Click);
             // 
             // MoveStockForm
             // 
