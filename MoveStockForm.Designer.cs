@@ -35,6 +35,10 @@
             this.LeftComboBox = new System.Windows.Forms.ComboBox();
             this.LowerPanel = new System.Windows.Forms.Panel();
             this.MiddlePanel = new System.Windows.Forms.Panel();
+            this.GetRecipeDataButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.RecipeAmmountTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.MoveAmountBack = new System.Windows.Forms.Button();
             this.MoveSelectedBackButton = new System.Windows.Forms.Button();
             this.MoveSelectedButton = new System.Windows.Forms.Button();
@@ -46,6 +50,14 @@
             this.StockIdTextBox = new System.Windows.Forms.TextBox();
             this.RightStockDataGrid = new System.Windows.Forms.DataGridView();
             this.LeftStockDataGrid = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
+            this.RecipeStockIdTextBox = new System.Windows.Forms.TextBox();
+            this.RecipeMaterialComboBox = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.LeftTotalAmountLabel = new System.Windows.Forms.Label();
+            this.RightTotalAmountLabel = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.UpperPanel.SuspendLayout();
             this.LowerPanel.SuspendLayout();
             this.MiddlePanel.SuspendLayout();
@@ -56,6 +68,10 @@
             // UpperPanel
             // 
             this.UpperPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.UpperPanel.Controls.Add(this.RightTotalAmountLabel);
+            this.UpperPanel.Controls.Add(this.label11);
+            this.UpperPanel.Controls.Add(this.LeftTotalAmountLabel);
+            this.UpperPanel.Controls.Add(this.label8);
             this.UpperPanel.Controls.Add(this.RightStockLabel);
             this.UpperPanel.Controls.Add(this.label1);
             this.UpperPanel.Controls.Add(this.RightComboBox);
@@ -117,6 +133,14 @@
             // 
             this.MiddlePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.MiddlePanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.MiddlePanel.Controls.Add(this.label7);
+            this.MiddlePanel.Controls.Add(this.RecipeMaterialComboBox);
+            this.MiddlePanel.Controls.Add(this.label6);
+            this.MiddlePanel.Controls.Add(this.RecipeStockIdTextBox);
+            this.MiddlePanel.Controls.Add(this.GetRecipeDataButton);
+            this.MiddlePanel.Controls.Add(this.label5);
+            this.MiddlePanel.Controls.Add(this.RecipeAmmountTextBox);
+            this.MiddlePanel.Controls.Add(this.label4);
             this.MiddlePanel.Controls.Add(this.MoveAmountBack);
             this.MiddlePanel.Controls.Add(this.MoveSelectedBackButton);
             this.MiddlePanel.Controls.Add(this.MoveSelectedButton);
@@ -130,6 +154,42 @@
             this.MiddlePanel.Name = "MiddlePanel";
             this.MiddlePanel.Size = new System.Drawing.Size(120, 528);
             this.MiddlePanel.TabIndex = 5;
+            // 
+            // GetRecipeDataButton
+            // 
+            this.GetRecipeDataButton.Location = new System.Drawing.Point(3, 328);
+            this.GetRecipeDataButton.Name = "GetRecipeDataButton";
+            this.GetRecipeDataButton.Size = new System.Drawing.Size(114, 23);
+            this.GetRecipeDataButton.TabIndex = 14;
+            this.GetRecipeDataButton.Text = "Get Recipe Data";
+            this.GetRecipeDataButton.UseVisualStyleBackColor = true;
+            this.GetRecipeDataButton.Click += new System.EventHandler(this.GetDataButton_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 286);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Amount";
+            // 
+            // RecipeAmmountTextBox
+            // 
+            this.RecipeAmmountTextBox.Location = new System.Drawing.Point(3, 302);
+            this.RecipeAmmountTextBox.Name = "RecipeAmmountTextBox";
+            this.RecipeAmmountTextBox.Size = new System.Drawing.Size(114, 20);
+            this.RecipeAmmountTextBox.TabIndex = 16;
+            this.RecipeAmmountTextBox.TextChanged += new System.EventHandler(this.RecipeAmmountTextBox_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 229);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "MOVE BY RECIPE";
             // 
             // MoveAmountBack
             // 
@@ -241,6 +301,77 @@
             this.LeftStockDataGrid.TabIndex = 2;
             this.LeftStockDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LeftStockDataGrid_CellClick);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 247);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 13);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "STOCK_ID";
+            // 
+            // RecipeStockIdTextBox
+            // 
+            this.RecipeStockIdTextBox.Location = new System.Drawing.Point(3, 263);
+            this.RecipeStockIdTextBox.Name = "RecipeStockIdTextBox";
+            this.RecipeStockIdTextBox.Size = new System.Drawing.Size(114, 20);
+            this.RecipeStockIdTextBox.TabIndex = 18;
+            this.RecipeStockIdTextBox.TextChanged += new System.EventHandler(this.RecipeStockIdTextBox_TextChanged);
+            // 
+            // RecipeMaterialComboBox
+            // 
+            this.RecipeMaterialComboBox.FormattingEnabled = true;
+            this.RecipeMaterialComboBox.Location = new System.Drawing.Point(3, 370);
+            this.RecipeMaterialComboBox.Name = "RecipeMaterialComboBox";
+            this.RecipeMaterialComboBox.Size = new System.Drawing.Size(114, 21);
+            this.RecipeMaterialComboBox.TabIndex = 19;
+            this.RecipeMaterialComboBox.SelectedIndexChanged += new System.EventHandler(this.RecipeMaterialComboBox_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 354);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(29, 13);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Filter";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(180, 6);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(70, 13);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Total Amount";
+            // 
+            // LeftTotalAmountLabel
+            // 
+            this.LeftTotalAmountLabel.AutoSize = true;
+            this.LeftTotalAmountLabel.Location = new System.Drawing.Point(256, 6);
+            this.LeftTotalAmountLabel.Name = "LeftTotalAmountLabel";
+            this.LeftTotalAmountLabel.Size = new System.Drawing.Size(13, 13);
+            this.LeftTotalAmountLabel.TabIndex = 5;
+            this.LeftTotalAmountLabel.Text = "0";
+            // 
+            // RightTotalAmountLabel
+            // 
+            this.RightTotalAmountLabel.AutoSize = true;
+            this.RightTotalAmountLabel.Location = new System.Drawing.Point(763, 6);
+            this.RightTotalAmountLabel.Name = "RightTotalAmountLabel";
+            this.RightTotalAmountLabel.Size = new System.Drawing.Size(13, 13);
+            this.RightTotalAmountLabel.TabIndex = 7;
+            this.RightTotalAmountLabel.Text = "0";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(687, 6);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(70, 13);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "Total Amount";
+            // 
             // MoveStockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -283,5 +414,17 @@
         private System.Windows.Forms.Button MoveAmountButton;
         private System.Windows.Forms.Button MoveSelectedBackButton;
         private System.Windows.Forms.Button MoveAmountBack;
+        private System.Windows.Forms.Button GetRecipeDataButton;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox RecipeAmmountTextBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox RecipeStockIdTextBox;
+        private System.Windows.Forms.ComboBox RecipeMaterialComboBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label RightTotalAmountLabel;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label LeftTotalAmountLabel;
+        private System.Windows.Forms.Label label8;
     }
 }

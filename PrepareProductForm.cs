@@ -114,6 +114,9 @@ namespace stock_keeping_application
         #region Producing
         private void Produce()
         {
+            MessageBox.Show("Error");
+            return;
+
             for (int i = 0; i < RequiredGridData.Rows.Count; i++)
             {
                 string stockId = RequiredGridData.Rows[i].Cells[2].Value.ToString();
@@ -126,7 +129,10 @@ namespace stock_keeping_application
         private void UseStock(string stockId, int amount)
         {
             DataTable stockData = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID = '{stockId}';");
-            
+            // Get the stock and delete required amount
+            // Problem is we need to decide which one to use from
+            // prioritize the used ones
+
         }
         #endregion
 

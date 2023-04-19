@@ -134,6 +134,19 @@ namespace stock_keeping_application
             Console.WriteLine($"right selected: {rightSelectedStock}");
             FilterDatas(Filter);
         }
+
+        /// <summary>
+        /// Show the recipe materials and filter the selected stock in the tables.
+        /// The user should select the material and move the required amount
+        /// when clicked proceed check if all requirements are met and if so move the parts
+        /// </summary>
+        private int recipeMaterialSelectedIndex = 0;
+        private void RecipeMaterialComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            recipeMaterialSelectedIndex = RecipeMaterialComboBox.SelectedIndex;
+            Console.WriteLine($"recipe material selected: {recipeMaterialSelectedIndex}");
+            FilterDatas(recipeNames[recipeMaterialSelectedIndex]);
+        }
         #endregion
 
         #region Filtering
@@ -174,6 +187,22 @@ namespace stock_keeping_application
         }
         #endregion
 
+        /// <summary>
+        /// Calculate total value of the selected material in left and right.
+        /// Calculate required amount and control if the requirement is satisfied
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        //private void CalculateTotal()
+        //{
+        //    int LeftStockTotal = 0;
+        //    DataTable table = LeftStockDataGrid.DataSource as DataTable;
+        //    for (int i = 0; i < table.Rows.Count; i++)
+        //    {
+
+        //    }
+        //}
+
         // For resızıng the form and keepıng the wındow form
         private void MoveStockForm_Resize(object sender, EventArgs e)
         {
@@ -193,6 +222,12 @@ namespace stock_keeping_application
             FilterStockId = StockIdTextBox.Text;
         }
 
+        private string RecipeStockId;
+        private void RecipeStockIdTextBox_TextChanged(object sender, EventArgs e)
+        {
+            RecipeStockId = RecipeStockIdTextBox.Text;
+        }
+
         private void FilterButton_Click(object sender, EventArgs e)
         {
             FilterDatas(FilterStockId);
@@ -203,6 +238,12 @@ namespace stock_keeping_application
         private void MoveAmountTextBox_TextChanged(object sender, EventArgs e)
         {
             moveAmount = Convert.ToInt32(MoveAmountTextBox.Text);
+        }
+
+        private int recipeAmount;
+        private void RecipeAmmountTextBox_TextChanged(object sender, EventArgs e)
+        {
+            recipeAmount = Convert.ToInt32(RecipeAmmountTextBox.Text);
         }
 
         /// <summary>
@@ -347,6 +388,39 @@ namespace stock_keeping_application
                 connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_POSITION = '{leftSelectedStock}'\r\nWHERE ID = '{rightId}';");
             }
             FilterDatas(FilterStockId);
+        }
+
+        List<string> recipeNames = new List<string>();
+        List<string> alternativeNames = new List<string>();
+        List<int> requiredAmounts = new List<int>();
+        private void GetDataButton_Click(object sender, EventArgs e)
+        {
+            DataTable recipeData = connection.ExecuteQuery($"SELECT * FROM recipe_table\r\nWHERE STOCK_ID = '{RecipeStockId}';");
+            RecipeMaterialComboBox.Items.Clear();
+            recipeNames.Clear();
+            alternativeNames.Clear();
+            requiredAmounts.Clear();
+            for (int i = 0; i < recipeData.Rows.Count; i++)
+            {
+                string id = recipeData.Rows[i][2].ToString();
+                int amount = Convert.ToInt32(recipeData.Rows[i][4]);
+                if (!(id == null || id == ""))
+                {
+                    if (!RecipeMaterialComboBox.Items.Contains(id))
+                    {
+                        RecipeMaterialComboBox.Items.Add(id);
+                        recipeNames.Add(id);
+                        requiredAmounts.Add(amount * recipeAmount);
+                    }
+                }
+                string alt = recipeData.Rows[i][3].ToString();
+                if (!RecipeMaterialComboBox.Items.Contains(alt))
+                {
+                    alternativeNames.Add(alt);
+                }
+            }
+            RecipeMaterialComboBox.SelectedIndex = 0;
+            RecipeMaterialComboBox.Update();
         }
         #endregion
     }
