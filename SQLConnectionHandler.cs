@@ -36,6 +36,8 @@ namespace stock_keeping_application
             bool movement = false;
             DataTable dataTable = ExecuteQuery("SELECT TABLE_NAME\r\nFROM INFORMATION_SCHEMA.TABLES\r\nWHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG='stock_application_db'");
 
+            // check if the database is created
+
             Console.WriteLine("Checking if the required tables are provided");
 
             if (dataTable.Rows[0][0].ToString() == "recipe_table")

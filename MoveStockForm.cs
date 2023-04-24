@@ -119,6 +119,11 @@ namespace stock_keeping_application
         #endregion
 
         #region ComboBox
+
+        /// <summary>
+        /// The comboboxes are refreshing the list. This is a bug that needs to be fixed.
+        /// </summary>
+
         private int leftSelectedStock = 0;
         private void LeftComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -140,11 +145,12 @@ namespace stock_keeping_application
         /// The user should select the material and move the required amount
         /// when clicked proceed check if all requirements are met and if so move the parts
         /// </summary>
-        private int recipeMaterialSelectedIndex = 0;
+        private int recipeMaterialSelectedIndex = -1;
         private void RecipeMaterialComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             recipeMaterialSelectedIndex = RecipeMaterialComboBox.SelectedIndex;
             Console.WriteLine($"recipe material selected: {recipeMaterialSelectedIndex}");
+            Filter = recipeNames[recipeMaterialSelectedIndex];
             FilterDatas(recipeNames[recipeMaterialSelectedIndex]);
         }
         #endregion
@@ -178,6 +184,11 @@ namespace stock_keeping_application
             }
         }
 
+        /// <summary>
+        /// Filters the datas that are shown in the tables
+        /// Needs an upgrade for selecting a recipe materail. 
+        /// </summary>
+        /// <param name="filter"></param>
         private void FilterDatas(string filter)
         {
             DataTable leftDataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{filter}%' AND STOCK_POSITION = '{leftSelectedStock}';");
@@ -390,6 +401,9 @@ namespace stock_keeping_application
             FilterDatas(FilterStockId);
         }
 
+        /// <summary>
+        /// Creates the list based on the recipe
+        /// </summary>
         List<string> recipeNames = new List<string>();
         List<string> alternativeNames = new List<string>();
         List<int> requiredAmounts = new List<int>();
