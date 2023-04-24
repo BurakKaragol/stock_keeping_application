@@ -198,20 +198,9 @@ namespace stock_keeping_application
         {
             DataTable leftDataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{filter}%' AND STOCK_POSITION = '{leftSelectedStock}';");
             LeftStockDataGrid.DataSource = leftDataTable;
-            leftTotal = 0;
-            for (int i = 0; i < LeftStockDataGrid.Rows.Count; i++)
-            {
-                LeftTotal += Convert.ToInt32(LeftStockDataGrid.Rows[i].Cells[5].Value) * Convert.ToInt32(LeftStockDataGrid.Rows[i].Cells[6].Value);
-            }
-            LeftTotalAmountLabel.Text = LeftTotal.ToString();
             DataTable rightDataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{filter}%' AND STOCK_POSITION = '{rightSelectedStock}';");
             RightStockDataGrid.DataSource = rightDataTable;
-            RightTotal = 0;
-            for (int i = 0; i < RightStockDataGrid.Rows.Count; i++)
-            {
-                RightTotal += Convert.ToInt32(RightStockDataGrid.Rows[i].Cells[5].Value) * Convert.ToInt32(RightStockDataGrid.Rows[i].Cells[6].Value);
-            }
-            RightTotalAmountLabel.Text = RightTotal.ToString();
+            CalculateTotal();
         }
         #endregion
 
@@ -219,17 +208,23 @@ namespace stock_keeping_application
         /// Calculate total value of the selected material in left and right.
         /// Calculate required amount and control if the requirement is satisfied
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void CalculateTotal()
-        //{
-        //    int LeftStockTotal = 0;
-        //    DataTable table = LeftStockDataGrid.DataSource as DataTable;
-        //    for (int i = 0; i < table.Rows.Count; i++)
-        //    {
-
-        //    }
-        //}
+        /// <param name = "sender" ></ param >
+        /// < param name="e"></param>
+        private void CalculateTotal()
+        {
+            leftTotal = 0;
+            for (int i = 0; i < LeftStockDataGrid.Rows.Count; i++)
+            {
+                LeftTotal += Convert.ToInt32(LeftStockDataGrid.Rows[i].Cells[5].Value) * Convert.ToInt32(LeftStockDataGrid.Rows[i].Cells[6].Value);
+            }
+            LeftTotalAmountLabel.Text = LeftTotal.ToString();
+            RightTotal = 0;
+            for (int i = 0; i < RightStockDataGrid.Rows.Count; i++)
+            {
+                RightTotal += Convert.ToInt32(RightStockDataGrid.Rows[i].Cells[5].Value) * Convert.ToInt32(RightStockDataGrid.Rows[i].Cells[6].Value);
+            }
+            RightTotalAmountLabel.Text = RightTotal.ToString();
+        }
 
         // For resızıng the form and keepıng the wındow form
         private void MoveStockForm_Resize(object sender, EventArgs e)
