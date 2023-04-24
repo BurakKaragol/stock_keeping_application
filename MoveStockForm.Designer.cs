@@ -29,12 +29,20 @@
         private void InitializeComponent()
         {
             this.UpperPanel = new System.Windows.Forms.Panel();
+            this.RightTotalAmountLabel = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.LeftTotalAmountLabel = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.RightStockLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.RightComboBox = new System.Windows.Forms.ComboBox();
             this.LeftComboBox = new System.Windows.Forms.ComboBox();
             this.LowerPanel = new System.Windows.Forms.Panel();
             this.MiddlePanel = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.RecipeMaterialComboBox = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.RecipeStockIdTextBox = new System.Windows.Forms.TextBox();
             this.GetRecipeDataButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.RecipeAmmountTextBox = new System.Windows.Forms.TextBox();
@@ -50,14 +58,13 @@
             this.StockIdTextBox = new System.Windows.Forms.TextBox();
             this.RightStockDataGrid = new System.Windows.Forms.DataGridView();
             this.LeftStockDataGrid = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
-            this.RecipeStockIdTextBox = new System.Windows.Forms.TextBox();
-            this.RecipeMaterialComboBox = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.LeftTotalAmountLabel = new System.Windows.Forms.Label();
-            this.RightTotalAmountLabel = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.RequiredAmountLabel = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.CurrentAmountLabel = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.RemainingAmountLabel = new System.Windows.Forms.Label();
             this.UpperPanel.SuspendLayout();
             this.LowerPanel.SuspendLayout();
             this.MiddlePanel.SuspendLayout();
@@ -81,6 +88,42 @@
             this.UpperPanel.Name = "UpperPanel";
             this.UpperPanel.Size = new System.Drawing.Size(885, 30);
             this.UpperPanel.TabIndex = 0;
+            // 
+            // RightTotalAmountLabel
+            // 
+            this.RightTotalAmountLabel.AutoSize = true;
+            this.RightTotalAmountLabel.Location = new System.Drawing.Point(763, 6);
+            this.RightTotalAmountLabel.Name = "RightTotalAmountLabel";
+            this.RightTotalAmountLabel.Size = new System.Drawing.Size(13, 13);
+            this.RightTotalAmountLabel.TabIndex = 7;
+            this.RightTotalAmountLabel.Text = "0";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(687, 6);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(70, 13);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "Total Amount";
+            // 
+            // LeftTotalAmountLabel
+            // 
+            this.LeftTotalAmountLabel.AutoSize = true;
+            this.LeftTotalAmountLabel.Location = new System.Drawing.Point(256, 6);
+            this.LeftTotalAmountLabel.Name = "LeftTotalAmountLabel";
+            this.LeftTotalAmountLabel.Size = new System.Drawing.Size(13, 13);
+            this.LeftTotalAmountLabel.TabIndex = 5;
+            this.LeftTotalAmountLabel.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(180, 6);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(70, 13);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Total Amount";
             // 
             // RightStockLabel
             // 
@@ -133,6 +176,13 @@
             // 
             this.MiddlePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.MiddlePanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.MiddlePanel.Controls.Add(this.RemainingAmountLabel);
+            this.MiddlePanel.Controls.Add(this.label13);
+            this.MiddlePanel.Controls.Add(this.CurrentAmountLabel);
+            this.MiddlePanel.Controls.Add(this.label12);
+            this.MiddlePanel.Controls.Add(this.RequiredAmountLabel);
+            this.MiddlePanel.Controls.Add(this.label10);
+            this.MiddlePanel.Controls.Add(this.label9);
             this.MiddlePanel.Controls.Add(this.label7);
             this.MiddlePanel.Controls.Add(this.RecipeMaterialComboBox);
             this.MiddlePanel.Controls.Add(this.label6);
@@ -154,6 +204,41 @@
             this.MiddlePanel.Name = "MiddlePanel";
             this.MiddlePanel.Size = new System.Drawing.Size(120, 528);
             this.MiddlePanel.TabIndex = 5;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 354);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(29, 13);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Filter";
+            // 
+            // RecipeMaterialComboBox
+            // 
+            this.RecipeMaterialComboBox.FormattingEnabled = true;
+            this.RecipeMaterialComboBox.Location = new System.Drawing.Point(3, 370);
+            this.RecipeMaterialComboBox.Name = "RecipeMaterialComboBox";
+            this.RecipeMaterialComboBox.Size = new System.Drawing.Size(114, 21);
+            this.RecipeMaterialComboBox.TabIndex = 19;
+            this.RecipeMaterialComboBox.SelectedIndexChanged += new System.EventHandler(this.RecipeMaterialComboBox_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 247);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 13);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "STOCK_ID";
+            // 
+            // RecipeStockIdTextBox
+            // 
+            this.RecipeStockIdTextBox.Location = new System.Drawing.Point(3, 263);
+            this.RecipeStockIdTextBox.Name = "RecipeStockIdTextBox";
+            this.RecipeStockIdTextBox.Size = new System.Drawing.Size(114, 20);
+            this.RecipeStockIdTextBox.TabIndex = 18;
+            this.RecipeStockIdTextBox.TextChanged += new System.EventHandler(this.RecipeStockIdTextBox_TextChanged);
             // 
             // GetRecipeDataButton
             // 
@@ -269,6 +354,7 @@
             // 
             // StockIdTextBox
             // 
+            this.StockIdTextBox.AccessibleDescription = "";
             this.StockIdTextBox.Location = new System.Drawing.Point(3, 19);
             this.StockIdTextBox.Name = "StockIdTextBox";
             this.StockIdTextBox.Size = new System.Drawing.Size(114, 20);
@@ -301,76 +387,68 @@
             this.LeftStockDataGrid.TabIndex = 2;
             this.LeftStockDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LeftStockDataGrid_CellClick);
             // 
-            // label6
+            // label9
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 247);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 13);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "STOCK_ID";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 394);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(76, 13);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "Specifications:";
             // 
-            // RecipeStockIdTextBox
+            // label10
             // 
-            this.RecipeStockIdTextBox.Location = new System.Drawing.Point(3, 263);
-            this.RecipeStockIdTextBox.Name = "RecipeStockIdTextBox";
-            this.RecipeStockIdTextBox.Size = new System.Drawing.Size(114, 20);
-            this.RecipeStockIdTextBox.TabIndex = 18;
-            this.RecipeStockIdTextBox.TextChanged += new System.EventHandler(this.RecipeStockIdTextBox_TextChanged);
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 415);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(89, 13);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Required Amount";
             // 
-            // RecipeMaterialComboBox
+            // RequiredAmountLabel
             // 
-            this.RecipeMaterialComboBox.FormattingEnabled = true;
-            this.RecipeMaterialComboBox.Location = new System.Drawing.Point(3, 370);
-            this.RecipeMaterialComboBox.Name = "RecipeMaterialComboBox";
-            this.RecipeMaterialComboBox.Size = new System.Drawing.Size(114, 21);
-            this.RecipeMaterialComboBox.TabIndex = 19;
-            this.RecipeMaterialComboBox.SelectedIndexChanged += new System.EventHandler(this.RecipeMaterialComboBox_SelectedIndexChanged);
+            this.RequiredAmountLabel.AutoSize = true;
+            this.RequiredAmountLabel.Location = new System.Drawing.Point(11, 435);
+            this.RequiredAmountLabel.Name = "RequiredAmountLabel";
+            this.RequiredAmountLabel.Size = new System.Drawing.Size(13, 13);
+            this.RequiredAmountLabel.TabIndex = 23;
+            this.RequiredAmountLabel.Text = "0";
             // 
-            // label7
+            // label12
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 354);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(29, 13);
-            this.label7.TabIndex = 20;
-            this.label7.Text = "Filter";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 448);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(80, 13);
+            this.label12.TabIndex = 24;
+            this.label12.Text = "Current Amount";
             // 
-            // label8
+            // CurrentAmountLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(180, 6);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(70, 13);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Total Amount";
+            this.CurrentAmountLabel.AutoSize = true;
+            this.CurrentAmountLabel.Location = new System.Drawing.Point(11, 468);
+            this.CurrentAmountLabel.Name = "CurrentAmountLabel";
+            this.CurrentAmountLabel.Size = new System.Drawing.Size(13, 13);
+            this.CurrentAmountLabel.TabIndex = 25;
+            this.CurrentAmountLabel.Text = "0";
             // 
-            // LeftTotalAmountLabel
+            // label13
             // 
-            this.LeftTotalAmountLabel.AutoSize = true;
-            this.LeftTotalAmountLabel.Location = new System.Drawing.Point(256, 6);
-            this.LeftTotalAmountLabel.Name = "LeftTotalAmountLabel";
-            this.LeftTotalAmountLabel.Size = new System.Drawing.Size(13, 13);
-            this.LeftTotalAmountLabel.TabIndex = 5;
-            this.LeftTotalAmountLabel.Text = "0";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 483);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(96, 13);
+            this.label13.TabIndex = 26;
+            this.label13.Text = "Remaining Amount";
             // 
-            // RightTotalAmountLabel
+            // RemainingAmountLabel
             // 
-            this.RightTotalAmountLabel.AutoSize = true;
-            this.RightTotalAmountLabel.Location = new System.Drawing.Point(763, 6);
-            this.RightTotalAmountLabel.Name = "RightTotalAmountLabel";
-            this.RightTotalAmountLabel.Size = new System.Drawing.Size(13, 13);
-            this.RightTotalAmountLabel.TabIndex = 7;
-            this.RightTotalAmountLabel.Text = "0";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(687, 6);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(70, 13);
-            this.label11.TabIndex = 6;
-            this.label11.Text = "Total Amount";
+            this.RemainingAmountLabel.AutoSize = true;
+            this.RemainingAmountLabel.Location = new System.Drawing.Point(11, 503);
+            this.RemainingAmountLabel.Name = "RemainingAmountLabel";
+            this.RemainingAmountLabel.Size = new System.Drawing.Size(13, 13);
+            this.RemainingAmountLabel.TabIndex = 27;
+            this.RemainingAmountLabel.Text = "0";
             // 
             // MoveStockForm
             // 
@@ -426,5 +504,12 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label LeftTotalAmountLabel;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label RemainingAmountLabel;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label CurrentAmountLabel;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label RequiredAmountLabel;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
     }
 }

@@ -69,7 +69,7 @@ namespace stock_keeping_application
         private string leftTotalPrice;
         private int leftAmount;
         private int leftCurrent;
-        private int leftTotal;
+        private int leftTotal = 0;
         private void LeftStockDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             leftSelectedIndex = e.RowIndex;
@@ -96,7 +96,7 @@ namespace stock_keeping_application
         private string rightTotalPrice;
         private int rightAmount;
         private int rightCurrent;
-        private int rightTotal;
+        private int rightTotal = 0;
         private void RightStockDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             rightSelectedIndex = e.RowIndex;
@@ -435,6 +435,9 @@ namespace stock_keeping_application
             }
             RecipeMaterialComboBox.SelectedIndex = 0;
             RecipeMaterialComboBox.Update();
+            RequiredAmountLabel.Text = (requiredAmounts[0] * recipeAmount).ToString();
+            CurrentAmountLabel.Text = ((requiredAmounts[0] * recipeAmount) - rightTotal).ToString();
+            RemainingAmountLabel.Text = ((requiredAmounts[0] * recipeAmount) - ((requiredAmounts[0] * recipeAmount) - rightTotal)).ToString();
         }
         #endregion
     }
