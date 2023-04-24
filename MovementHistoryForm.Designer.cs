@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "MovementHistoryForm";
             this.Text = "Movement History";
+            this.Load += new System.EventHandler(this.MovementHistoryForm_Load);
             this.ResumeLayout(false);
 
         }

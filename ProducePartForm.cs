@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace stock_keeping_application
 {
+    /// <summary>
+    /// TODO: add a combobox for selecting the stock position for material use
+    /// </summary>
     public partial class ProducePartForm : Form
     {
         public ProducePartForm()

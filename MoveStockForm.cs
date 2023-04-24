@@ -10,6 +10,10 @@ using System.Windows.Forms;
 
 namespace stock_keeping_application
 {
+    /// <summary>
+    /// TODO: The remaining current and required values are calculated but the values are not updating correctly.
+    /// Control the logic
+    /// </summary>
     public partial class MoveStockForm : Form
     {
         SQLConnectionHandler connection;
