@@ -152,6 +152,9 @@ namespace stock_keeping_application
             Console.WriteLine($"recipe material selected: {recipeMaterialSelectedIndex}");
             Filter = recipeNames[recipeMaterialSelectedIndex];
             FilterDatas(recipeNames[recipeMaterialSelectedIndex]);
+            RequiredAmountLabel.Text = (requiredAmounts[recipeMaterialSelectedIndex] * recipeAmount).ToString();
+            CurrentAmountLabel.Text = ((requiredAmounts[recipeMaterialSelectedIndex] * recipeAmount) - rightTotal).ToString();
+            RemainingAmountLabel.Text = ((requiredAmounts[recipeMaterialSelectedIndex] * recipeAmount) - ((requiredAmounts[recipeMaterialSelectedIndex] * recipeAmount) - rightTotal)).ToString();
         }
         #endregion
 
@@ -189,12 +192,26 @@ namespace stock_keeping_application
         /// Needs an upgrade for selecting a recipe materail. 
         /// </summary>
         /// <param name="filter"></param>
+        int LeftTotal;
+        int RightTotal;
         private void FilterDatas(string filter)
         {
             DataTable leftDataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{filter}%' AND STOCK_POSITION = '{leftSelectedStock}';");
             LeftStockDataGrid.DataSource = leftDataTable;
+            leftTotal = 0;
+            for (int i = 0; i < LeftStockDataGrid.Rows.Count; i++)
+            {
+                LeftTotal += Convert.ToInt32(LeftStockDataGrid.Rows[i].Cells[5].Value) * Convert.ToInt32(LeftStockDataGrid.Rows[i].Cells[6].Value);
+            }
+            LeftTotalAmountLabel.Text = LeftTotal.ToString();
             DataTable rightDataTable = connection.ExecuteQuery($"SELECT * FROM amount_table WHERE STOCK_ID LIKE '%{filter}%' AND STOCK_POSITION = '{rightSelectedStock}';");
             RightStockDataGrid.DataSource = rightDataTable;
+            RightTotal = 0;
+            for (int i = 0; i < RightStockDataGrid.Rows.Count; i++)
+            {
+                RightTotal += Convert.ToInt32(RightStockDataGrid.Rows[i].Cells[5].Value) * Convert.ToInt32(RightStockDataGrid.Rows[i].Cells[6].Value);
+            }
+            RightTotalAmountLabel.Text = RightTotal.ToString();
         }
         #endregion
 
@@ -436,8 +453,8 @@ namespace stock_keeping_application
             RecipeMaterialComboBox.SelectedIndex = 0;
             RecipeMaterialComboBox.Update();
             RequiredAmountLabel.Text = (requiredAmounts[0] * recipeAmount).ToString();
-            CurrentAmountLabel.Text = ((requiredAmounts[0] * recipeAmount) - rightTotal).ToString();
-            RemainingAmountLabel.Text = ((requiredAmounts[0] * recipeAmount) - ((requiredAmounts[0] * recipeAmount) - rightTotal)).ToString();
+            CurrentAmountLabel.Text = ((requiredAmounts[0] * recipeAmount) - RightTotal).ToString();
+            RemainingAmountLabel.Text = ((requiredAmounts[0] * recipeAmount) - ((requiredAmounts[0] * recipeAmount) - RightTotal)).ToString();
         }
         #endregion
     }
