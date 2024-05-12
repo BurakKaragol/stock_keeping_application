@@ -56,7 +56,8 @@ namespace stock_keeping_application
             }
             else
             {
-                connection.ExecuteQuery($"INSERT INTO recipe_table(STOCK_ID, RECIPE_ID, ALT_RECIPE_ID, AMOUNT)\r\nVALUES ('{SelectedStock}', '{StockId}', '', '{Amount}');");
+                connection.ExecuteQuery($"INSERT INTO recipe_table(STOCK_ID, RECIPE_ID, ALT_RECIPE_ID, AMOUNT)\r\n" +
+                    $"VALUES ('{SelectedStock}', '{StockId}', '', '{Amount}');");
                 RecipeDataGrid.DataSource = connection.ExecuteQuery($"SELECT * FROM recipe_table WHERE STOCK_ID = '{SelectedStock}'");
                 RecipeDataGrid.Update();
             }

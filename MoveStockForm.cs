@@ -283,7 +283,9 @@ namespace stock_keeping_application
         /// <param name="e"></param>
         private void MoveAmountButton_Click(object sender, EventArgs e)
         {
-            DataTable found = connection.ExecuteQuery($"SELECT * FROM amount_table\r\nWHERE STOCK_ID = '{leftStockId}'\r\nAND STOCK_POSITION = '{rightSelectedStock}'\r\nAND CURRENT_AMOUNT = '{leftCurrent}'\r\nAND MAXIMUM_COUNT = '{leftTotal}';");
+            DataTable found = connection.ExecuteQuery(
+                $"SELECT * FROM amount_table\r\nWHERE STOCK_ID = '{leftStockId}'\r\nAND STOCK_POSITION = '" +
+                $"{rightSelectedStock}'\r\nAND CURRENT_AMOUNT = '{leftCurrent}'\r\nAND MAXIMUM_COUNT = '{leftTotal}';");
             // if found add to the amount
             if (found.Rows.Count > 0)
             {
@@ -306,7 +308,8 @@ namespace stock_keeping_application
             {
                 if (moveAmount <= leftAmount)
                 {
-                    connection.ExecuteQuery($"INSERT INTO amount_table (STOCK_ID, STOCK_POSITION, UNIT_PRICE, TOTAL_PRICE, STOCK_AMOUNT, CURRENT_AMOUNT, MAXIMUM_COUNT)\r\nVALUES ('{leftStockId}', '{rightSelectedStock}', '{leftUnitPrice}', '{leftTotalPrice}', '{moveAmount}', '{leftCurrent}', '{leftTotal}');");
+                    connection.ExecuteQuery($"INSERT INTO amount_table (STOCK_ID, STOCK_POSITION, UNIT_PRICE, TOTAL_PRICE, STOCK_AMOUNT, CURRENT_AMOUNT, MAXIMUM_COUNT)\r\n" +
+                        $"VALUES ('{leftStockId}', '{rightSelectedStock}', '{leftUnitPrice}', '{leftTotalPrice}', '{moveAmount}', '{leftCurrent}', '{leftTotal}');");
                     connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{leftAmount - moveAmount}'\r\nWHERE ID = '{leftId}';");
                 }
                 else
@@ -328,7 +331,9 @@ namespace stock_keeping_application
         /// <param name="e"></param>
         private void MoveAmountBack_Click(object sender, EventArgs e)
         {
-            DataTable found = connection.ExecuteQuery($"SELECT * FROM amount_table\r\nWHERE STOCK_ID = '{rightStockId}'\r\nAND STOCK_POSITION = '{leftSelectedStock}'\r\nAND CURRENT_AMOUNT = '{rightCurrent}'\r\nAND MAXIMUM_COUNT = '{rightTotal}';");
+            DataTable found = connection.ExecuteQuery(
+                $"SELECT * FROM amount_table\r\nWHERE STOCK_ID = '{rightStockId}'\r\nAND STOCK_POSITION = '{leftSelectedStock}'\r\n" +
+                $"AND CURRENT_AMOUNT = '{rightCurrent}'\r\nAND MAXIMUM_COUNT = '{rightTotal}';");
             // if found add to the amount
             if (found.Rows.Count > 0)
             {
@@ -351,7 +356,8 @@ namespace stock_keeping_application
             {
                 if (moveAmount <= leftAmount)
                 {
-                    connection.ExecuteQuery($"INSERT INTO amount_table (STOCK_ID, STOCK_POSITION, UNIT_PRICE, TOTAL_PRICE, STOCK_AMOUNT, CURRENT_AMOUNT, MAXIMUM_COUNT)\r\nVALUES ('{rightStockId}', '{leftSelectedStock}', '{rightUnitPrice}', '{rightTotalPrice}', '{moveAmount}', '{rightCurrent}', '{rightTotal}');");
+                    connection.ExecuteQuery($"INSERT INTO amount_table (STOCK_ID, STOCK_POSITION, UNIT_PRICE, TOTAL_PRICE, STOCK_AMOUNT, CURRENT_AMOUNT, MAXIMUM_COUNT)\r\n" +
+                        $"VALUES ('{rightStockId}', '{leftSelectedStock}', '{rightUnitPrice}', '{rightTotalPrice}', '{moveAmount}', '{rightCurrent}', '{rightTotal}');");
                     connection.ExecuteQuery($"UPDATE amount_table\r\nSET STOCK_AMOUNT = '{rightAmount - moveAmount}'\r\nWHERE ID = '{rightId}';");
                 }
                 else
@@ -373,7 +379,8 @@ namespace stock_keeping_application
         /// <param name="e"></param>
         private void MoveSelectedButton_Click(object sender, EventArgs e)
         {
-            DataTable found = connection.ExecuteQuery($"SELECT * FROM amount_table\r\nWHERE STOCK_ID = '{leftStockId}'\r\nAND STOCK_POSITION = '{rightSelectedStock}'\r\nAND CURRENT_AMOUNT = '{leftCurrent}'\r\nAND MAXIMUM_COUNT = '{leftTotal}';");
+            DataTable found = connection.ExecuteQuery($"SELECT * FROM amount_table\r\nWHERE STOCK_ID = '{leftStockId}'\r\n" +
+                $"AND STOCK_POSITION = '{rightSelectedStock}'\r\nAND CURRENT_AMOUNT = '{leftCurrent}'\r\nAND MAXIMUM_COUNT = '{leftTotal}';");
             // if found add to the amount
             if (found.Rows.Count > 0)
             {
@@ -400,7 +407,8 @@ namespace stock_keeping_application
         /// <param name="e"></param>
         private void MoveSelectedBackButton_Click(object sender, EventArgs e)
         {
-            DataTable found = connection.ExecuteQuery($"SELECT * FROM amount_table\r\nWHERE STOCK_ID = '{rightStockId}'\r\nAND STOCK_POSITION = '{leftSelectedStock}'\r\nAND CURRENT_AMOUNT = '{rightCurrent}'\r\nAND MAXIMUM_COUNT = '{rightTotal}';");
+            DataTable found = connection.ExecuteQuery($"SELECT * FROM amount_table\r\nWHERE STOCK_ID = '{rightStockId}'\r\n" +
+                $"AND STOCK_POSITION = '{leftSelectedStock}'\r\nAND CURRENT_AMOUNT = '{rightCurrent}'\r\nAND MAXIMUM_COUNT = '{rightTotal}';");
             // if found add to the amount
             if (found.Rows.Count > 0)
             {
